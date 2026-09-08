@@ -1,0 +1,33 @@
+/* ── CHRONO Global Dark Theme ─────────────────────────────── */
+html, body {
+    font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: #07091a;
+    color: #d4e0ff;
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+}
+
+a, .btn-link { color: #4f8ef7; }
+
+h1:focus { outline: none; }
+
+.valid.modified:not([type=checkbox]) { outline: 1px solid #00c9a7; }
+.invalid { outline: 1px solid #ef4444; }
+.validation-message { color: #ef4444; }
+
+.blazor-error-boundary {
+    background: #1a0a0a;
+    border: 1px solid rgba(239,68,68,0.3);
+    padding: 1rem 1rem 1rem 3.7rem;
+    color: #fca5a5;
+    border-radius: 8px;
+}
+
+.blazor-error-boundary::after { content: "Ein Fehler ist aufgetreten." }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #0d1428; }
+::-webkit-scrollbar-thumb { background: rgba(79,142,247,0.3); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(79,142,247,0.5); }

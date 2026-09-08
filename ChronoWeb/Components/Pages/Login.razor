@@ -1,0 +1,286 @@
+﻿@page "/login"
+@page "/"
+@using ChronoWeb.Models
+@using ChronoWeb.Services
+@inject ApiService ApiService
+@inject AppState AppState
+@inject NavigationManager Navigation
+@inject IJSRuntime JS
+@rendermode InteractiveServer
+
+<PageTitle>CHRONO – Anmeldung</PageTitle>
+
+<div class="login-page">
+
+    <div class="login-glow"></div>
+
+    <div class="login-stage">
+
+        @* Zifferblatt *@
+        <canvas id="ultraCanvas" width="800" height="880"></canvas>
+
+        @* Anmeldekarte *@
+        <div class="card login-card">
+            <div class="card-body">
+
+                <div class="login-brand">
+                    <div class="login-mark">C</div>
+                    <div class="login-wordmark">CHRO<em>NO</em></div>
+                </div>
+
+                <p class="login-hint">Zeiterfassung Flughafen Innsbruck</p>
+
+                @if (!string.IsNullOrEmpty(errorMessage))
+                {
+                    <div class="alert alert-err">@errorMessage</div>
+                }
+
+                <div class="field">
+                    <label class="field-label" for="user">Benutzername</label>
+                    <input id="user" class="input" type="text"
+                           @bind="loginRequest.UserName" @bind:event="oninput"
+                           disabled="@isLoading"
+                           placeholder="vorname.nachname" />
+                </div>
+
+                <div class="field">
+                    <label class="field-label" for="pass">Passwort</label>
+                    <input id="pass" class="input" type="password"
+                           @bind="loginRequest.Password" @bind:event="oninput"
+                           disabled="@isLoading"
+                           @onkeydown="HandleKey"
+                           placeholder="••••••••" />
+                </div>
+
+                <button class="btn btn-primary login-submit"
+                        @onclick="DoLogin" disabled="@isLoading">
+                    @(isLoading ? "Anmeldung läuft…" : "Anmelden")
+                </button>
+
+                @* <div class="login-quick">
+                    <p class="login-quick-label">Testzugänge</p>
+                    <div class="login-quick-grid">
+                        <button class="btn btn-ghost btn-sm"
+                                @onclick='() => QuickLogin("max.mustermann", "Chrono.Max1234")'>
+                            Mitarbeiter
+                        </button>
+                        <button class="btn btn-ghost btn-sm"
+                                @onclick='() => QuickLogin("tom.weber", "Chrono.Tom1234")'>
+                            Abteilungsleiter
+                        </button>
+                        <button class="btn btn-ghost btn-sm"
+                                @onclick='() => QuickLogin("anna.schmidt", "Chrono.Anna1234")'>
+                            HR
+                        </button>
+                        <button class="btn btn-ghost btn-sm"
+                                @onclick='() => QuickLogin("paul.fischer", "Chrono.Paul123")'>
+                            Buchhaltung
+                        </button>
+                    </div>
+                </div> *@
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    private LoginRequest loginRequest = new();
+    private string errorMessage = "";
+    private bool isLoading = false;
+    private bool showPw = false;
+
+    protected override void OnInitialized()
+    {
+        if (AppState.IsLoggedIn)
+            Navigation.NavigateTo("/dashboard");
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JS.InvokeVoidAsync("chronoUltraWatch.start", "ultraCanvas");
+        }
+    }
+
+private async Task DoLogin()
+{
+    if (string.IsNullOrWhiteSpace(loginRequest.UserName) ||
+        string.IsNullOrWhiteSpace(loginRequest.Password))
+    {
+        errorMessage = "Bitte alle Felder ausfüllen!";
+        return;
+    }
+
+    isLoading = true;
+    errorMessage = "";
+
+    try
+    {
+        var response = await ApiService.Login(loginRequest);
+        if (response != null)
+        {
+            await AppState.LoginAsync(response.Token, response.VollName);
+            if (AppState.MustChangePassword)
+                Navigation.NavigateTo("/change-password");
+            else
+                Navigation.NavigateTo("/dashboard");
+        }
+    }
+    catch (LoginException ex)
+    {
+        errorMessage = ex.Message;
+    }
+    catch
+    {
+        errorMessage = "API nicht erreichbar! Ist ChronoAPI gestartet?";
+    }
+    finally
+    {
+        isLoading = false;
+    }
+}
+    private async Task QuickLogin(string user, string pw)
+    {
+        loginRequest.UserName = user;
+        loginRequest.Password = pw;
+        await DoLogin();
+    }
+
+    private async Task HandleKey(KeyboardEventArgs e)
+    {
+        if (e.Key == "Enter") await DoLogin();
+    }
+}
+
+<style>
+    .login-page {
+        min-height: 100vh;
+        background: var(--l0);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 32px 24px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* Weicher Lichtschein hinter dem Zifferblatt */
+    .login-glow {
+        position: absolute;
+        top: 42%;
+        left: 50%;
+        width: 620px;
+        height: 620px;
+        transform: translate(-50%, -50%);
+        background: radial-gradient(circle,
+                    rgba(30,136,255,0.09) 0%,
+                    rgba(30,136,255,0.03) 38%,
+                    transparent 68%);
+        pointer-events: none;
+    }
+
+    .login-stage {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 26px;
+        animation: chrono-rise 0.7s var(--ease) both;
+    }
+
+    #ultraCanvas {
+        width: 380px;
+        height: 418px;
+        display: block;
+        filter: drop-shadow(0 0 60px rgba(30,136,255,0.14))
+                drop-shadow(0 26px 52px rgba(0,0,0,0.68));
+    }
+
+    .login-card {
+        width: 340px;
+    }
+
+    .login-card .card-body {
+        padding: 26px 28px;
+    }
+
+    .login-brand {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        margin-bottom: 6px;
+    }
+
+    .login-mark {
+        width: 30px;
+        height: 30px;
+        border-radius: 9px;
+        background: linear-gradient(180deg, #2B92FF, #1671DB);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        font-weight: 700;
+        color: #fff;
+        box-shadow: 0 1px 0 rgba(255,255,255,0.18) inset,
+                    0 3px 12px rgba(30,136,255,0.30);
+    }
+
+    .login-wordmark {
+        font-size: 17px;
+        font-weight: 600;
+        letter-spacing: -0.035em;
+        color: var(--t1);
+    }
+    .login-wordmark em { color: var(--blue); font-style: normal; }
+
+    .login-hint {
+        text-align: center;
+        font-size: 12px;
+        color: var(--t4);
+        letter-spacing: 0.04em;
+        margin: 0 0 22px;
+    }
+
+    .login-submit {
+        width: 100%;
+        margin-top: 4px;
+        padding: 11px;
+    }
+
+    .login-quick {
+        margin-top: 22px;
+        padding-top: 18px;
+        border-top: 1px solid var(--edge-soft);
+    }
+
+    .login-quick-label {
+        font-size: 10px;
+        font-weight: 500;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--t4);
+        text-align: center;
+        margin: 0 0 12px;
+    }
+
+    .login-quick-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 6px;
+    }
+
+    .login-quick-grid .btn {
+        justify-content: center;
+        font-size: 11.5px;
+    }
+
+    @@media (max-width: 520px) {
+        #ultraCanvas { width: 300px; height: 330px; }
+        .login-card  { width: 100%; max-width: 340px; }
+    }
+</style>

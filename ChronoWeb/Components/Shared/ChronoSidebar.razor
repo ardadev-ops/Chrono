@@ -1,0 +1,278 @@
+@using ChronoWeb.Services
+@inject AppState AppState
+@inject NavigationManager Navigation
+@implements IDisposable
+
+<aside class="sidebar">
+    <div class="sb-brand">
+        <div class="sb-mark">
+            <img src="/chrono-logo.png" alt="" style="width:18px;height:18px;object-fit:contain;" />
+        </div>
+        <span class="sb-name">CHR<em>ONO</em></span>
+    </div>
+
+    <nav>
+        <div class="sb-section">Arbeitsplatz</div>
+        <a class="sb-item @ActiveClass("/dashboard")" href="/dashboard">
+            <span class="sb-icon">◧</span> Dashboard
+        </a>
+        <a class="sb-item @ActiveClass("/meine-zeiten")" href="/meine-zeiten">
+            <span class="sb-icon">◔</span> Meine Zeiten
+        </a>
+        <a class="sb-item @ActiveClass("/urlaub")" href="/urlaub">
+            <span class="sb-icon">◱</span> Urlaub
+        </a>
+        <a class="sb-item @ActiveClass("/zeitkorrektur")" href="/zeitkorrektur">
+            <span class="sb-icon">✎</span> Zeitkorrektur
+        </a>
+
+        @if (AppState.CanApprove)
+        {
+            <div class="sb-section">Team</div>
+            <a class="sb-item @ActiveClass("/antraege")" href="/antraege">
+                <span class="sb-icon">✓</span> Anträge
+            </a>
+            <a class="sb-item @ActiveClass("/team-zeiten")" href="/team-zeiten">
+                <span class="sb-icon">▤</span> Team-Zeiten
+            </a>
+        }
+
+        @if (AppState.IsHR || AppState.IsAdmin || AppState.IsBuchhaltung)
+        {
+            <div class="sb-section">Verwaltung</div>
+
+            @if (AppState.IsHR || AppState.IsAdmin)
+            {
+                <a class="sb-item @ActiveClass("/mitarbeiter")" href="/mitarbeiter">
+                    <span class="sb-icon">◎</span> Mitarbeiter
+                </a>
+            }
+
+            @if (AppState.IsBuchhaltung)
+            {
+                <a class="sb-item @ActiveClass("/zeitexport")" href="/zeitexport">
+                    <span class="sb-icon">⇩</span> Zeiten Export
+                </a>
+            }
+
+            @if (AppState.IsAdmin || AppState.IsBuchhaltung)
+            {
+                <a class="sb-item @ActiveClass("/lohn")" href="/lohn">
+                    <span class="sb-icon">◈</span> Lohnabrechnung
+                </a>
+            }
+        }
+    </nav>
+
+    <div class="sb-bottom">
+        <div class="sb-user">
+            <div class="sb-avatar">@GetInitials()</div>
+            <div class="sb-userinfo">
+                <div class="sb-username">@AppState.VollName</div>
+                <div class="sb-userrole">@AppState.Role</div>
+            </div>
+        </div>
+        <button class="btn btn-sm sb-logout" @onclick="Logout">
+            <span class="sb-icon" style="opacity:1;">⏻</span> Abmelden
+        </button>
+    </div>
+</aside>
+
+@code {
+    protected override void OnInitialized()
+    {
+        Navigation.LocationChanged += OnLocationChanged;
+    }
+
+    private void OnLocationChanged(object? sender, Microsoft.AspNetCore.Components.Routing.LocationChangedEventArgs e)
+    {
+        InvokeAsync(StateHasChanged);
+    }
+
+    private string ActiveClass(string route)
+    {
+        var current = "/" + Navigation.ToBaseRelativePath(Navigation.Uri).TrimEnd('/');
+        return current == route ? "active" : "";
+    }
+
+    private string GetInitials()
+    {
+        var name = AppState.VollName ?? "";
+        var parts = name.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+        if (parts.Length == 0) return "?";
+        if (parts.Length == 1) return parts[0].Substring(0, Math.Min(2, parts[0].Length)).ToUpper();
+        return $"{parts[0][0]}{parts[^1][0]}".ToUpper();
+    }
+
+    private async Task Logout()
+    {
+        await AppState.LogoutAsync();
+        Navigation.NavigateTo("/login");
+    }
+
+    public void Dispose()
+    {
+        Navigation.LocationChanged -= OnLocationChanged;
+    }
+}
+
+<style>
+    .sidebar {
+        background: var(--l1);
+        border-right: 1px solid var(--edge);
+        padding: 26px 14px 22px;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        position: relative;
+    }
+
+    /* Feine Lichtkante an der rechten Innenseite */
+    .sidebar::after {
+        content: '';
+        position: absolute;
+        top: 0; bottom: 0; right: 0;
+        width: 1px;
+        background: linear-gradient(180deg,
+            transparent, var(--edge-top) 12%, var(--edge-top) 88%, transparent);
+    }
+
+    .sb-brand {
+        display: flex;
+        align-items: center;
+        gap: 11px;
+        padding: 6px 12px 28px;
+    }
+
+    .sb-mark {
+        width: 30px; height: 30px;
+        border-radius: 9px;
+        background: linear-gradient(180deg, #2B92FF, #1671DB);
+        display: flex; align-items: center; justify-content: center;
+        font-size: 14px; font-weight: 700; color: #fff;
+        box-shadow: 0 1px 0 rgba(255,255,255,0.18) inset,
+                    0 3px 12px rgba(30,136,255,0.30);
+        flex-shrink: 0;
+    }
+
+    .sb-name {
+        font-size: 16px;
+        font-weight: 600;
+        letter-spacing: -0.035em;
+        color: var(--t1);
+    }
+    .sb-name em { color: var(--blue); font-style: normal; }
+
+    .sb-section {
+        font-size: 9.5px;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--t4);
+        padding: 20px 12px 8px;
+    }
+
+    .sb-item {
+        display: flex;
+        align-items: center;
+        gap: 11px;
+        padding: 8px 12px;
+        border-radius: var(--r-md);
+        font-size: 13.5px;
+        font-weight: 450;
+        color: var(--t2);
+        text-decoration: none;
+        cursor: pointer;
+        position: relative;
+        transition: color 0.18s var(--ease), background 0.18s var(--ease);
+    }
+
+    .sb-item:hover { color: var(--t1); background: rgba(255,255,255,0.03); }
+
+    /* Aktiv: KEINE blaue Fläche – nur Balken, blauer Text, dunkle Fläche */
+    .sb-item.active {
+        color: var(--t1);
+        background: linear-gradient(90deg,
+            rgba(30,136,255,0.10), rgba(30,136,255,0.02));
+    }
+
+    .sb-item.active::before {
+        content: '';
+        position: absolute;
+        left: -14px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 3px; height: 18px;
+        background: var(--blue);
+        border-radius: 0 3px 3px 0;
+        box-shadow: 0 0 10px var(--blue-glow);
+    }
+
+    .sb-icon {
+        font-size: 14px;
+        width: 18px;
+        text-align: center;
+        opacity: 0.85;
+        flex-shrink: 0;
+    }
+
+    .sb-item.active .sb-icon { opacity: 1; }
+
+    .sb-bottom {
+        margin-top: auto;
+        padding-top: 20px;
+    }
+
+    .sb-user {
+        display: flex;
+        align-items: center;
+        gap: 11px;
+        padding: 11px 12px;
+        border-radius: var(--r-md);
+        background: linear-gradient(180deg, var(--l3), var(--l2));
+        border: 1px solid var(--edge);
+        box-shadow: 0 1px 0 var(--edge-top) inset;
+        margin-bottom: 8px;
+    }
+
+    .sb-avatar {
+        width: 30px; height: 30px;
+        border-radius: 50%;
+        background: linear-gradient(140deg, #2B92FF, #5B5BD6);
+        display: flex; align-items: center; justify-content: center;
+        font-size: 11.5px; font-weight: 600; color: #fff;
+        flex-shrink: 0;
+        box-shadow: 0 1px 0 rgba(255,255,255,0.16) inset;
+    }
+
+    .sb-userinfo { flex: 1; min-width: 0; }
+
+    .sb-username {
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--t1);
+        letter-spacing: -0.01em;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .sb-userrole {
+        font-size: 11px;
+        color: var(--t3);
+        margin-top: 1px;
+    }
+
+    .sb-logout {
+        width: 100%;
+        background: var(--l3);
+        border: 1px solid var(--edge);
+        color: var(--t2);
+        box-shadow: 0 1px 0 var(--edge-top) inset;
+    }
+    .sb-logout:hover {
+        background: var(--err-wash);
+        border-color: var(--err-line);
+        color: var(--err);
+    }
+</style>

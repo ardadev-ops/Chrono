@@ -1,0 +1,152 @@
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\obj\Debug\net10.0\EmbeddedAttribute.cs
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\obj\Debug\net10.0\ValidatableTypeAttribute.cs
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\obj\Debug\net10.0\ChronoWeb.csproj.AssemblyReference.cache
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\obj\Debug\net10.0\rpswa.dswa.cache.json
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\obj\Debug\net10.0\ChronoWeb.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\obj\Debug\net10.0\ChronoWeb.AssemblyInfoInputs.cache
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\obj\Debug\net10.0\ChronoWeb.AssemblyInfo.cs
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\obj\Debug\net10.0\ChronoWeb.csproj.CoreCompileInputs.cache
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\obj\Debug\net10.0\ChronoWeb.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\bin\Debug\net10.0\appsettings.json
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\bin\Debug\net10.0\ChronoWeb.staticwebassets.runtime.json
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\bin\Debug\net10.0\ChronoWeb.staticwebassets.endpoints.json
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\bin\Debug\net10.0\ChronoWeb.exe
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\bin\Debug\net10.0\ChronoWeb.deps.json
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\bin\Debug\net10.0\ChronoWeb.runtimeconfig.json
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\bin\Debug\net10.0\ChronoWeb.dll
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\bin\Debug\net10.0\ChronoWeb.pdb
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\bin\Debug\net10.0\Blazored.LocalStorage.dll
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\bin\Debug\net10.0\ch1seL.Blazored.LocalStorage.Concurrent.dll
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\bin\Debug\net10.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\bin\Debug\net10.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\bin\Debug\net10.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\bin\Debug\net10.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\bin\Debug\net10.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\obj\Debug\net10.0\rjimswa.dswa.cache.json
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\obj\Debug\net10.0\rjsmrazor.dswa.cache.json
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\obj\Debug\net10.0\rjsmcshtml.dswa.cache.json
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\obj\Debug\net10.0\scopedcss\Components\Layout\MainLayout.razor.rz.scp.css
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\obj\Debug\net10.0\scopedcss\Components\Layout\NavMenu.razor.rz.scp.css
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\obj\Debug\net10.0\scopedcss\Components\Layout\ReconnectModal.razor.rz.scp.css
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\obj\Debug\net10.0\scopedcss\bundle\ChronoWeb.styles.css
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\obj\Debug\net10.0\scopedcss\projectbundle\ChronoWeb.bundle.scp.css
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\obj\Debug\net10.0\compressed\e8zd4cg3et-{0}-0j3bgjxly4-0j3bgjxly4.gz
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\obj\Debug\net10.0\compressed\ctzo7x8ggi-{0}-63fj8s7r0e-63fj8s7r0e.gz
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\obj\Debug\net10.0\compressed\y3s1l2qap1-{0}-h1s4sie4z3-h1s4sie4z3.gz
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\obj\Debug\net10.0\compressed\lgxnljplho-{0}-notf2xhcfb-notf2xhcfb.gz
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\obj\Debug\net10.0\compressed\u2wotkbxum-{0}-y7v9cxd14o-y7v9cxd14o.gz
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\obj\Debug\net10.0\compressed\1fiedireet-{0}-jj8uyg4cgr-jj8uyg4cgr.gz
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\obj\Debug\net10.0\compressed\1k7zmak02y-{0}-kbrnm935zg-kbrnm935zg.gz
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\obj\Debug\net10.0\compressed\drnwox1lpw-{0}-vr1egmr9el-vr1egmr9el.gz
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\obj\Debug\net10.0\compressed\qeccnafkk7-{0}-iovd86k7lj-iovd86k7lj.gz
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\obj\Debug\net10.0\compressed\ptq11yi7o8-{0}-493y06b0oq-493y06b0oq.gz
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\obj\Debug\net10.0\compressed\68r7xupofl-{0}-6pdc2jztkx-6pdc2jztkx.gz
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\obj\Debug\net10.0\compressed\oqkmajdlzm-{0}-6cfz1n2cew-6cfz1n2cew.gz
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\obj\Debug\net10.0\compressed\wrk3ca0yp7-{0}-ft3s53vfgj-ft3s53vfgj.gz
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\obj\Debug\net10.0\compressed\ub6odqgesx-{0}-pk9g2wxc8p-pk9g2wxc8p.gz
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\obj\Debug\net10.0\compressed\1mdzni1wap-{0}-hrwsygsryq-hrwsygsryq.gz
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\obj\Debug\net10.0\compressed\ry77p4wh0q-{0}-37tfw0ft22-37tfw0ft22.gz
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\obj\Debug\net10.0\compressed\y7roru32qe-{0}-v0zj4ognzu-v0zj4ognzu.gz
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\obj\Debug\net10.0\compressed\7aafu5lw67-{0}-46ein0sx1k-46ein0sx1k.gz
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\obj\Debug\net10.0\compressed\f88fu9qeb5-{0}-pj5nd1wqec-pj5nd1wqec.gz
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\obj\Debug\net10.0\compressed\vdcqtlk4jb-{0}-s35ty4nyc5-s35ty4nyc5.gz
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\obj\Debug\net10.0\compressed\zfmhgzokff-{0}-nvvlpmu67g-nvvlpmu67g.gz
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\obj\Debug\net10.0\compressed\1wm6k38kyb-{0}-06098lyss8-06098lyss8.gz
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\obj\Debug\net10.0\compressed\uranfifnok-{0}-j5mq2jizvt-j5mq2jizvt.gz
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\obj\Debug\net10.0\compressed\pohl2jades-{0}-tdbxkamptv-tdbxkamptv.gz
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\obj\Debug\net10.0\compressed\ctuj18ujcs-{0}-c2oey78nd0-c2oey78nd0.gz
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\obj\Debug\net10.0\compressed\ful5bqzrgj-{0}-lcd1t2u6c8-lcd1t2u6c8.gz
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\obj\Debug\net10.0\compressed\0igve2ark1-{0}-r4e9w2rdcm-r4e9w2rdcm.gz
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\obj\Debug\net10.0\compressed\2wfnh7vnfx-{0}-khv3u5hwcm-khv3u5hwcm.gz
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\obj\Debug\net10.0\compressed\14e7c4a2fj-{0}-jd9uben2k1-jd9uben2k1.gz
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\obj\Debug\net10.0\compressed\47pllcamfy-{0}-dxx9fxp4il-dxx9fxp4il.gz
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\obj\Debug\net10.0\compressed\ewr4bjs2b9-{0}-ee0r1s7dh0-ee0r1s7dh0.gz
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\obj\Debug\net10.0\compressed\ckxrz9ap23-{0}-rzd6atqjts-rzd6atqjts.gz
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\obj\Debug\net10.0\compressed\e1fign9dqb-{0}-fsbi9cje9m-fsbi9cje9m.gz
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\obj\Debug\net10.0\compressed\j1wfwpb23w-{0}-b7pk76d08c-b7pk76d08c.gz
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\obj\Debug\net10.0\compressed\ipx0t8uzw8-{0}-fvhpjtyr6v-fvhpjtyr6v.gz
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\obj\Debug\net10.0\compressed\zy2214g01z-{0}-ub07r2b239-ub07r2b239.gz
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\obj\Debug\net10.0\compressed\ihbxp4ce9t-{0}-cosvhxvwiu-cosvhxvwiu.gz
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\obj\Debug\net10.0\compressed\ufc25e84vj-{0}-k8d9w2qqmf-k8d9w2qqmf.gz
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\obj\Debug\net10.0\compressed\zn1c9pewuu-{0}-ausgxo2sd3-ausgxo2sd3.gz
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\obj\Debug\net10.0\compressed\rh6pd2lj5h-{0}-d7shbmvgxk-d7shbmvgxk.gz
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\obj\Debug\net10.0\compressed\0nx6k04j8a-{0}-aexeepp0ev-aexeepp0ev.gz
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\obj\Debug\net10.0\compressed\9tw6nf749s-{0}-erw9l3u2r3-erw9l3u2r3.gz
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\obj\Debug\net10.0\compressed\9k268yhxau-{0}-c2jlpeoesf-c2jlpeoesf.gz
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\obj\Debug\net10.0\compressed\2g1782jcsu-{0}-bqjiyaj88i-bqjiyaj88i.gz
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\obj\Debug\net10.0\compressed\ao9fz899fy-{0}-abdmv1u4y3-abdmv1u4y3.gz
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\obj\Debug\net10.0\compressed\u5nofy1o8n-{0}-z5immmo2kh-z5immmo2kh.gz
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\obj\Debug\net10.0\compressed\8hn9i3ofz3-{0}-z5immmo2kh-z5immmo2kh.gz
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\obj\Debug\net10.0\staticwebassets.build.json
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\obj\Debug\net10.0\staticwebassets.build.json.cache
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\obj\Debug\net10.0\staticwebassets.development.json
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\obj\Debug\net10.0\staticwebassets.build.endpoints.json
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\obj\Debug\net10.0\swae.build.ex.cache
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\obj\Debug\net10.0\ChronoWeb.csproj.Up2Date
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\obj\Debug\net10.0\ChronoWeb.dll
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\obj\Debug\net10.0\refint\ChronoWeb.dll
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\obj\Debug\net10.0\ChronoWeb.pdb
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\obj\Debug\net10.0\ChronoWeb.genruntimeconfig.cache
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\obj\Debug\net10.0\ref\ChronoWeb.dll
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\obj\Debug\net10.0\compressed\d8vvo64bdg-{0}-6dyfe0s5s2-6dyfe0s5s2.gz
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\obj\Debug\net10.0\compressed\0mguhiwz3h-{0}-37icx7u9f6-37icx7u9f6.gz
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\obj\Debug\net10.0\compressed\fko7cpkw2x-{0}-ne14ti1q68-ne14ti1q68.gz
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\obj\Debug\net10.0\compressed\qdsu11424b-{0}-ig5xotzpx5-ig5xotzpx5.gz
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\obj\Debug\net10.0\compressed\d7zghudlr2-{0}-uvqadqfslv-uvqadqfslv.gz
+C:\Users\alkan\AppData\Local\Temp\chronoweb_verify_build\appsettings.Development.json
+C:\Users\alkan\AppData\Local\Temp\chronoweb_verify_build\appsettings.json
+C:\Users\alkan\AppData\Local\Temp\chronoweb_verify_build\ChronoWeb.staticwebassets.runtime.json
+C:\Users\alkan\AppData\Local\Temp\chronoweb_verify_build\ChronoWeb.staticwebassets.endpoints.json
+C:\Users\alkan\AppData\Local\Temp\chronoweb_verify_build\ChronoWeb.exe
+C:\Users\alkan\AppData\Local\Temp\chronoweb_verify_build\ChronoWeb.deps.json
+C:\Users\alkan\AppData\Local\Temp\chronoweb_verify_build\ChronoWeb.runtimeconfig.json
+C:\Users\alkan\AppData\Local\Temp\chronoweb_verify_build\ChronoWeb.dll
+C:\Users\alkan\AppData\Local\Temp\chronoweb_verify_build\ChronoWeb.pdb
+C:\Users\alkan\AppData\Local\Temp\chronoweb_verify_build2\appsettings.Development.json
+C:\Users\alkan\AppData\Local\Temp\chronoweb_verify_build2\appsettings.json
+C:\Users\alkan\AppData\Local\Temp\chronoweb_verify_build2\ChronoWeb.staticwebassets.runtime.json
+C:\Users\alkan\AppData\Local\Temp\chronoweb_verify_build2\ChronoWeb.staticwebassets.endpoints.json
+C:\Users\alkan\AppData\Local\Temp\chronoweb_verify_build2\ChronoWeb.exe
+C:\Users\alkan\AppData\Local\Temp\chronoweb_verify_build2\ChronoWeb.deps.json
+C:\Users\alkan\AppData\Local\Temp\chronoweb_verify_build2\ChronoWeb.runtimeconfig.json
+C:\Users\alkan\AppData\Local\Temp\chronoweb_verify_build2\ChronoWeb.dll
+C:\Users\alkan\AppData\Local\Temp\chronoweb_verify_build2\ChronoWeb.pdb
+C:\Users\alkan\AppData\Local\Temp\chronoweb_verify3\appsettings.Development.json
+C:\Users\alkan\AppData\Local\Temp\chronoweb_verify3\appsettings.json
+C:\Users\alkan\AppData\Local\Temp\chronoweb_verify3\ChronoWeb.staticwebassets.runtime.json
+C:\Users\alkan\AppData\Local\Temp\chronoweb_verify3\ChronoWeb.staticwebassets.endpoints.json
+C:\Users\alkan\AppData\Local\Temp\chronoweb_verify3\ChronoWeb.exe
+C:\Users\alkan\AppData\Local\Temp\chronoweb_verify3\ChronoWeb.deps.json
+C:\Users\alkan\AppData\Local\Temp\chronoweb_verify3\ChronoWeb.runtimeconfig.json
+C:\Users\alkan\AppData\Local\Temp\chronoweb_verify3\ChronoWeb.dll
+C:\Users\alkan\AppData\Local\Temp\chronoweb_verify3\ChronoWeb.pdb
+C:\Users\alkan\AppData\Local\Temp\chronoweb_verify4\appsettings.Development.json
+C:\Users\alkan\AppData\Local\Temp\chronoweb_verify4\appsettings.json
+C:\Users\alkan\AppData\Local\Temp\chronoweb_verify4\ChronoWeb.staticwebassets.runtime.json
+C:\Users\alkan\AppData\Local\Temp\chronoweb_verify4\ChronoWeb.staticwebassets.endpoints.json
+C:\Users\alkan\AppData\Local\Temp\chronoweb_verify4\ChronoWeb.exe
+C:\Users\alkan\AppData\Local\Temp\chronoweb_verify4\ChronoWeb.deps.json
+C:\Users\alkan\AppData\Local\Temp\chronoweb_verify4\ChronoWeb.runtimeconfig.json
+C:\Users\alkan\AppData\Local\Temp\chronoweb_verify4\ChronoWeb.dll
+C:\Users\alkan\AppData\Local\Temp\chronoweb_verify4\ChronoWeb.pdb
+C:\Users\alkan\AppData\Local\Temp\chronoweb_verify5\appsettings.Development.json
+C:\Users\alkan\AppData\Local\Temp\chronoweb_verify5\appsettings.json
+C:\Users\alkan\AppData\Local\Temp\chronoweb_verify5\ChronoWeb.staticwebassets.runtime.json
+C:\Users\alkan\AppData\Local\Temp\chronoweb_verify5\ChronoWeb.staticwebassets.endpoints.json
+C:\Users\alkan\AppData\Local\Temp\chronoweb_verify5\ChronoWeb.exe
+C:\Users\alkan\AppData\Local\Temp\chronoweb_verify5\ChronoWeb.deps.json
+C:\Users\alkan\AppData\Local\Temp\chronoweb_verify5\ChronoWeb.runtimeconfig.json
+C:\Users\alkan\AppData\Local\Temp\chronoweb_verify5\ChronoWeb.dll
+C:\Users\alkan\AppData\Local\Temp\chronoweb_verify5\ChronoWeb.pdb
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\obj\Debug\net10.0\compressed\nrodqzjt1b-{0}-5y9a47f2v9-5y9a47f2v9.gz
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\bin\Debug\net10.0\appsettings.Production.json
+C:\Users\alkan\AppData\Local\Temp\claude\chrono-web-build\appsettings.json
+C:\Users\alkan\AppData\Local\Temp\claude\chrono-web-build\appsettings.Production.json
+C:\Users\alkan\AppData\Local\Temp\claude\chrono-web-build\ChronoWeb.staticwebassets.runtime.json
+C:\Users\alkan\AppData\Local\Temp\claude\chrono-web-build\ChronoWeb.staticwebassets.endpoints.json
+C:\Users\alkan\AppData\Local\Temp\claude\chrono-web-build\ChronoWeb.exe
+C:\Users\alkan\AppData\Local\Temp\claude\chrono-web-build\ChronoWeb.deps.json
+C:\Users\alkan\AppData\Local\Temp\claude\chrono-web-build\ChronoWeb.runtimeconfig.json
+C:\Users\alkan\AppData\Local\Temp\claude\chrono-web-build\ChronoWeb.dll
+C:\Users\alkan\AppData\Local\Temp\claude\chrono-web-build\ChronoWeb.pdb
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt

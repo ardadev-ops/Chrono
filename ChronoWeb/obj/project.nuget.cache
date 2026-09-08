@@ -1,0 +1,17 @@
+{
+  "version": 2,
+  "dgSpecHash": "P22RerAeGSA=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\alkan\\Desktop\\Fachakademie 3. und 4. Semester\\PROJEKT CHRONO\\ChronoWeb\\ChronoWeb.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\alkan\\.nuget\\packages\\blazored.localstorage\\4.1.5\\blazored.localstorage.4.1.5.nupkg.sha512",
+    "C:\\Users\\alkan\\.nuget\\packages\\ch1sel.blazored.localstorage.concurrent\\0.0.4\\ch1sel.blazored.localstorage.concurrent.0.0.4.nupkg.sha512",
+    "C:\\Users\\alkan\\.nuget\\packages\\microsoft.aspnetcore.app.internal.assets\\10.0.9\\microsoft.aspnetcore.app.internal.assets.10.0.9.nupkg.sha512",
+    "C:\\Users\\alkan\\.nuget\\packages\\microsoft.identitymodel.abstractions\\8.18.0\\microsoft.identitymodel.abstractions.8.18.0.nupkg.sha512",
+    "C:\\Users\\alkan\\.nuget\\packages\\microsoft.identitymodel.jsonwebtokens\\8.18.0\\microsoft.identitymodel.jsonwebtokens.8.18.0.nupkg.sha512",
+    "C:\\Users\\alkan\\.nuget\\packages\\microsoft.identitymodel.logging\\8.18.0\\microsoft.identitymodel.logging.8.18.0.nupkg.sha512",
+    "C:\\Users\\alkan\\.nuget\\packages\\microsoft.identitymodel.tokens\\8.18.0\\microsoft.identitymodel.tokens.8.18.0.nupkg.sha512",
+    "C:\\Users\\alkan\\.nuget\\packages\\system.identitymodel.tokens.jwt\\8.18.0\\system.identitymodel.tokens.jwt.8.18.0.nupkg.sha512"
+  ],
+  "logs": []
+}

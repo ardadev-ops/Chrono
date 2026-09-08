@@ -1,0 +1,566 @@
+﻿@page "/lohn"
+@using ChronoWeb.Models
+@using ChronoWeb.Services
+@inject ApiService ApiService
+@inject AppState AppState
+@inject NavigationManager Navigation
+@rendermode InteractiveServer
+
+<PageTitle>CHRONO – Lohnabrechnung</PageTitle>
+
+@if (!_initialized)
+{
+    <div style="display:flex;align-items:center;justify-content:center;height:100vh;background:var(--l0);color:var(--t1);">
+        <div>Lade...</div>
+    </div>
+}
+else if (!AppState.IsLoggedIn)
+{
+    <p>Weiterleitung...</p>
+}
+else if (!AppState.IsAdmin && !AppState.IsBuchhaltung)
+{
+    <div class="no-access">
+        <h2>Kein Zugriff</h2>
+        <p>Diese Seite ist nur für Administration und Buchhaltung.</p>
+        <button class="btn btn-secondary" @onclick='() => Navigation.NavigateTo("/dashboard")'>Zurück</button>
+    </div>
+}
+else
+{
+    <div class="chrono-shell">
+        <ChronoSidebar />
+        <main class="chrono-main">
+
+            <div class="page-head">
+                <div>
+                    <p class="page-eyebrow">Abrechnung</p>
+                    <h1 class="page-title">Lohnabrechnung</h1>
+                    <p class="page-sub">@AppState.VollName · @AppState.Role</p>
+                </div>
+                <div class="row-end">
+                    <button class="btn btn-secondary" @onclick="ExportCSV">CSV Export</button>
+                    <button class="btn btn-primary" @onclick="() => OpenForm()">+ Neue Abrechnung</button>
+                </div>
+            </div>
+
+            <div class="metrics">
+                <div class="metric is-primary">
+                    <div class="metric-label">Abrechnungen</div>
+                    <div class="metric-value">@abrechnungen.Count</div>
+                </div>
+                <div class="metric is-ok">
+                    <div class="metric-label">Gesamt Brutto</div>
+                    <div class="metric-value">€ @GetGesamtBrutto()</div>
+                </div>
+            </div>
+
+            <!-- FILTER -->
+            <div class="filterbar">
+                <span class="filterbar-label">Monat:</span>
+                <select @bind="filterMonat" class="select" style="width:auto;">
+                    <option value="0">Alle Monate</option>
+                    @for (int i = 1; i <= 12; i++)
+                    {
+                        var m = i;
+                        <option value="@m">@GetMonatName(m)</option>
+                    }
+                </select>
+                <span class="filterbar-label">Jahr:</span>
+                <select @bind="filterJahr" class="select" style="width:auto;">
+                    @for (int j = DateTime.Now.Year; j >= DateTime.Now.Year - 3; j--)
+                    {
+                        <option value="@j">@j</option>
+                    }
+                </select>
+                <span class="filterbar-label">Mitarbeiter:</span>
+                <select @bind="filterMitId" class="select" style="width:auto;">
+                    <option value="0">Alle Mitarbeiter</option>
+                    @foreach (var m in mitarbeiterListe)
+                    {
+                        <option value="@m.MitID">@m.MitVorname @m.MitNachname</option>
+                    }
+                </select>
+            </div>
+
+            <!-- LOADING -->
+            @if (isLoading)
+            {
+                <div class="state-box">
+                    <div class="spinner"></div>
+                    <p>Abrechnungen werden geladen...</p>
+                </div>
+            }
+            else if (!GetFiltered().Any())
+            {
+                <div class="state-box">
+                    <h3>Keine Abrechnungen gefunden</h3>
+                    <p>Erstellen Sie die erste Lohnabrechnung!</p>
+                </div>
+            }
+            else
+            {
+                <!-- TABELLE -->
+                <div class="card">
+                    <div class="table-wrap">
+                        <table class="table" style="min-width:900px;">
+                            <thead>
+                                <tr>
+                                    <th>Mitarbeiter</th>
+                                    <th>Zeitraum</th>
+                                    <th>Reg. Stunden</th>
+                                    <th>Überstunden</th>
+                                    <th>Gesamt Std.</th>
+                                    <th>Brutto</th>
+                                    <th>Netto</th>
+                                    <th>Abgerechnet</th>
+                                    <th>Aktion</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var l in GetFiltered()
+                                    .OrderByDescending(x => x.PeriodStart))
+                                {
+                                    <tr>
+                                        <td>
+                                            <div class="ma-cell">
+                                                <div class="avatar"
+                                                     style="background:@GetColor(l.FK_MitID)">
+                                                    @GetInitials(l.Mitarbeiter?.MitVorname,
+                                                                l.Mitarbeiter?.MitNachname)
+                                                </div>
+                                                <div>
+                                                    <div class="ma-name">
+                                                        @l.Mitarbeiter?.MitVorname
+                                                        @l.Mitarbeiter?.MitNachname
+                                                    </div>
+                                                    <div class="ma-dept">
+                                                        @l.Mitarbeiter?.Abteilung?.AbtName
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="td-period num">
+                                            <div>@l.PeriodStart.ToString("dd.MM.yyyy")</div>
+                                            <div class="period-sep">↓</div>
+                                            <div>@l.PeriodEnd.ToString("dd.MM.yyyy")</div>
+                                        </td>
+                                        <td class="num">
+                                            <span class="badge badge-blue">
+                                                @l.RegularStunden.ToString("F1")h
+                                            </span>
+                                        </td>
+                                        <td class="num">
+                                            @if (l.Ueberstunden > 0)
+                                            {
+                                                <span class="badge badge-warn">
+                                                    +@l.Ueberstunden.ToString("F1")h
+                                                </span>
+                                            }
+                                            else
+                                            {
+                                                <span style="color:var(--t4);">–</span>
+                                            }
+                                        </td>
+                                        <td class="num">
+                                            <strong>@l.GesamtStunden.ToString("F1")h</strong>
+                                        </td>
+                                        <td class="num">
+                                            <span class="brutto">
+                                                € @l.BruttoLohn.ToString("N2")
+                                            </span>
+                                        </td>
+                                        <td class="num">
+                                            <span class="netto">
+                                                € @l.NettoLohn.ToString("N2")
+                                            </span>
+                                        </td>
+                                        <td class="num">
+                                            <div class="processed-info">
+                                                <div class="processed-date">
+                                                    @l.ProcessedAt.ToString("dd.MM.yyyy")
+                                                </div>
+                                                <div class="processed-time">
+                                                    @l.ProcessedAt.ToString("HH:mm")
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-sm btn-danger"
+                                                    @onclick="() => DeleteAbrechnung(l.LohnID)">
+                                                Löschen
+                                            </button>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="4">Gesamt (@GetFiltered().Count() Einträge):</td>
+                                    <td class="num">
+                                        <strong>@GetFiltered().Sum(l => l.GesamtStunden).ToString("F1")h</strong>
+                                    </td>
+                                    <td class="num">
+                                        <strong class="brutto">
+                                            € @GetFiltered().Sum(l => l.BruttoLohn).ToString("N2")
+                                        </strong>
+                                    </td>
+                                    <td class="num">
+                                        <strong class="netto">
+                                            € @GetFiltered().Sum(l => l.NettoLohn).ToString("N2")
+                                        </strong>
+                                    </td>
+                                    <td colspan="2"></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            }
+
+            <!-- FORMULAR MODAL -->
+            @if (showForm)
+            {
+                <div class="modal-overlay" @onclick="() => showForm = false">
+                    <div class="modal-box" @onclick:stopPropagation="true">
+                        <div class="modal-header">
+                            <h2>Neue Lohnabrechnung</h2>
+                            <button class="modal-close"
+                                    @onclick="() => showForm = false">✕</button>
+                        </div>
+
+                        @if (!string.IsNullOrEmpty(formMsg))
+                        {
+                            <div class="alert @(formOk ? "alert-ok" : "alert-err")">
+                                @formMsg
+                            </div>
+                        }
+
+                        <div class="form-grid">
+                            <div class="field full">
+                                <span class="field-label">Mitarbeiter *</span>
+                                <select @bind="neueAbrechnung.FK_MitID"
+                                        class="select">
+                                    <option value="0">-- Bitte wählen --</option>
+                                    @foreach (var m in mitarbeiterListe)
+                                    {
+                                        <option value="@m.MitID">
+                                            @m.MitVorname @m.MitNachname
+                                        </option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="field">
+                                <span class="field-label">Periode Von *</span>
+                                <input type="date"
+                                       @bind="periodStart"
+                                       class="input" />
+                            </div>
+                            <div class="field">
+                                <span class="field-label">Periode Bis *</span>
+                                <input type="date"
+                                       @bind="periodEnd"
+                                       class="input" />
+                            </div>
+                            <div class="field">
+                                <span class="field-label">Reguläre Stunden *</span>
+                                <input type="number"
+                                       @bind="neueAbrechnung.RegularStunden"
+                                       class="input"
+                                       step="0.5" min="0" />
+                            </div>
+                            <div class="field">
+                                <span class="field-label">Überstunden</span>
+                                <input type="number"
+                                       @bind="neueAbrechnung.Ueberstunden"
+                                       class="input"
+                                       step="0.5" min="0" />
+                            </div>
+                            <div class="field">
+                                <span class="field-label">Brutto Lohn (€) *</span>
+                                <input type="number"
+                                       @bind="neueAbrechnung.BruttoLohn"
+                                       class="input"
+                                       step="0.01" min="0" />
+                            </div>
+                            <div class="field">
+                                <span class="field-label">Netto Lohn (€) *</span>
+                                <input type="number"
+                                       @bind="neueAbrechnung.NettoLohn"
+                                       class="input"
+                                       step="0.01" min="0" />
+                            </div>
+                        </div>
+
+                        <!-- VORSCHAU -->
+                        @if (neueAbrechnung.BruttoLohn > 0)
+                        {
+                            <div class="preview-box">
+                                <div class="preview-item">
+                                    <span>Gesamt Stunden:</span>
+                                    <strong>
+                                        @((neueAbrechnung.RegularStunden +
+                                           neueAbrechnung.Ueberstunden).ToString("F1"))h
+                                    </strong>
+                                </div>
+                                <div class="preview-item">
+                                    <span>Abzüge:</span>
+                                    <strong class="deduction">
+                                        - € @((neueAbrechnung.BruttoLohn -
+                                               neueAbrechnung.NettoLohn).ToString("N2"))
+                                    </strong>
+                                </div>
+                                <div class="preview-item">
+                                    <span>Auszahlung:</span>
+                                    <strong class="netto-preview">
+                                        € @neueAbrechnung.NettoLohn.ToString("N2")
+                                    </strong>
+                                </div>
+                            </div>
+                        }
+
+                        <div class="modal-actions">
+                            <button class="btn btn-primary" style="flex:1;"
+                                    @onclick="SaveAbrechnung"
+                                    disabled="@isSaving">
+                                @(isSaving ? "Speichern..." : "Abrechnung speichern")
+                            </button>
+                            <button class="btn btn-ghost"
+                                    @onclick="() => showForm = false">
+                                Abbrechen
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            }
+
+            <!-- TOAST -->
+            @if (!string.IsNullOrEmpty(toastMsg))
+            {
+                <div class="toast @(toastOk ? "toast-ok" : "toast-err")">
+                    @toastMsg
+                </div>
+            }
+
+        </main>
+    </div>
+}
+
+@code {
+    private List<Lohnabrechnung> abrechnungen = new();
+    private List<Mitarbeiter> mitarbeiterListe = new();
+    private Lohnabrechnung neueAbrechnung = new();
+    private DateTime periodStart = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+    private DateTime periodEnd = DateTime.Now;
+
+    private bool isLoading = true;
+    private bool _initialized = false;
+    private bool showForm = false;
+    private bool isSaving = false;
+    private int filterMonat = DateTime.Now.Month;
+    private int filterJahr = DateTime.Now.Year;
+    private int filterMitId = 0;
+    private string formMsg = "";
+    private bool formOk = false;
+    private string toastMsg = "";
+    private bool toastOk = true;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (!firstRender) return;
+
+        await AppState.InitializeAsync();
+        _initialized = true;
+
+        if (!AppState.IsLoggedIn)
+        {
+            Navigation.NavigateTo("/login");
+            return;
+        }
+
+        await LoadData();
+        StateHasChanged();
+    }
+
+    private async Task LoadData()
+    {
+        isLoading = true;
+        try
+        {
+            abrechnungen = await ApiService.GetLohnabrechnungen();
+            mitarbeiterListe = await ApiService.GetMitarbeiter();
+        }
+        catch { }
+        finally { isLoading = false; }
+    }
+
+    private IEnumerable<Lohnabrechnung> GetFiltered()
+    {
+        return abrechnungen.Where(l =>
+            (filterMonat == 0 ||
+             l.PeriodStart.Month == filterMonat) &&
+            (l.PeriodStart.Year == filterJahr) &&
+            (filterMitId == 0 || l.FK_MitID == filterMitId));
+    }
+
+    private void OpenForm()
+    {
+        neueAbrechnung = new Lohnabrechnung();
+        periodStart = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+        periodEnd = DateTime.Now;
+        formMsg = "";
+        showForm = true;
+    }
+
+    private async Task SaveAbrechnung()
+    {
+        if (neueAbrechnung.FK_MitID == 0)
+        {
+            formMsg = "Bitte Mitarbeiter wählen!";
+            formOk = false;
+            return;
+        }
+
+        neueAbrechnung.PeriodStart = DateOnly.FromDateTime(periodStart);
+        neueAbrechnung.PeriodEnd = DateOnly.FromDateTime(periodEnd);
+        neueAbrechnung.GesamtStunden =
+            neueAbrechnung.RegularStunden + neueAbrechnung.Ueberstunden;
+        neueAbrechnung.ProcessedBy = AppState.UserID;
+
+        isSaving = true;
+        try
+        {
+            var ok = await ApiService.CreateLohnAbrechnung(neueAbrechnung);
+            if (ok)
+            {
+                ShowToast("✅ Abrechnung gespeichert!", true);
+                showForm = false;
+                await LoadData();
+            }
+            else
+            {
+                formMsg = "Fehler beim Speichern!";
+                formOk = false;
+            }
+        }
+        catch { formMsg = "Verbindungsfehler!"; formOk = false; }
+        finally { isSaving = false; }
+    }
+
+    private async Task DeleteAbrechnung(int id)
+    {
+        try
+        {
+            var ok = await ApiService.DeleteLohnAbrechnung(id);
+            if (ok)
+            {
+                ShowToast("🗑️ Abrechnung gelöscht!", true);
+                await LoadData();
+            }
+        }
+        catch { ShowToast("Fehler beim Löschen!", false); }
+    }
+
+    private void ExportCSV()
+    {
+        var lines = new System.Text.StringBuilder();
+        lines.AppendLine("Mitarbeiter;Zeitraum Von;Zeitraum Bis;" +
+                        "Reg.Stunden;Überstunden;GesamtStunden;" +
+                        "Brutto;Netto;Abgerechnet am");
+
+        foreach (var l in GetFiltered().OrderByDescending(x => x.PeriodStart))
+        {
+            lines.AppendLine(
+                $"{l.Mitarbeiter?.MitVorname} {l.Mitarbeiter?.MitNachname};" +
+                $"{l.PeriodStart:dd.MM.yyyy};{l.PeriodEnd:dd.MM.yyyy};" +
+                $"{l.RegularStunden:F1};{l.Ueberstunden:F1};" +
+                $"{l.GesamtStunden:F1};{l.BruttoLohn:N2};" +
+                $"{l.NettoLohn:N2};{l.ProcessedAt:dd.MM.yyyy}");
+        }
+
+        ShowToast("📥 CSV wird vorbereitet... (Download-Funktion kommt mit Blazor WASM)", true);
+    }
+
+    private string GetGesamtBrutto()
+        => abrechnungen.Sum(l => l.BruttoLohn).ToString("N2");
+
+    private string GetMonatName(int m) => new DateTime(2024, m, 1).ToString("MMMM");
+
+    private string GetInitials(string? v, string? n)
+        => $"{v?.FirstOrDefault()}{n?.FirstOrDefault()}".ToUpper();
+
+    private string GetColor(int id)
+    {
+        string[] colors = {
+            "linear-gradient(135deg,#3b82f6,#1d4ed8)",
+            "linear-gradient(135deg,#10b981,#047857)",
+            "linear-gradient(135deg,#8b5cf6,#6d28d9)",
+            "linear-gradient(135deg,#f59e0b,#b45309)",
+            "linear-gradient(135deg,#ef4444,#b91c1c)"
+        };
+        return colors[id % colors.Length];
+    }
+
+    private async void ShowToast(string msg, bool ok)
+    {
+        toastMsg = msg; toastOk = ok;
+        StateHasChanged();
+        await Task.Delay(3000);
+        toastMsg = "";
+        StateHasChanged();
+    }
+}
+
+<style>
+    .ma-cell { display: flex; align-items: center; gap: 10px; }
+    .avatar { width: 32px; height: 32px; border-radius: 50%; color: white; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; flex-shrink: 0; }
+    .ma-name { font-weight: 500; font-size: 13px; color: var(--t1); }
+    .ma-dept { font-size: 11px; color: var(--t3); }
+
+    .td-period { color: var(--t2); font-size: 13px; }
+    .period-sep { color: var(--t4); font-size: 11px; text-align: center; }
+
+    .brutto { color: var(--t1); font-weight: 600; font-size: 13px; }
+    .netto { color: var(--ok); font-weight: 600; font-size: 13px; }
+
+    .processed-info { text-align: right; }
+    .processed-date { font-size: 13px; color: var(--t2); font-weight: 500; }
+    .processed-time { font-size: 11px; color: var(--t4); }
+
+    .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.72); display: flex; align-items: center; justify-content: center; z-index: 100; }
+
+    .modal-box {
+        background: linear-gradient(180deg, var(--l3), var(--l2) 40%);
+        border: 1px solid var(--edge); border-radius: var(--r-xl);
+        padding: 32px; width: 100%; max-width: 580px; max-height: 90vh; overflow-y: auto;
+        box-shadow: var(--sh-3);
+    }
+
+    .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
+    .modal-header h2 { font-size: 18px; color: var(--t1); margin: 0; font-weight: 600; letter-spacing: -0.02em; }
+
+    .modal-close { background: var(--l4); border: 1px solid var(--edge); width: 32px; height: 32px; border-radius: var(--r-sm); cursor: pointer; font-size: 13px; color: var(--t3); transition: all 0.2s; }
+    .modal-close:hover { background: var(--err-wash); color: var(--err); }
+
+    .preview-box { background: var(--blue-wash); border: 1px solid var(--blue-line); border-radius: var(--r-md); padding: 16px; margin-bottom: 20px; display: flex; gap: 24px; flex-wrap: wrap; }
+    .preview-item { display: flex; flex-direction: column; gap: 4px; }
+    .preview-item span { font-size: 12px; color: var(--t3); }
+    .preview-item strong { font-size: 16px; color: var(--t1); }
+    .deduction { color: var(--err) !important; }
+    .netto-preview { color: var(--ok) !important; font-size: 18px !important; }
+
+    .modal-actions { display: flex; gap: 12px; }
+
+    .toast {
+        position: fixed; bottom: 24px; right: 24px; padding: 14px 20px; border-radius: var(--r-md);
+        font-size: 13px; font-weight: 500; z-index: 999; box-shadow: var(--sh-3);
+        background: linear-gradient(180deg, var(--l3), var(--l2));
+        border: 1px solid var(--edge); border-left-width: 2px;
+    }
+    .toast-ok  { color: var(--ok);  border-left-color: var(--ok); }
+    .toast-err { color: var(--err); border-left-color: var(--err); }
+
+    .no-access { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; gap: 12px; background: var(--l0); }
+    .no-access h2 { font-size: 20px; color: var(--t1); margin: 0; }
+    .no-access p { color: var(--t3); margin: 0; }
+</style>

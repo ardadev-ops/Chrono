@@ -1,0 +1,2278 @@
+{
+  "openapi": "3.0.4",
+  "info": {
+    "title": "ChronoAPI",
+    "version": "v1"
+  },
+  "paths": {
+    "/api/Abteilung": {
+      "get": {
+        "tags": [
+          "Abteilung"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Abteilung"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Abteilung"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Abteilung"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Abteilung"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Abteilung"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Abteilung"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Abteilung"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Abteilung"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Abteilung"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Abteilung"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Abteilung/{id}": {
+      "get": {
+        "tags": [
+          "Abteilung"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Abteilung"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Abteilung"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Abteilung"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Abteilung"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Abteilung"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Abteilung"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Abteilung"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Abteilung"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Abwesenheit": {
+      "get": {
+        "tags": [
+          "Abwesenheit"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Abwesenheit"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Abwesenheit"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Abwesenheit"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Abwesenheit"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Abwesenheit"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Abwesenheit"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Abwesenheit"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Abwesenheit/{id}": {
+      "get": {
+        "tags": [
+          "Abwesenheit"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Abwesenheit"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Abwesenheit"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Abwesenheit"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Abwesenheit"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Abwesenheit/pending": {
+      "get": {
+        "tags": [
+          "Abwesenheit"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Abwesenheit"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Abwesenheit"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Abwesenheit"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Abwesenheit/{id}/approve": {
+      "put": {
+        "tags": [
+          "Abwesenheit"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Abwesenheit/{id}/reject": {
+      "put": {
+        "tags": [
+          "Abwesenheit"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Auth/login": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Auth/change-password": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChangePasswordRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChangePasswordRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChangePasswordRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Auth/reset-password": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResetPasswordRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResetPasswordRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResetPasswordRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Auth/change-role": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChangeRoleRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChangeRoleRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChangeRoleRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Auth/logout": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/LohnAbrechnung": {
+      "get": {
+        "tags": [
+          "LohnAbrechnung"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/LohnAbrechnung"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/LohnAbrechnung"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/LohnAbrechnung"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "LohnAbrechnung"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LohnAbrechnung"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LohnAbrechnung"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/LohnAbrechnung"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/LohnAbrechnung"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LohnAbrechnung"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LohnAbrechnung"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/LohnAbrechnung/{id}": {
+      "get": {
+        "tags": [
+          "LohnAbrechnung"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/LohnAbrechnung"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LohnAbrechnung"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LohnAbrechnung"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "LohnAbrechnung"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/LohnAbrechnung/mitarbeiter/{mitId}": {
+      "get": {
+        "tags": [
+          "LohnAbrechnung"
+        ],
+        "parameters": [
+          {
+            "name": "mitId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/LohnAbrechnung"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/LohnAbrechnung"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/LohnAbrechnung"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Mitarbeiter": {
+      "get": {
+        "tags": [
+          "Mitarbeiter"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Mitarbeiter"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Mitarbeiter"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Mitarbeiter"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Mitarbeiter"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateMitarbeiterWithUserRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateMitarbeiterWithUserRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateMitarbeiterWithUserRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Mitarbeiter/{id}": {
+      "get": {
+        "tags": [
+          "Mitarbeiter"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Mitarbeiter"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Mitarbeiter"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Mitarbeiter"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Mitarbeiter"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Mitarbeiter"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Mitarbeiter"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Mitarbeiter"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Mitarbeiter"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Nfc/scan": {
+      "post": {
+        "tags": [
+          "Nfc"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NfcRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NfcRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/NfcRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Nfc/latest": {
+      "get": {
+        "tags": [
+          "Nfc"
+        ],
+        "parameters": [
+          {
+            "name": "after",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/TimeBooking": {
+      "get": {
+        "tags": [
+          "TimeBooking"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TimeBooking"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TimeBooking"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TimeBooking"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "TimeBooking"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TimeBooking"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TimeBooking"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/TimeBooking"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/TimeBooking"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TimeBooking"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TimeBooking"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/TimeBooking/{id}": {
+      "get": {
+        "tags": [
+          "TimeBooking"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/TimeBooking"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TimeBooking"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TimeBooking"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "TimeBooking"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TimeBooking"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TimeBooking"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/TimeBooking"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "TimeBooking"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/TimeBooking/mitarbeiter/{mitId}": {
+      "get": {
+        "tags": [
+          "TimeBooking"
+        ],
+        "parameters": [
+          {
+            "name": "mitId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TimeBooking"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TimeBooking"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TimeBooking"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/TimeBooking/aktuell": {
+      "get": {
+        "tags": [
+          "TimeBooking"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/TimeBooking"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TimeBooking"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TimeBooking"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/TimeBooking/offen": {
+      "get": {
+        "tags": [
+          "TimeBooking"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TimeBooking"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TimeBooking"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TimeBooking"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/TimeBooking/nfc": {
+      "post": {
+        "tags": [
+          "TimeBooking"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NfcRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NfcRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/NfcRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Urlaubskonto/mein": {
+      "get": {
+        "tags": [
+          "Urlaubskonto"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Urlaubskonto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Urlaubskonto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Urlaubskonto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Urlaubskonto/mitarbeiter/{mitId}": {
+      "get": {
+        "tags": [
+          "Urlaubskonto"
+        ],
+        "parameters": [
+          {
+            "name": "mitId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "jahr",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Urlaubskonto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Urlaubskonto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Urlaubskonto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Urlaubskonto/alle": {
+      "get": {
+        "tags": [
+          "Urlaubskonto"
+        ],
+        "parameters": [
+          {
+            "name": "jahr",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Urlaubskonto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Urlaubskonto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Urlaubskonto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Urlaubskonto": {
+      "post": {
+        "tags": [
+          "Urlaubskonto"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Urlaubskonto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Urlaubskonto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Urlaubskonto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Urlaubskonto/abziehen/{mitId}": {
+      "put": {
+        "tags": [
+          "Urlaubskonto"
+        ],
+        "parameters": [
+          {
+            "name": "mitId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "number",
+                "format": "double"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "number",
+                "format": "double"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "number",
+                "format": "double"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Zeitkorrektur": {
+      "get": {
+        "tags": [
+          "Zeitkorrektur"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Zeitkorrektur"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Zeitkorrektur"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Zeitkorrektur"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Zeitkorrektur"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Zeitkorrektur"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Zeitkorrektur"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Zeitkorrektur"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Zeitkorrektur"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Zeitkorrektur"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Zeitkorrektur"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Zeitkorrektur/pending": {
+      "get": {
+        "tags": [
+          "Zeitkorrektur"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Zeitkorrektur"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Zeitkorrektur"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Zeitkorrektur"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Zeitkorrektur/{id}/approve": {
+      "put": {
+        "tags": [
+          "Zeitkorrektur"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Zeitkorrektur/{id}/reject": {
+      "put": {
+        "tags": [
+          "Zeitkorrektur"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Abteilung": {
+        "required": [
+          "abtName"
+        ],
+        "type": "object",
+        "properties": {
+          "abtID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "abtName": {
+            "maxLength": 100,
+            "minLength": 1,
+            "type": "string"
+          },
+          "abtBez": {
+            "maxLength": 500,
+            "type": "string",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "mitarbeiter": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Mitarbeiter"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Abwesenheit": {
+        "required": [
+          "abwesenType"
+        ],
+        "type": "object",
+        "properties": {
+          "abwesenID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "fK_MitID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "abwesenType": {
+            "maxLength": 100,
+            "minLength": 1,
+            "type": "string"
+          },
+          "startDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "endDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "abwesenGrund": {
+            "maxLength": 500,
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "maxLength": 50,
+            "type": "string",
+            "nullable": true
+          },
+          "approvedBy": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "approvedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "mitarbeiter": {
+            "$ref": "#/components/schemas/Mitarbeiter"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ChangePasswordRequest": {
+        "type": "object",
+        "properties": {
+          "oldPassword": {
+            "type": "string",
+            "nullable": true
+          },
+          "newPassword": {
+            "type": "string",
+            "nullable": true
+          },
+          "confirmPassword": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ChangeRoleRequest": {
+        "type": "object",
+        "properties": {
+          "mitarbeiterId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "neueRolle": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreateMitarbeiterWithUserRequest": {
+        "type": "object",
+        "properties": {
+          "mitarbeiter": {
+            "$ref": "#/components/schemas/Mitarbeiter"
+          },
+          "tempPassword": {
+            "type": "string",
+            "nullable": true
+          },
+          "role": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "LoginRequest": {
+        "type": "object",
+        "properties": {
+          "userName": {
+            "type": "string",
+            "nullable": true
+          },
+          "password": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "LohnAbrechnung": {
+        "type": "object",
+        "properties": {
+          "lohnID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "fK_MitID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "periodStart": {
+            "type": "string",
+            "format": "date"
+          },
+          "periodEnd": {
+            "type": "string",
+            "format": "date"
+          },
+          "regularStunden": {
+            "type": "number",
+            "format": "double"
+          },
+          "ueberstunden": {
+            "type": "number",
+            "format": "double"
+          },
+          "gesamtStunden": {
+            "type": "number",
+            "format": "double"
+          },
+          "bruttoLohn": {
+            "type": "number",
+            "format": "double"
+          },
+          "nettoLohn": {
+            "type": "number",
+            "format": "double"
+          },
+          "processedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "processedBy": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "mitarbeiter": {
+            "$ref": "#/components/schemas/Mitarbeiter"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Mitarbeiter": {
+        "required": [
+          "mitMail",
+          "mitNachname",
+          "mitVorname"
+        ],
+        "type": "object",
+        "properties": {
+          "mitID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "mitVorname": {
+            "maxLength": 50,
+            "minLength": 1,
+            "type": "string"
+          },
+          "mitNachname": {
+            "maxLength": 50,
+            "minLength": 1,
+            "type": "string"
+          },
+          "mitMail": {
+            "maxLength": 200,
+            "minLength": 1,
+            "type": "string",
+            "format": "email"
+          },
+          "mitTelefon": {
+            "maxLength": 50,
+            "type": "string",
+            "nullable": true
+          },
+          "fK_AbtID": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "nfcCardUid": {
+            "maxLength": 50,
+            "type": "string",
+            "nullable": true
+          },
+          "mitBeiDat": {
+            "type": "string",
+            "format": "date"
+          },
+          "mitAktiv": {
+            "type": "boolean"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "userRolle": {
+            "type": "string",
+            "nullable": true
+          },
+          "abteilung": {
+            "$ref": "#/components/schemas/Abteilung"
+          },
+          "timeBookings": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TimeBooking"
+            },
+            "nullable": true
+          },
+          "user": {
+            "$ref": "#/components/schemas/User"
+          }
+        },
+        "additionalProperties": false
+      },
+      "NfcRequest": {
+        "type": "object",
+        "properties": {
+          "uid": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ResetPasswordRequest": {
+        "type": "object",
+        "properties": {
+          "mitarbeiterId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "newPassword": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "TimeBooking": {
+        "required": [
+          "checkInTime"
+        ],
+        "type": "object",
+        "properties": {
+          "timeID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "fK_MitID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "checkInTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "checkOutTime": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "breakMinutes": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "notes": {
+            "maxLength": 500,
+            "type": "string",
+            "nullable": true
+          },
+          "isAutoCheckout": {
+            "type": "boolean"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "mitarbeiter": {
+            "$ref": "#/components/schemas/Mitarbeiter"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Urlaubskonto": {
+        "required": [
+          "jahr"
+        ],
+        "type": "object",
+        "properties": {
+          "kontoID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "fK_MitID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "jahr": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "gesamtTage": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "genommTage": {
+            "type": "number",
+            "format": "double"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "restTage": {
+            "type": "number",
+            "format": "double",
+            "readOnly": true
+          },
+          "mitarbeiter": {
+            "$ref": "#/components/schemas/Mitarbeiter"
+          }
+        },
+        "additionalProperties": false
+      },
+      "User": {
+        "required": [
+          "userName",
+          "userPassword",
+          "userRole"
+        ],
+        "type": "object",
+        "properties": {
+          "userID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "fK_MitID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "userName": {
+            "maxLength": 100,
+            "minLength": 1,
+            "type": "string"
+          },
+          "userPassword": {
+            "maxLength": 500,
+            "minLength": 1,
+            "type": "string"
+          },
+          "userRole": {
+            "maxLength": 50,
+            "minLength": 1,
+            "type": "string"
+          },
+          "lastLogin": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "userAktiv": {
+            "type": "boolean"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "mustChangePassword": {
+            "type": "boolean"
+          },
+          "passwordChangedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "passwordResetBy": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "passwordResetAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "failedLoginAttempts": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "lockedUntil": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "mitarbeiter": {
+            "$ref": "#/components/schemas/Mitarbeiter"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Zeitkorrektur": {
+        "required": [
+          "checkIn",
+          "checkOut",
+          "grund",
+          "korrDatum"
+        ],
+        "type": "object",
+        "properties": {
+          "korrID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "fK_MitID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "korrDatum": {
+            "type": "string",
+            "format": "date"
+          },
+          "checkIn": {
+            "type": "string",
+            "format": "time"
+          },
+          "checkOut": {
+            "type": "string",
+            "format": "time"
+          },
+          "grund": {
+            "maxLength": 500,
+            "minLength": 1,
+            "type": "string"
+          },
+          "status": {
+            "maxLength": 50,
+            "type": "string",
+            "nullable": true
+          },
+          "approvedBy": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "approvedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "mitarbeiter": {
+            "$ref": "#/components/schemas/Mitarbeiter"
+          },
+          "genehmiger": {
+            "$ref": "#/components/schemas/Mitarbeiter"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "securitySchemes": {
+      "Bearer": {
+        "type": "apiKey",
+        "description": "JWT Token eingeben: Bearer {token}",
+        "name": "Authorization",
+        "in": "header"
+      }
+    }
+  },
+  "security": [
+    {
+      "Bearer": [ ]
+    }
+  ],
+  "tags": [
+    {
+      "name": "Abteilung"
+    },
+    {
+      "name": "Abwesenheit"
+    },
+    {
+      "name": "Auth"
+    },
+    {
+      "name": "LohnAbrechnung"
+    },
+    {
+      "name": "Mitarbeiter"
+    },
+    {
+      "name": "Nfc"
+    },
+    {
+      "name": "TimeBooking"
+    },
+    {
+      "name": "Urlaubskonto"
+    },
+    {
+      "name": "Zeitkorrektur"
+    }
+  ]
+}

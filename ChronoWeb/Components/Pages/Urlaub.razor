@@ -1,0 +1,466 @@
+﻿@page "/urlaub"
+@using ChronoWeb.Models
+@using ChronoWeb.Services
+@inject ApiService ApiService
+@inject AppState AppState
+@inject NavigationManager Navigation
+@rendermode InteractiveServer
+
+<PageTitle>CHRONO – Urlaub</PageTitle>
+
+@if (!_initialized)
+{
+    <div style="display:flex;align-items:center;justify-content:center;height:100vh;background:var(--l0);color:var(--t1);">
+        <div>Lade...</div>
+    </div>
+}
+else if (!AppState.IsLoggedIn)
+{
+    <p>Weiterleitung...</p>
+}
+else
+{
+    <div class="chrono-shell">
+        <ChronoSidebar />
+        <main class="chrono-main">
+
+            <div class="page-head">
+                <div>
+                    <p class="page-eyebrow">Abwesenheit</p>
+                    <h1 class="page-title">Urlaub &amp; Abwesenheiten</h1>
+                    <p class="page-sub">@AppState.VollName</p>
+                </div>
+                <div class="row-end">
+                    <button class="btn @(showForm ? "btn-ghost" : "btn-primary")" @onclick="() => showForm = !showForm">
+                        @(showForm ? "Abbrechen" : "+ Neuer Antrag")
+                    </button>
+                </div>
+            </div>
+
+            <!-- NEUER ANTRAG FORMULAR -->
+            @if (showForm)
+            {
+                <div class="card" style="margin-bottom:20px;">
+                    <div class="card-head">
+                        <h2 class="card-title">Neuen Antrag stellen</h2>
+                    </div>
+                    <div class="card-body">
+
+                        @if (!string.IsNullOrEmpty(formMessage))
+                        {
+                            <div class="alert @(formSuccess ? "alert-ok" : "alert-err")">
+                                @formMessage
+                            </div>
+                        }
+
+                        <div class="form-grid">
+                            <div class="field">
+                                <span class="field-label">Art der Abwesenheit</span>
+                                <select @bind="neuerAntrag.AbwesenType" class="select">
+                                    <option value="">-- Bitte wählen --</option>
+                                    <option value="Urlaub">Urlaub</option>
+                                    <option value="Krankenstand">Krankenstand</option>
+                                    <option value="PrivateGruende">Private Gründe</option>
+                                </select>
+                            </div>
+
+                            <div class="field">
+                                <span class="field-label">Von</span>
+                                <input type="date"
+                                       @bind="startDate"
+                                       class="input"
+                                       min="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                            </div>
+
+                            <div class="field">
+                                <span class="field-label">Bis</span>
+                                <input type="date"
+                                       @bind="endDate"
+                                       class="input"
+                                       min="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                            </div>
+
+                            <div class="field full">
+                                <span class="field-label">Begründung (optional)</span>
+                                <textarea @bind="neuerAntrag.AbwesenGrund"
+                                          class="textarea"
+                                          placeholder="Kurze Begründung eingeben..."
+                                          rows="3"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- VORSCHAU TAGE -->
+                        @if (startDate.HasValue && endDate.HasValue
+                             && endDate >= startDate)
+                        {
+                            var feiertagsAnzahl = GetFeiertagsAnzahl();
+                            <div class="alert alert-info">
+                                <span>Dauer: <strong>@GetArbeitstage() Arbeitstage</strong></span>
+                                <span>(@startDate.Value.ToString("dd.MM.yyyy") –
+                                       @endDate.Value.ToString("dd.MM.yyyy"))</span>
+                                @if (feiertagsAnzahl > 0)
+                                {
+                                    <span style="font-size:12px;">
+                                        inkl. @feiertagsAnzahl Feiertag(e) – werden nicht abgezogen
+                                    </span>
+                                }
+                            </div>
+
+                            @if (urlaubskonto != null && neuerAntrag.AbwesenType == "Urlaub")
+                            {
+                                <div class="row" style="font-size:13px;color:var(--t3);margin-bottom:16px;">
+                                    <span>Verfügbar:
+                                        <strong style="color:@(urlaubskonto.RestTage >= GetArbeitstage() ? "var(--ok)" : "var(--err)")">
+                                            @urlaubskonto.RestTage Tage
+                                        </strong>
+                                    </span>
+                                    <span>Beantragt:
+                                        <strong style="color:var(--blue)">
+                                            @GetArbeitstage() Tage
+                                        </strong>
+                                    </span>
+                                    @if (urlaubskonto.RestTage < GetArbeitstage())
+                                    {
+                                        <span style="color:var(--err);font-weight:600;">
+                                            Nicht genug Resturlaub!
+                                        </span>
+                                    }
+                                </div>
+                            }
+                        }
+
+                        <div class="form-actions">
+                            <button class="btn btn-primary"
+                                    @onclick="AntragStellen"
+                                    disabled="@isSaving">
+                                @(isSaving ? "Wird gesendet..." : "Antrag stellen")
+                            </button>
+                            <button class="btn btn-ghost"
+                                    @onclick="() => showForm = false">
+                                Abbrechen
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            }
+
+            <!-- MEINE ANTRÄGE -->
+            @if (isLoading)
+            {
+                <div class="state-box">
+                    <div class="spinner"></div>
+                    <p>Wird geladen...</p>
+                </div>
+            }
+            else
+            {
+                <!-- URLAUBSKONTO KACHELN -->
+                @if (urlaubskonto != null)
+                {
+                    <div class="metrics">
+                        <div class="metric is-primary rise rise-1">
+                            <div class="metric-label">Gesamt</div>
+                            <div class="metric-value">@urlaubskonto.GesamtTage</div>
+                        </div>
+                        <div class="metric is-warn rise rise-2">
+                            <div class="metric-label">Genommen</div>
+                            <div class="metric-value">@urlaubskonto.GenommTage</div>
+                        </div>
+                        <div class="metric is-ok rise rise-3">
+                            <div class="metric-label">Verfügbar</div>
+                            <div class="metric-value">@urlaubskonto.RestTage</div>
+                        </div>
+                    </div>
+                }
+
+                <!-- STATUS ÜBERSICHT -->
+                <div class="metrics">
+                    <div class="metric is-warn">
+                        <div class="metric-label">Ausstehend</div>
+                        <div class="metric-value">@antraege.Count(a => a.Status == "Pending")</div>
+                    </div>
+                    <div class="metric is-ok">
+                        <div class="metric-label">Genehmigt</div>
+                        <div class="metric-value">@antraege.Count(a => a.Status == "Approved")</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-label">Abgelehnt</div>
+                        <div class="metric-value" style="color:var(--err);">@antraege.Count(a => a.Status == "Rejected")</div>
+                    </div>
+                </div>
+
+                <!-- ANTRAGS-LISTE -->
+                @if (!antraege.Any())
+                {
+                    <div class="state-box">
+                        <h3>Noch keine Anträge</h3>
+                        <p>Stellen Sie Ihren ersten Urlaubsantrag!</p>
+                    </div>
+                }
+                else
+                {
+                    <div class="cards-grid">
+                        @foreach (var a in antraege.OrderByDescending(x => x.AbwesenID))
+                        {
+                            <div class="antrag-card @GetStatusClass(a.Status)">
+                                <div class="ac-header">
+                                    <span class="ac-type">@a.AbwesenType</span>
+                                    <span class="badge @GetStatusBadgeClass(a.Status)">
+                                        @GetStatusText(a.Status)
+                                    </span>
+                                </div>
+                                <div class="ac-dates">
+                                    <span>@a.StartDate.ToString("dd.MM.yyyy")</span>
+                                    <span class="ac-arrow">→</span>
+                                    <span>@a.EndDate.ToString("dd.MM.yyyy")</span>
+                                </div>
+                                @if (!string.IsNullOrEmpty(a.AbwesenGrund))
+                                {
+                                    <div class="ac-grund">
+                                        "@a.AbwesenGrund"
+                                    </div>
+                                }
+                                <div class="ac-days">
+                                    @GetDaysDiff(a.StartDate, a.EndDate) Tage
+                                </div>
+                            </div>
+                        }
+                    </div>
+                }
+            }
+
+        </main>
+    </div>
+}
+
+@code {
+    private static readonly HashSet<DateTime> Feiertage2026 = new()
+    {
+        new DateTime(2026, 1,  1),   // Neujahr
+        new DateTime(2026, 1,  6),   // Heilige Drei Könige
+        new DateTime(2026, 5,  1),   // Staatsfeiertag
+        new DateTime(2026, 5,  14),  // Christi Himmelfahrt
+        new DateTime(2026, 5,  25),  // Pfingstmontag
+        new DateTime(2026, 6,  4),   // Fronleichnam
+        new DateTime(2026, 8,  15),  // Mariä Himmelfahrt
+        new DateTime(2026, 10, 26),  // Nationalfeiertag
+        new DateTime(2026, 11, 1),   // Allerheiligen
+        new DateTime(2026, 12, 8),   // Mariä Empfängnis
+        new DateTime(2026, 12, 25),  // Christtag
+        new DateTime(2026, 12, 26),  // Stefanitag
+    };
+
+    private List<Abwesenheit> antraege = new();
+    private Urlaubskonto? urlaubskonto;
+    private Abwesenheit neuerAntrag = new();
+    private bool isLoading = true;
+    private bool _initialized = false;
+    private bool showForm = false;
+    private bool isSaving = false;
+    private bool formSuccess = false;
+    private string formMessage = "";
+    private DateTime? startDate = DateTime.Now.AddDays(1);
+    private DateTime? endDate = DateTime.Now.AddDays(7);
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (!firstRender) return;
+
+        await AppState.InitializeAsync();
+        _initialized = true;
+
+        if (!AppState.IsLoggedIn)
+        {
+            Navigation.NavigateTo("/login");
+            return;
+        }
+
+        await LoadData();
+        StateHasChanged();
+    }
+
+    private async Task LoadData()
+    {
+        isLoading = true;
+        try
+        {
+            var alle = await ApiService.GetAbwesenheiten();
+            antraege = alle
+                .Where(a => a.FK_MitID == AppState.MitarbeiterID)
+                .ToList();
+        }
+        catch { antraege = new(); }
+        try { urlaubskonto = await ApiService.GetUrlaubskontoByMitarbeiter(AppState.MitarbeiterID); }
+        catch { urlaubskonto = null; }
+        finally { isLoading = false; }
+    }
+
+    private async Task AntragStellen()
+    {
+        if (string.IsNullOrEmpty(neuerAntrag.AbwesenType))
+        {
+            formMessage = "Bitte Art der Abwesenheit wählen!";
+            formSuccess = false;
+            return;
+        }
+
+        if (!startDate.HasValue || !endDate.HasValue)
+        {
+            formMessage = "Bitte Start- und Enddatum wählen!";
+            formSuccess = false;
+            return;
+        }
+
+        if (endDate < startDate)
+        {
+            formMessage = "Enddatum muss nach dem Startdatum liegen!";
+            formSuccess = false;
+            return;
+        }
+
+        isSaving = true;
+        try
+        {
+            neuerAntrag.FK_MitID = AppState.MitarbeiterID;
+            neuerAntrag.StartDate = DateOnly.FromDateTime(startDate.Value);
+            neuerAntrag.EndDate = DateOnly.FromDateTime(endDate.Value);
+            neuerAntrag.Status = "Pending";
+
+            var (success, message) = await ApiService.CreateAbwesenheit(neuerAntrag);
+
+            if (success)
+            {
+                formMessage = "✅ Antrag erfolgreich gestellt!";
+                formSuccess = true;
+                neuerAntrag = new();
+                showForm = false;
+                await LoadData();
+            }
+            else
+            {
+                formMessage = message;
+                formSuccess = false;
+            }
+        }
+        catch
+        {
+            formMessage = "Verbindungsfehler!";
+            formSuccess = false;
+        }
+        finally { isSaving = false; }
+    }
+
+    private int GetArbeitstage()
+    {
+        if (!startDate.HasValue || !endDate.HasValue) return 0;
+        int days = 0;
+        for (var d = startDate.Value; d <= endDate.Value; d = d.AddDays(1))
+        {
+            if (d.DayOfWeek == DayOfWeek.Saturday ||
+                d.DayOfWeek == DayOfWeek.Sunday)
+                continue;
+            if (Feiertage2026.Contains(d.Date))
+                continue;
+            days++;
+        }
+        return days;
+    }
+
+    private int GetFeiertagsAnzahl()
+    {
+        if (!startDate.HasValue || !endDate.HasValue) return 0;
+        int count = 0;
+        for (var d = startDate.Value; d <= endDate.Value; d = d.AddDays(1))
+        {
+            if (d.DayOfWeek != DayOfWeek.Saturday &&
+                d.DayOfWeek != DayOfWeek.Sunday &&
+                Feiertage2026.Contains(d.Date))
+                count++;
+        }
+        return count;
+    }
+
+    private int GetDaysDiff(DateOnly start, DateOnly end)
+    {
+        int days = 0;
+        for (var d = start.ToDateTime(TimeOnly.MinValue);
+             d <= end.ToDateTime(TimeOnly.MinValue);
+             d = d.AddDays(1))
+        {
+            if (d.DayOfWeek == DayOfWeek.Saturday ||
+                d.DayOfWeek == DayOfWeek.Sunday)
+                continue;
+
+            if (Feiertage2026.Contains(d))
+                continue;
+
+            days++;
+        }
+        return days;
+    }
+
+    private string GetStatusClass(string status) => status switch
+    {
+        "Approved" => "approved",
+        "Rejected" => "rejected",
+        _ => "pending"
+    };
+
+    private string GetStatusBadgeClass(string status) => status switch
+    {
+        "Approved" => "badge-ok",
+        "Rejected" => "badge-err",
+        _ => "badge-warn"
+    };
+
+    private string GetStatusText(string status) => status switch
+    {
+        "Approved" => "✅ Genehmigt",
+        "Rejected" => "❌ Abgelehnt",
+        _ => "⏳ Ausstehend"
+    };
+
+    private string GetTypeIcon(string type) => type switch
+    {
+        "Urlaub" => "🌴",
+        "Krankenstand" => "🤒",
+        "PrivateGruende" => "👤",
+        _ => "📋"
+    };
+}
+
+<style>
+    .cards-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+        gap: 14px;
+    }
+
+    .antrag-card {
+        position: relative;
+        background: linear-gradient(180deg, var(--l3), var(--l2) 46%);
+        border: 1px solid var(--edge);
+        border-left: 2px solid var(--t4);
+        border-radius: var(--r-lg);
+        padding: 20px 22px;
+        box-shadow: var(--sh-1);
+        transition: transform 0.28s var(--ease), box-shadow 0.28s var(--ease);
+    }
+
+    .antrag-card:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--sh-3);
+    }
+
+    .antrag-card.pending  { border-left-color: var(--warn); }
+    .antrag-card.approved { border-left-color: var(--ok); }
+    .antrag-card.rejected { border-left-color: var(--err); }
+
+    .ac-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+    .ac-type { font-size: 14px; font-weight: 600; color: var(--t1); }
+
+    .ac-dates { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--t2); margin-bottom: 8px; font-variant-numeric: tabular-nums; }
+    .ac-arrow { color: var(--t4); }
+    .ac-grund { font-size: 12.5px; color: var(--t3); font-style: italic; margin-bottom: 8px; }
+    .ac-days { font-size: 12.5px; font-weight: 600; color: var(--blue); }
+</style>

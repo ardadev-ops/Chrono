@@ -1,0 +1,962 @@
+@page "/mitarbeiter"
+@using ChronoWeb.Models
+@using ChronoWeb.Services
+@inject ApiService ApiService
+@inject AppState AppState
+@inject NavigationManager Navigation
+@inject IJSRuntime JS
+@rendermode InteractiveServer
+@implements IDisposable
+
+<PageTitle>CHRONO – Mitarbeiter</PageTitle>
+
+@if (!_initialized)
+{
+    <div style="display:flex;align-items:center;justify-content:center;height:100vh;background:var(--l0);color:var(--t1);">
+        <div class="spinner"></div>
+    </div>
+}
+else if (!AppState.IsLoggedIn)
+{
+    <p>Weiterleitung...</p>
+}
+else if (!AppState.IsHR && !AppState.IsAdmin && !AppState.IsAbteilungsleiter)
+{
+    <div class="no-access">
+        <h2>Kein Zugriff</h2>
+        <p>Diese Seite ist nur für HR, Admin und Abteilungsleiter.</p>
+        <button class="btn btn-secondary" @onclick='() => Navigation.NavigateTo("/dashboard")'>Zurück</button>
+    </div>
+}
+else
+{
+    <div class="chrono-shell">
+        <ChronoSidebar />
+        <main class="chrono-main">
+
+            <div class="page-head">
+                <div>
+                    <p class="page-eyebrow">Personal</p>
+                    <h1 class="page-title">Mitarbeiterverwaltung</h1>
+                    <p class="page-sub">@AppState.VollName · @AppState.Role</p>
+                </div>
+                @if (AppState.IsHR || AppState.IsAdmin)
+                {
+                    <div class="row-end">
+                        <button class="btn btn-primary" @onclick="() => OpenForm(null)">
+                            + Neuer Mitarbeiter
+                        </button>
+                    </div>
+                }
+            </div>
+
+            @if (AppState.IsAbteilungsleiter)
+            {
+                <div class="alert alert-info" style="margin-bottom:20px;">
+                    Sie sehen die Daten Ihrer Abteilung.
+                </div>
+            }
+
+            <div class="metrics">
+                <div class="metric is-primary">
+                    <div class="metric-label">Gesamt</div>
+                    <div class="metric-value">@mitarbeiterListe.Count</div>
+                </div>
+                <div class="metric is-ok">
+                    <div class="metric-label">Aktiv</div>
+                    <div class="metric-value">@mitarbeiterListe.Count(m => m.MitAktiv)</div>
+                </div>
+            </div>
+
+            <div class="filterbar">
+                <input type="text"
+                       @bind="searchText"
+                       @bind:event="oninput"
+                       placeholder="Nach Name, E-Mail oder Abteilung suchen..."
+                       class="input" style="min-width:280px;" />
+                <select @bind="filterAbt" class="select" style="width:auto;min-width:180px;">
+                    <option value="">Alle Abteilungen</option>
+                    @foreach (var a in abteilungen)
+                    {
+                        <option value="@a.AbtName">@a.AbtName</option>
+                    }
+                </select>
+            </div>
+
+            @if (isLoading)
+            {
+                <div class="state-box">
+                    <div class="spinner"></div>
+                    <p>Mitarbeiter werden geladen...</p>
+                </div>
+            }
+            else if (loadError != null)
+            {
+                <div class="state-box">
+                    <h3>Fehler beim Laden</h3>
+                    <p>@loadError</p>
+                    <button class="btn btn-secondary" @onclick="LoadData">
+                        Erneut versuchen
+                    </button>
+                </div>
+            }
+            else if (!GetFiltered().Any())
+            {
+                <div class="state-box">
+                    <h3>Keine Mitarbeiter gefunden</h3>
+                </div>
+            }
+            else
+            {
+                <div class="ma-grid">
+                    @foreach (var m in GetFiltered())
+                    {
+                        <div class="ma-card @(m.MitAktiv ? "" : "ma-inactive")">
+                            <div class="ma-card-header">
+                                <div class="ma-avatar" style="background: @GetAvatarColor(m.MitID)">
+                                    @GetInitials(m.MitVorname, m.MitNachname)
+                                </div>
+                                <div class="ma-info">
+                                    <div class="ma-name">@m.MitVorname @m.MitNachname</div>
+                                    <div class="ma-dept">
+                                        @m.Abteilung?.AbtName
+                                        @if (!string.IsNullOrEmpty(m.UserRolle))
+                                        {
+                                            <span class="badge @RolleBadge(m.UserRolle)" style="margin-left:6px;">
+                                                @m.UserRolle
+                                            </span>
+                                        }
+                                    </div>
+                                </div>
+                                <span class="dot @(m.MitAktiv ? "is-live" : "")"></span>
+                            </div>
+                            <div class="ma-details">
+                                <div class="ma-detail-row"><span>@m.MitMail</span></div>
+                                @if (!string.IsNullOrEmpty(m.MitTelefon))
+                                {
+                                    <div class="ma-detail-row"><span>@m.MitTelefon</span></div>
+                                }
+                                @if (!string.IsNullOrEmpty(m.NFCCardUid))
+                                {
+                                    <div class="ma-detail-row">
+                                        <span class="nfc-tag">NFC: @m.NFCCardUid</span>
+                                    </div>
+                                }
+                                <div class="ma-detail-row">
+                                    <span>Seit @m.MitBeiDat.ToString("dd.MM.yyyy")</span>
+                                </div>
+                            </div>
+                            <div class="ma-actions">
+                                @if (AppState.IsHR || AppState.IsAdmin)
+                                {
+                                    <button class="btn btn-sm btn-secondary" @onclick="() => OpenForm(m)">Bearbeiten</button>
+                                    <button class="btn btn-sm btn-outline" @onclick="() => OpenRoleModal(m)">Rolle</button>
+                                    <button class="btn btn-sm btn-outline" @onclick="() => OpenResetModal(m)">Reset</button>
+                                    <button class="btn btn-sm @(m.MitAktiv ? "btn-danger" : "btn-success")"
+                                            @onclick="() => ToggleAktiv(m)">
+                                        @(m.MitAktiv ? "Deaktivieren" : "Aktivieren")
+                                    </button>
+                                }
+                                else if (AppState.IsAbteilungsleiter)
+                                {
+                                    <button class="btn btn-sm btn-outline" @onclick="() => OpenResetModal(m)">Reset</button>
+                                    <span class="readonly-hint">Nur Ansicht</span>
+                                }
+                                else
+                                {
+                                    <span class="readonly-hint">Nur Ansicht</span>
+                                }
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+
+            @if (!string.IsNullOrEmpty(toastMsg))
+            {
+                <div class="toast @(toastOk ? "toast-ok" : "toast-err")">@toastMsg</div>
+            }
+
+        </main>
+    </div>
+}
+
+@* Erstellen/Bearbeiten Modal – ausserhalb aller else-Bloecke *@
+@if (showForm)
+{
+    <div class="modal-overlay" @onclick="CloseForm">
+        <div class="modal-box" @onclick:stopPropagation="true">
+
+            <div class="modal-header">
+                <h2>@(editMitarbeiter.MitID == 0 ? "Neuer Mitarbeiter" : "Bearbeiten")</h2>
+                <button class="modal-close" @onclick="CloseForm">✕</button>
+            </div>
+
+            @if (!string.IsNullOrEmpty(formMsg))
+            {
+                <div class="alert @(formOk ? "alert-ok" : "alert-err")">@formMsg</div>
+            }
+
+            <div class="form-grid">
+                <div class="field">
+                    <span class="field-label">Vorname *</span>
+                    <input @bind="editMitarbeiter.MitVorname" class="input" placeholder="Max" />
+                </div>
+                <div class="field">
+                    <span class="field-label">Nachname *</span>
+                    <input @bind="editMitarbeiter.MitNachname" class="input" placeholder="Mustermann" />
+                </div>
+                <div class="field">
+                    <span class="field-label">E-Mail *</span>
+                    <input @bind="editMitarbeiter.MitMail" class="input" type="email"
+                           placeholder="max@flughafen-ibk.at" />
+                </div>
+                <div class="field">
+                    <span class="field-label">Telefon</span>
+                    <input @bind="editMitarbeiter.MitTelefon" class="input" placeholder="0512 123456" />
+                </div>
+                <div class="field">
+                    <span class="field-label">Abteilung</span>
+                    <select class="select" value="@_abtIdStr" @onchange="OnAbtChange">
+                        <option value="">-- Keine --</option>
+                        @foreach (var a in abteilungen)
+                        {
+                            <option value="@a.AbtID">@a.AbtName</option>
+                        }
+                    </select>
+                </div>
+                <div class="field full">
+                    <span class="field-label">NFC Karten-UID</span>
+                    <div style="display:flex;gap:8px;align-items:center;">
+                        <input @bind="editMitarbeiter.NFCCardUid" class="input" placeholder="NFC-001"
+                               readonly="@isScanning" style="flex:1;" />
+                        @if (!isScanning)
+                        {
+                            <button type="button" class="btn btn-sm btn-secondary" @onclick="StartScan">
+                                🪪 Karte scannen
+                            </button>
+                        }
+                        else
+                        {
+                            <button type="button" class="btn btn-sm btn-ghost" @onclick="CancelScan">
+                                Abbrechen
+                            </button>
+                        }
+                    </div>
+                    @if (!string.IsNullOrEmpty(scanStatusMsg))
+                    {
+                        <div style="font-size:12px;color:var(--t3);margin-top:6px;">@scanStatusMsg</div>
+                    }
+                    @if (!string.IsNullOrEmpty(scanDuplicateWarning))
+                    {
+                        <div class="alert alert-warn" style="margin-top:6px;font-size:12.5px;padding:8px 12px;">
+                            ⚠️ @scanDuplicateWarning
+                        </div>
+                    }
+                </div>
+                <div class="field">
+                    <span class="field-label">Eintrittsdatum *</span>
+                    <input type="date" @bind="eintrittsDatum" @bind:format="yyyy-MM-dd" class="input" />
+                </div>
+                <div class="field" style="display:flex;align-items:center;gap:10px;padding-top:24px;">
+                    <input type="checkbox" @bind="editMitarbeiter.MitAktiv" id="aktiv-check"
+                           style="width:18px;height:18px;accent-color:var(--blue);cursor:pointer;" />
+                    <label for="aktiv-check"
+                           style="text-transform:none;font-size:14px;color:var(--t1);cursor:pointer;letter-spacing:0;">
+                        Mitarbeiter aktiv
+                    </label>
+                </div>
+
+                @* Nur bei neuem Mitarbeiter: Rolle und Passwort *@
+                @if (editMitarbeiter.MitID == 0)
+                {
+                    <div class="field">
+                        <span class="field-label">Rolle *</span>
+                        <select @bind="selectedRole" class="select">
+                            <option value="Mitarbeiter">Mitarbeiter</option>
+                            <option value="Abteilungsleiter">Abteilungsleiter</option>
+                            <option value="HR">HR</option>
+                            <option value="Buchhaltung">Buchhaltung</option>
+                            @if (AppState.IsAdmin)
+                            {
+                                <option value="Admin">Admin</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="field full">
+                        <span class="field-label">Temporäres Passwort *</span>
+                        <div style="display:flex;gap:8px;align-items:center;">
+                            <input @bind="tempPassword" type="text" class="input"
+                                   placeholder="z.B. Chrono2026!" style="flex:1;" />
+                            <button type="button" @onclick="GeneratePassword"
+                                    class="btn btn-sm btn-secondary" title="Zufallspasswort generieren">
+                                Generieren
+                            </button>
+                            <button type="button" @onclick="CopyTempPassword" class="btn btn-sm btn-success">
+                                @(tempCopied ? "Kopiert" : "Kopieren")
+                            </button>
+                        </div>
+                        <div style="font-size:11px;color:var(--t3);margin-top:4px;">
+                            Mind. 8 Zeichen, 1 Zahl, 1 Sonderzeichen · User muss es beim ersten Login ändern
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <div class="modal-actions">
+                <button class="btn btn-primary" style="flex:1;" @onclick="SaveMitarbeiter" disabled="@isSaving">
+                    @(isSaving ? "Speichern..." : "Speichern")
+                </button>
+                <button class="btn btn-ghost" @onclick="CloseForm">Abbrechen</button>
+            </div>
+
+        </div>
+    </div>
+}
+
+@* Passwort-Reset Modal – ausserhalb aller else-Bloecke *@
+@if (showResetModal && resetTarget != null)
+{
+    <div class="modal-overlay" @onclick="CloseResetModal">
+        <div class="modal-box" style="max-width:460px;border-color:var(--err-line);"
+             @onclick:stopPropagation="true">
+
+            <div class="modal-header">
+                <h2 style="color:var(--err);">Passwort zurücksetzen</h2>
+                <button class="modal-close" @onclick="CloseResetModal">✕</button>
+            </div>
+
+            <p style="color:var(--t2);font-size:14px;margin-bottom:20px;">
+                Für: <strong style="color:var(--t1);">@resetTarget.MitVorname @resetTarget.MitNachname</strong><br />
+                Der User muss das Passwort beim nächsten Login ändern.
+            </p>
+
+            @if (!string.IsNullOrEmpty(resetMsg))
+            {
+                <div class="alert @(resetOk ? "alert-ok" : "alert-err")" style="margin-bottom:16px;">
+                    @resetMsg
+                </div>
+            }
+
+            <div style="display:flex;gap:8px;margin-bottom:20px;">
+                <input @bind="resetPassword" type="text" class="input"
+                       placeholder="Neues Passwort..." style="flex:1;" />
+                <button @onclick="GenerateResetPassword" class="btn btn-sm btn-secondary" title="Zufallspasswort">Generieren</button>
+                <button @onclick="CopyResetPassword" class="btn btn-sm btn-success">@(resetCopied ? "Kopiert" : "Kopieren")</button>
+            </div>
+
+            <div class="modal-actions">
+                <button class="btn btn-danger" style="flex:1;" @onclick="DoResetPassword" disabled="@isResetting">
+                    @(isResetting ? "Resetten..." : "Passwort resetten")
+                </button>
+                <button class="btn btn-ghost" @onclick="CloseResetModal">Abbrechen</button>
+            </div>
+
+        </div>
+    </div>
+}
+
+@* Rollenaenderung – ausserhalb aller else-Bloecke *@
+@if (showRoleModal && roleTarget != null)
+{
+    <div class="modal-overlay" @onclick="CloseRoleModal">
+        <div class="modal-box" style="max-width:440px;" @onclick:stopPropagation="true">
+
+            <div class="modal-header">
+                <h2>Rolle ändern</h2>
+                <button class="modal-close" @onclick="CloseRoleModal">✕</button>
+            </div>
+
+            <p style="color:var(--t2);font-size:14px;margin-bottom:20px;">
+                <strong style="color:var(--t1);">
+                    @roleTarget.MitVorname @roleTarget.MitNachname
+                </strong><br />
+                Aktuelle Rolle: <strong style="color:var(--t1);">@roleTarget.UserRolle</strong>
+            </p>
+
+            @if (!string.IsNullOrEmpty(roleMsg))
+            {
+                <div class="alert @(roleOk ? "alert-ok" : "alert-err")">@roleMsg</div>
+            }
+
+            @if (!string.IsNullOrEmpty(roleHinweis))
+            {
+                <div class="alert alert-warn">@roleHinweis</div>
+            }
+
+            <div class="field">
+                <span class="field-label">Neue Rolle</span>
+                <select @bind="neueRolle" class="select">
+                    <option value="Mitarbeiter">Mitarbeiter</option>
+                    <option value="Abteilungsleiter">Abteilungsleiter</option>
+                    <option value="HR">HR</option>
+                    <option value="Buchhaltung">Buchhaltung</option>
+                    @if (AppState.IsAdmin)
+                    {
+                        <option value="Admin">Admin</option>
+                    }
+                </select>
+            </div>
+
+            <div class="alert alert-info" style="font-size:12.5px;">
+                Die Änderung wird erst wirksam, wenn sich der Benutzer erneut anmeldet.
+            </div>
+
+            <div class="modal-actions">
+                <button class="btn btn-primary" style="flex:1;"
+                        @onclick="DoChangeRole" disabled="@isChangingRole">
+                    @(isChangingRole ? "Wird gespeichert…" : "Rolle ändern")
+                </button>
+                <button class="btn btn-ghost" @onclick="CloseRoleModal">Abbrechen</button>
+            </div>
+        </div>
+    </div>
+}
+
+@code {
+    private List<Mitarbeiter> mitarbeiterListe = new();
+    private List<Abteilung> abteilungen = new();
+    private Mitarbeiter editMitarbeiter = new();
+    private DateTime eintrittsDatum = DateTime.Today;
+    private string _abtIdStr = "";
+    private string selectedRole = "Mitarbeiter";
+    private string tempPassword = "";
+    private bool tempCopied = false;
+
+    private bool _initialized = false;
+    private bool isLoading = true;
+    private string? loadError;
+    private bool showForm = false;
+    private bool isSaving = false;
+    private string searchText = "";
+    private string filterAbt = "";
+    private string formMsg = "";
+    private bool formOk = false;
+    private string toastMsg = "";
+    private bool toastOk = true;
+
+    private bool showResetModal = false;
+    private Mitarbeiter? resetTarget;
+    private string resetPassword = "";
+    private bool resetCopied = false;
+    private string? resetMsg;
+    private bool resetOk = false;
+    private bool isResetting = false;
+
+    private bool isScanning = false;
+    private string? scanStatusMsg;
+    private string? scanDuplicateWarning;
+    private CancellationTokenSource? _scanCts;
+
+    private bool showRoleModal = false;
+    private Mitarbeiter? roleTarget;
+    private string neueRolle = "Mitarbeiter";
+    private string roleMsg = "";
+    private string? roleHinweis;
+    private bool roleOk = false;
+    private bool isChangingRole = false;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (!firstRender) return;
+
+        await AppState.InitializeAsync();
+        _initialized = true;
+
+        if (!AppState.IsLoggedIn)
+        {
+            Navigation.NavigateTo("/login");
+            return;
+        }
+
+        if (AppState.IsHR || AppState.IsAdmin || AppState.IsAbteilungsleiter)
+            await LoadData();
+        else
+            isLoading = false;
+
+        await InvokeAsync(StateHasChanged);
+    }
+
+    private async Task LoadData()
+    {
+        isLoading = true;
+        loadError = null;
+        try
+        {
+            mitarbeiterListe = await ApiService.GetMitarbeiter();
+            abteilungen      = await ApiService.GetAbteilungen();
+        }
+        catch (Exception ex)
+        {
+            loadError = ex.Message;
+            mitarbeiterListe = new();
+            abteilungen      = new();
+        }
+        finally
+        {
+            isLoading = false;
+            await InvokeAsync(StateHasChanged);
+        }
+    }
+
+    private IEnumerable<Mitarbeiter> GetFiltered() =>
+        mitarbeiterListe
+            .Where(m =>
+                (string.IsNullOrEmpty(searchText) ||
+                 m.MitVorname.Contains(searchText, StringComparison.OrdinalIgnoreCase) ||
+                 m.MitNachname.Contains(searchText, StringComparison.OrdinalIgnoreCase) ||
+                 m.MitMail.Contains(searchText, StringComparison.OrdinalIgnoreCase)) &&
+                (string.IsNullOrEmpty(filterAbt) || m.Abteilung?.AbtName == filterAbt))
+            .OrderBy(m => m.MitNachname);
+
+    private async Task OpenForm(Mitarbeiter? m)
+    {
+        if (m == null)
+        {
+            editMitarbeiter = new Mitarbeiter { MitAktiv = true };
+            eintrittsDatum  = DateTime.Today;
+            _abtIdStr       = "";
+            selectedRole    = "Mitarbeiter";
+            tempPassword    = "";
+            tempCopied      = false;
+        }
+        else
+        {
+            editMitarbeiter = new Mitarbeiter
+            {
+                MitID       = m.MitID,
+                MitVorname  = m.MitVorname,
+                MitNachname = m.MitNachname,
+                MitMail     = m.MitMail,
+                MitTelefon  = m.MitTelefon,
+                FK_AbtID    = m.FK_AbtID,
+                NFCCardUid  = m.NFCCardUid,
+                MitBeiDat   = m.MitBeiDat,
+                MitAktiv    = m.MitAktiv
+            };
+            eintrittsDatum = m.MitBeiDat.ToDateTime(TimeOnly.MinValue);
+            _abtIdStr      = m.FK_AbtID?.ToString() ?? "";
+        }
+
+        formMsg  = "";
+        formOk   = false;
+        showForm = true;
+    }
+
+    private void CloseForm()
+    {
+        CancelScan();
+        showForm = false;
+        formMsg  = "";
+    }
+
+    private async Task StartScan()
+    {
+        _scanCts?.Cancel();
+        _scanCts = new CancellationTokenSource();
+        var token = _scanCts.Token;
+
+        isScanning            = true;
+        scanStatusMsg         = "Bitte Karte an den Leser halten...";
+        scanDuplicateWarning  = null;
+        StateHasChanged();
+
+        var scanStartedAt = DateTime.UtcNow;
+        var deadline      = scanStartedAt.AddSeconds(30);
+
+        try
+        {
+            while (!token.IsCancellationRequested && DateTime.UtcNow < deadline)
+            {
+                var uid = await ApiService.GetLatestNfcScan(scanStartedAt);
+                if (!string.IsNullOrEmpty(uid))
+                {
+                    editMitarbeiter.NFCCardUid = uid;
+
+                    var other = mitarbeiterListe.FirstOrDefault(m =>
+                        m.MitID != editMitarbeiter.MitID &&
+                        !string.IsNullOrEmpty(m.NFCCardUid) &&
+                        m.NFCCardUid == uid);
+                    scanDuplicateWarning = other != null
+                        ? $"Diese Karte ist bereits {other.MitVorname} {other.MitNachname} zugeordnet."
+                        : null;
+
+                    isScanning    = false;
+                    scanStatusMsg = null;
+                    await InvokeAsync(StateHasChanged);
+                    return;
+                }
+
+                await Task.Delay(1500, token);
+            }
+
+            if (!token.IsCancellationRequested)
+            {
+                isScanning    = false;
+                scanStatusMsg = "Keine Karte erkannt. Nochmal versuchen.";
+                await InvokeAsync(StateHasChanged);
+            }
+        }
+        catch (TaskCanceledException)
+        {
+            // Abbruch durch Nutzer (CancelScan) oder Formular geschlossen – kein Fehler
+        }
+    }
+
+    private void CancelScan()
+    {
+        _scanCts?.Cancel();
+        isScanning    = false;
+        scanStatusMsg = null;
+    }
+
+    public void Dispose() => _scanCts?.Cancel();
+
+    private void OnAbtChange(ChangeEventArgs e)
+    {
+        _abtIdStr = e.Value?.ToString() ?? "";
+    }
+
+    private async Task SaveMitarbeiter()
+    {
+        if (string.IsNullOrWhiteSpace(editMitarbeiter.MitVorname) ||
+            string.IsNullOrWhiteSpace(editMitarbeiter.MitNachname) ||
+            string.IsNullOrWhiteSpace(editMitarbeiter.MitMail))
+        {
+            formMsg = "Bitte alle Pflichtfelder (*) ausfüllen!";
+            formOk  = false;
+            return;
+        }
+
+        if (editMitarbeiter.MitID == 0 && string.IsNullOrWhiteSpace(tempPassword))
+        {
+            formMsg = "Bitte ein temporäres Passwort eingeben oder generieren!";
+            formOk  = false;
+            return;
+        }
+
+        editMitarbeiter.MitBeiDat = DateOnly.FromDateTime(eintrittsDatum);
+        editMitarbeiter.FK_AbtID  = string.IsNullOrEmpty(_abtIdStr) ? null : int.Parse(_abtIdStr);
+
+        isSaving = true;
+        formMsg  = "";
+        try
+        {
+            if (editMitarbeiter.MitID == 0)
+            {
+                var result = await ApiService.CreateMitarbeiterWithUser(
+                    editMitarbeiter, tempPassword, selectedRole);
+                if (result != null)
+                {
+                    CloseForm();
+                    await ShowToast($"✅ {result.Username} erstellt! PW: {tempPassword}", true);
+                    await LoadData();
+                }
+                else
+                {
+                    formMsg = "Erstellen fehlgeschlagen!";
+                    formOk  = false;
+                }
+            }
+            else
+            {
+                var ok = await ApiService.UpdateMitarbeiter(editMitarbeiter.MitID, editMitarbeiter);
+                if (ok)
+                {
+                    CloseForm();
+                    await ShowToast("✅ Mitarbeiter aktualisiert!", true);
+                    await LoadData();
+                }
+                else
+                {
+                    formMsg = "Speichern fehlgeschlagen!";
+                    formOk  = false;
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            formMsg = $"Fehler: {ex.Message}";
+            formOk  = false;
+        }
+        finally
+        {
+            isSaving = false;
+        }
+    }
+
+    private void GeneratePassword()
+    {
+        var words   = new[] { "Chrono", "Alpha", "Bravo", "Sierra", "Delta", "Foxtrot", "Tango" };
+        var symbols = new[] { "!", "@", "#", "$", "&", "*" };
+        var rnd     = new Random();
+        tempPassword = $"{words[rnd.Next(words.Length)]}{rnd.Next(1000, 9999)}{symbols[rnd.Next(symbols.Length)]}";
+        tempCopied = false;
+    }
+
+    private async Task CopyTempPassword()
+    {
+        if (string.IsNullOrEmpty(tempPassword)) return;
+        await JS.InvokeVoidAsync("navigator.clipboard.writeText", tempPassword);
+        tempCopied = true;
+        await Task.Delay(2500);
+        tempCopied = false;
+    }
+
+    private void OpenResetModal(Mitarbeiter m)
+    {
+        resetTarget   = m;
+        resetPassword = "";
+        resetMsg      = null;
+        resetCopied   = false;
+        showResetModal = true;
+    }
+
+    private void CloseResetModal()
+    {
+        showResetModal = false;
+        resetTarget   = null;
+        resetMsg      = null;
+    }
+
+    private void GenerateResetPassword()
+    {
+        var words   = new[] { "Chrono", "Alpha", "Bravo", "Sierra", "Delta", "Foxtrot", "Tango" };
+        var symbols = new[] { "!", "@", "#", "$", "&", "*" };
+        var rnd     = new Random();
+        resetPassword = $"{words[rnd.Next(words.Length)]}{rnd.Next(1000, 9999)}{symbols[rnd.Next(symbols.Length)]}";
+        resetCopied = false;
+    }
+
+    private async Task CopyResetPassword()
+    {
+        if (string.IsNullOrEmpty(resetPassword)) return;
+        await JS.InvokeVoidAsync("navigator.clipboard.writeText", resetPassword);
+        resetCopied = true;
+        await Task.Delay(2500);
+        resetCopied = false;
+    }
+
+    private async Task DoResetPassword()
+    {
+        if (resetTarget == null) return;
+        if (string.IsNullOrWhiteSpace(resetPassword))
+        {
+            resetMsg = "Bitte ein Passwort eingeben oder generieren!";
+            resetOk  = false;
+            return;
+        }
+
+        isResetting = true;
+        try
+        {
+            var (ok, message) = await ApiService.ResetPassword(resetTarget.MitID, resetPassword);
+            resetMsg = message;
+            resetOk  = ok;
+
+            if (ok)
+            {
+                await ShowToast($"🔑 Passwort für {resetTarget.MitVorname} zurückgesetzt!", true);
+                await Task.Delay(1200);
+                CloseResetModal();
+            }
+        }
+        catch (Exception ex)
+        {
+            resetMsg = $"Fehler: {ex.Message}";
+            resetOk  = false;
+        }
+        finally
+        {
+            isResetting = false;
+        }
+    }
+
+    private async Task ToggleAktiv(Mitarbeiter m)
+    {
+        m.MitAktiv = !m.MitAktiv;
+        try
+        {
+            await ApiService.UpdateMitarbeiter(m.MitID, m);
+            await ShowToast(m.MitAktiv ? "✅ Aktiviert!" : "🔴 Deaktiviert!", true);
+        }
+        catch (Exception ex)
+        {
+            await ShowToast($"Fehler: {ex.Message}", false);
+            m.MitAktiv = !m.MitAktiv;
+        }
+        await LoadData();
+    }
+
+    private async Task ShowToast(string msg, bool ok)
+    {
+        toastMsg = msg;
+        toastOk  = ok;
+        await InvokeAsync(StateHasChanged);
+        await Task.Delay(4000);
+        toastMsg = "";
+        await InvokeAsync(StateHasChanged);
+    }
+
+    private void OpenRoleModal(Mitarbeiter m)
+    {
+        roleTarget     = m;
+        neueRolle      = string.IsNullOrEmpty(m.UserRolle) ? "Mitarbeiter" : m.UserRolle;
+        roleMsg        = "";
+        roleHinweis    = null;
+        roleOk         = false;
+        showRoleModal  = true;
+    }
+
+    private void CloseRoleModal()
+    {
+        showRoleModal = false;
+        roleTarget    = null;
+        roleMsg       = "";
+        roleHinweis   = null;
+    }
+
+    private async Task DoChangeRole()
+    {
+        if (roleTarget == null) return;
+
+        isChangingRole = true;
+        roleMsg        = "";
+        roleHinweis    = null;
+
+        try
+        {
+            var (ok, message, hinweis) =
+                await ApiService.ChangeRole(roleTarget.MitID, neueRolle);
+
+            roleMsg     = message;
+            roleOk      = ok;
+            roleHinweis = hinweis;
+
+            if (ok)
+            {
+                await ShowToast($"Rolle von {roleTarget.MitVorname} geändert: {neueRolle}", true);
+                await LoadData();
+
+                // Bei Hinweis geoeffnet lassen, damit er gelesen wird
+                if (string.IsNullOrEmpty(hinweis))
+                {
+                    await Task.Delay(1400);
+                    CloseRoleModal();
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            roleMsg = $"Fehler: {ex.Message}";
+            roleOk  = false;
+        }
+        finally
+        {
+            isChangingRole = false;
+        }
+    }
+
+    private string RolleBadge(string rolle) => rolle switch
+    {
+        "Admin"            => "badge-err",
+        "HR"               => "badge-blue",
+        "Abteilungsleiter" => "badge-ok",
+        "Buchhaltung"      => "badge-warn",
+        _                  => "badge-muted"
+    };
+
+    private string GetInitials(string? v, string? n)
+        => $"{v?.FirstOrDefault()}{n?.FirstOrDefault()}".ToUpper();
+
+    private string GetAvatarColor(int id)
+    {
+        string[] colors = {
+            "linear-gradient(135deg,#3b82f6,#1d4ed8)",
+            "linear-gradient(135deg,#10b981,#047857)",
+            "linear-gradient(135deg,#8b5cf6,#6d28d9)",
+            "linear-gradient(135deg,#f59e0b,#b45309)",
+            "linear-gradient(135deg,#ef4444,#b91c1c)",
+            "linear-gradient(135deg,#06b6d4,#0e7490)"
+        };
+        return colors[id % colors.Length];
+    }
+}
+
+<style>
+    .ma-grid {
+        display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+        gap: 14px;
+    }
+    .ma-card {
+        position: relative;
+        background: linear-gradient(180deg, var(--l3), var(--l2) 46%);
+        border-radius: var(--r-lg); padding: 20px;
+        border: 1px solid var(--edge);
+        box-shadow: var(--sh-1);
+        transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+    }
+    .ma-card:hover { transform: translateY(-3px); border-color: rgba(255,255,255,0.09); box-shadow: var(--sh-3); }
+    .ma-inactive { opacity: 0.5; }
+
+    .ma-card-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+    .ma-avatar { width: 40px; height: 40px; border-radius: 50%; color: white; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 600; flex-shrink: 0; }
+    .ma-info { flex: 1; }
+    .ma-name { font-weight: 600; font-size: 14px; color: var(--t1); }
+    .ma-dept { font-size: 12px; color: var(--t3); margin-top: 2px; }
+
+    .ma-details {
+        display: flex; flex-direction: column; gap: 7px;
+        margin-bottom: 16px; padding-bottom: 16px;
+        border-bottom: 1px solid var(--edge-soft);
+    }
+    .ma-detail-row { font-size: 13px; color: var(--t2); }
+    .nfc-tag {
+        background: var(--blue-wash); color: var(--blue);
+        padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: 500;
+        border: 1px solid var(--blue-line);
+    }
+
+    .ma-actions { display: flex; gap: 6px; flex-wrap: wrap; }
+    .readonly-hint { flex:1; text-align:center; font-size:12px; color:var(--t4); padding:8px; }
+
+    /* ── MODAL ── */
+    .modal-overlay {
+        position: fixed;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background: rgba(0, 0, 0, 0.72);
+        display: flex; align-items: center; justify-content: center;
+        z-index: 99999;
+    }
+    .modal-box {
+        background: linear-gradient(180deg, var(--l3), var(--l2) 40%);
+        border: 1px solid var(--edge);
+        border-radius: var(--r-xl); padding: 32px;
+        width: 90%; max-width: 600px; max-height: 90vh; overflow-y: auto;
+        box-shadow: var(--sh-3);
+    }
+    .modal-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:24px; }
+    .modal-header h2 { font-size:18px; color:var(--t1); margin:0; font-weight:600; letter-spacing:-0.02em; }
+    .modal-close {
+        background: var(--l4); border:1px solid var(--edge);
+        width:32px; height:32px; border-radius:var(--r-sm);
+        cursor:pointer; font-size:13px; color:var(--t3); transition:all 0.2s;
+    }
+    .modal-close:hover { background: var(--err-wash); color: var(--err); }
+
+    .modal-actions { display:flex; gap:12px; margin-top:8px; }
+
+    .toast {
+        position:fixed; bottom:24px; right:24px; padding:14px 20px; border-radius:var(--r-md);
+        font-size:13px; font-weight:500; z-index:99999; box-shadow: var(--sh-3);
+        max-width: 420px;
+        background: linear-gradient(180deg, var(--l3), var(--l2));
+        border: 1px solid var(--edge); border-left-width: 2px;
+    }
+    .toast-ok  { color: var(--ok);  border-left-color: var(--ok); }
+    .toast-err { color: var(--err); border-left-color: var(--err); }
+
+    .no-access { display:flex; flex-direction:column; align-items:center; justify-content:center; min-height:100vh; gap:12px; background:var(--l0); }
+    .no-access h2 { font-size:20px; color:var(--t1); margin:0; }
+    .no-access p { color:var(--t3); margin:0; }
+</style>

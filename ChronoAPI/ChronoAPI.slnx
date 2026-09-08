@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="../ChronoAPITests/ChronoAPITests.csproj" Id="3c866e39-11f8-4374-a17a-0ce73d6cae4c" />
+  <Project Path="ChronoAPI.csproj" />
+</Solution>

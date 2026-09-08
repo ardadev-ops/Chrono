@@ -1,0 +1,14 @@
+C:\Deploy\ChronoWeb\ChronoWeb.exe
+C:\Deploy\ChronoWeb\appsettings.json
+C:\Deploy\ChronoWeb\appsettings.Production.json
+C:\Deploy\ChronoWeb\ChronoWeb.dll
+C:\Deploy\ChronoWeb\ChronoWeb.runtimeconfig.json
+C:\Deploy\ChronoWeb\ChronoWeb.pdb
+C:\Deploy\ChronoWeb\Blazored.LocalStorage.dll
+C:\Deploy\ChronoWeb\ch1seL.Blazored.LocalStorage.Concurrent.dll
+C:\Deploy\ChronoWeb\Microsoft.IdentityModel.Abstractions.dll
+C:\Deploy\ChronoWeb\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Deploy\ChronoWeb\Microsoft.IdentityModel.Logging.dll
+C:\Deploy\ChronoWeb\Microsoft.IdentityModel.Tokens.dll
+C:\Deploy\ChronoWeb\System.IdentityModel.Tokens.Jwt.dll
+C:\Deploy\ChronoWeb\ChronoWeb.deps.json

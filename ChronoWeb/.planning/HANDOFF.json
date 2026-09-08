@@ -1,0 +1,198 @@
+{
+  "version": "1.0",
+  "timestamp": "2026-05-06T15:05:25.220Z",
+  "source": "auto-compact",
+  "partial": false,
+  "phase": null,
+  "phase_name": null,
+  "phase_dir": null,
+  "plan": null,
+  "task": null,
+  "total_tasks": null,
+  "status": "auto-checkpoint",
+  "completed_tasks": [],
+  "remaining_tasks": [],
+  "blockers": [],
+  "human_actions_pending": [],
+  "decisions": [],
+  "uncommitted_files": [
+    {
+      "status": "??",
+      "path": "-1.14-windows.xml"
+    },
+    {
+      "status": "??",
+      "path": ".bun/"
+    },
+    {
+      "status": "??",
+      "path": ".cache/"
+    },
+    {
+      "status": "??",
+      "path": ".claude-mem/"
+    },
+    {
+      "status": "??",
+      "path": ".claude.json"
+    },
+    {
+      "status": "??",
+      "path": ".claude/"
+    },
+    {
+      "status": "??",
+      "path": ".codex/"
+    },
+    {
+      "status": "??",
+      "path": ".config/"
+    },
+    {
+      "status": "??",
+      "path": ".dotnet/"
+    },
+    {
+      "status": "??",
+      "path": ".esd_auth"
+    },
+    {
+      "status": "??",
+      "path": ".gemini/"
+    },
+    {
+      "status": "??",
+      "path": ".gitconfig"
+    },
+    {
+      "status": "??",
+      "path": ".local/"
+    },
+    {
+      "status": "??",
+      "path": ".nuget/"
+    },
+    {
+      "status": "??",
+      "path": ".templateengine/"
+    },
+    {
+      "status": "??",
+      "path": ".vscode-shared/"
+    },
+    {
+      "status": "??",
+      "path": ".vscode/"
+    },
+    {
+      "status": "??",
+      "path": "Anwendungsdaten/"
+    },
+    {
+      "status": "??",
+      "path": "AppData/"
+    },
+    {
+      "status": "??",
+      "path": "Contacts/"
+    },
+    {
+      "status": "??",
+      "path": "Cookies/"
+    },
+    {
+      "status": "??",
+      "path": "Desktop/"
+    },
+    {
+      "status": "??",
+      "path": "Documents/"
+    },
+    {
+      "status": "??",
+      "path": "Downloads/"
+    },
+    {
+      "status": "??",
+      "path": "Favorites/"
+    },
+    {
+      "status": "??",
+      "path": "Links/"
+    },
+    {
+      "status": "??",
+      "path": "\"Lokale Einstellungen/\""
+    },
+    {
+      "status": "??",
+      "path": "Music/"
+    },
+    {
+      "status": "??",
+      "path": "NTUSER.DAT"
+    },
+    {
+      "status": "??",
+      "path": "NTUSER.DAT{36bf365f-bd3c-11ef-af31-93bec3dd3592}.TM.blf"
+    },
+    {
+      "status": "??",
+      "path": "NTUSER.DAT{36bf365f-bd3c-11ef-af31-93bec3dd3592}.TMContainer00000000000000000001.regtrans-ms"
+    },
+    {
+      "status": "??",
+      "path": "NTUSER.DAT{36bf365f-bd3c-11ef-af31-93bec3dd3592}.TMContainer00000000000000000002.regtrans-ms"
+    },
+    {
+      "status": "??",
+      "path": "OneDrive/"
+    },
+    {
+      "status": "??",
+      "path": "Pictures/"
+    },
+    {
+      "status": "??",
+      "path": "Recent/"
+    },
+    {
+      "status": "??",
+      "path": "\"Saved Games/\""
+    },
+    {
+      "status": "??",
+      "path": "SendTo/"
+    },
+    {
+      "status": "??",
+      "path": "\"Startmen\\303\\274/\""
+    },
+    {
+      "status": "??",
+      "path": "Viasfora/"
+    },
+    {
+      "status": "??",
+      "path": "Videos/"
+    },
+    {
+      "status": "??",
+      "path": "curseforge/"
+    },
+    {
+      "status": "??",
+      "path": "ntuser.dat.LOG1"
+    },
+    {
+      "status": "??",
+      "path": "ntuser.dat.LOG2"
+    },
+    {
+      "status": "??",
+      "path": "ntuser.ini"
+    }
+  ],
+  "next_action": null,
+  "context_notes": ""
+}

@@ -1,0 +1,340 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\alkan\\Desktop\\Fachakademie 3. und 4. Semester\\PROJEKT CHRONO\\ChronoWeb\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{09492D14-493D-4412-33AE-769A0B1FDF03}|ChronoWeb.csproj|c:\\users\\alkan\\desktop\\fachakademie 3. und 4. semester\\projekt chrono\\chronoweb\\components\\pages\\login.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{09492D14-493D-4412-33AE-769A0B1FDF03}|ChronoWeb.csproj|solutionrelative:components\\pages\\login.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{09492D14-493D-4412-33AE-769A0B1FDF03}|ChronoWeb.csproj|c:\\users\\alkan\\desktop\\fachakademie 3. und 4. semester\\projekt chrono\\chronoweb\\wwwroot\\app.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{09492D14-493D-4412-33AE-769A0B1FDF03}|ChronoWeb.csproj|solutionrelative:wwwroot\\app.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{09492D14-493D-4412-33AE-769A0B1FDF03}|ChronoWeb.csproj|c:\\users\\alkan\\desktop\\fachakademie 3. und 4. semester\\projekt chrono\\chronoweb\\wwwroot\\js\\ultrawatch.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{09492D14-493D-4412-33AE-769A0B1FDF03}|ChronoWeb.csproj|solutionrelative:wwwroot\\js\\ultrawatch.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{09492D14-493D-4412-33AE-769A0B1FDF03}|ChronoWeb.csproj|c:\\users\\alkan\\desktop\\fachakademie 3. und 4. semester\\projekt chrono\\chronoweb\\wwwroot\\css\\chrono-design.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{09492D14-493D-4412-33AE-769A0B1FDF03}|ChronoWeb.csproj|solutionrelative:wwwroot\\css\\chrono-design.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{09492D14-493D-4412-33AE-769A0B1FDF03}|ChronoWeb.csproj|c:\\users\\alkan\\desktop\\fachakademie 3. und 4. semester\\projekt chrono\\chronoweb\\components\\pages\\teamzeiten.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{09492D14-493D-4412-33AE-769A0B1FDF03}|ChronoWeb.csproj|solutionrelative:components\\pages\\teamzeiten.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{09492D14-493D-4412-33AE-769A0B1FDF03}|ChronoWeb.csproj|c:\\users\\alkan\\desktop\\fachakademie 3. und 4. semester\\projekt chrono\\chronoweb\\components\\pages\\dashboard.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{09492D14-493D-4412-33AE-769A0B1FDF03}|ChronoWeb.csproj|solutionrelative:components\\pages\\dashboard.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{09492D14-493D-4412-33AE-769A0B1FDF03}|ChronoWeb.csproj|c:\\users\\alkan\\desktop\\fachakademie 3. und 4. semester\\projekt chrono\\chronoweb\\services\\appstate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{09492D14-493D-4412-33AE-769A0B1FDF03}|ChronoWeb.csproj|solutionrelative:services\\appstate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{09492D14-493D-4412-33AE-769A0B1FDF03}|ChronoWeb.csproj|c:\\users\\alkan\\desktop\\fachakademie 3. und 4. semester\\projekt chrono\\chronoweb\\components\\pages\\lohnabrechnungpage.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{09492D14-493D-4412-33AE-769A0B1FDF03}|ChronoWeb.csproj|solutionrelative:components\\pages\\lohnabrechnungpage.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{09492D14-493D-4412-33AE-769A0B1FDF03}|ChronoWeb.csproj|c:\\users\\alkan\\desktop\\fachakademie 3. und 4. semester\\projekt chrono\\chronoweb\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{09492D14-493D-4412-33AE-769A0B1FDF03}|ChronoWeb.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{09492D14-493D-4412-33AE-769A0B1FDF03}|ChronoWeb.csproj|c:\\users\\alkan\\desktop\\fachakademie 3. und 4. semester\\projekt chrono\\chronoweb\\services\\apiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{09492D14-493D-4412-33AE-769A0B1FDF03}|ChronoWeb.csproj|solutionrelative:services\\apiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{09492D14-493D-4412-33AE-769A0B1FDF03}|ChronoWeb.csproj|c:\\users\\alkan\\desktop\\fachakademie 3. und 4. semester\\projekt chrono\\chronoweb\\appsettings.production.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{09492D14-493D-4412-33AE-769A0B1FDF03}|ChronoWeb.csproj|solutionrelative:appsettings.production.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{09492D14-493D-4412-33AE-769A0B1FDF03}|ChronoWeb.csproj|c:\\users\\alkan\\desktop\\fachakademie 3. und 4. semester\\projekt chrono\\chronoweb\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{09492D14-493D-4412-33AE-769A0B1FDF03}|ChronoWeb.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{09492D14-493D-4412-33AE-769A0B1FDF03}|ChronoWeb.csproj|c:\\users\\alkan\\desktop\\fachakademie 3. und 4. semester\\projekt chrono\\chronoweb\\chronoweb.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{09492D14-493D-4412-33AE-769A0B1FDF03}|ChronoWeb.csproj|solutionrelative:chronoweb.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{09492D14-493D-4412-33AE-769A0B1FDF03}|ChronoWeb.csproj|c:\\users\\alkan\\desktop\\fachakademie 3. und 4. semester\\projekt chrono\\chronoweb\\components\\pages\\mitarbeiterpage.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{09492D14-493D-4412-33AE-769A0B1FDF03}|ChronoWeb.csproj|solutionrelative:components\\pages\\mitarbeiterpage.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Program Files\\Microsoft Visual Studio\\18\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{09492D14-493D-4412-33AE-769A0B1FDF03}|ChronoWeb.csproj|c:\\users\\alkan\\desktop\\fachakademie 3. und 4. semester\\projekt chrono\\chronoweb\\components\\pages\\urlaub.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{09492D14-493D-4412-33AE-769A0B1FDF03}|ChronoWeb.csproj|solutionrelative:components\\pages\\urlaub.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{09492D14-493D-4412-33AE-769A0B1FDF03}|ChronoWeb.csproj|c:\\users\\alkan\\desktop\\fachakademie 3. und 4. semester\\projekt chrono\\chronoweb\\components\\pages\\meinezeiten.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{09492D14-493D-4412-33AE-769A0B1FDF03}|ChronoWeb.csproj|solutionrelative:components\\pages\\meinezeiten.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{09492D14-493D-4412-33AE-769A0B1FDF03}|ChronoWeb.csproj|c:\\users\\alkan\\desktop\\fachakademie 3. und 4. semester\\projekt chrono\\chronoweb\\models\\chronomodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{09492D14-493D-4412-33AE-769A0B1FDF03}|ChronoWeb.csproj|solutionrelative:models\\chronomodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{09492D14-493D-4412-33AE-769A0B1FDF03}|ChronoWeb.csproj|c:\\users\\alkan\\desktop\\fachakademie 3. und 4. semester\\projekt chrono\\chronoweb\\components\\pages\\error.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{09492D14-493D-4412-33AE-769A0B1FDF03}|ChronoWeb.csproj|solutionrelative:components\\pages\\error.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{09492D14-493D-4412-33AE-769A0B1FDF03}|ChronoWeb.csproj|c:\\users\\alkan\\desktop\\fachakademie 3. und 4. semester\\projekt chrono\\chronoweb\\wwwroot\\app.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{09492D14-493D-4412-33AE-769A0B1FDF03}|ChronoWeb.csproj|solutionrelative:wwwroot\\app.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 6,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ultrawatch.js",
+              "DocumentMoniker": "C:\\Users\\alkan\\Desktop\\Fachakademie 3. und 4. Semester\\PROJEKT CHRONO\\ChronoWeb\\wwwroot\\js\\ultrawatch.js",
+              "RelativeDocumentMoniker": "wwwroot\\js\\ultrawatch.js",
+              "ToolTip": "C:\\Users\\alkan\\Desktop\\Fachakademie 3. und 4. Semester\\PROJEKT CHRONO\\ChronoWeb\\wwwroot\\js\\ultrawatch.js",
+              "RelativeToolTip": "wwwroot\\js\\ultrawatch.js",
+              "ViewState": "AgIAAJcAAAAAAAAAAAAAAPwAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2026-08-30T09:33:26.483Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "chrono-design.css",
+              "DocumentMoniker": "C:\\Users\\alkan\\Desktop\\Fachakademie 3. und 4. Semester\\PROJEKT CHRONO\\ChronoWeb\\wwwroot\\css\\chrono-design.css",
+              "RelativeDocumentMoniker": "wwwroot\\css\\chrono-design.css",
+              "ToolTip": "C:\\Users\\alkan\\Desktop\\Fachakademie 3. und 4. Semester\\PROJEKT CHRONO\\ChronoWeb\\wwwroot\\css\\chrono-design.css",
+              "RelativeToolTip": "wwwroot\\css\\chrono-design.css",
+              "ViewState": "AgIAAHgCAAAAAAAAAAAswJACAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-08-30T09:26:30.001Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "ApiService.cs",
+              "DocumentMoniker": "C:\\Users\\alkan\\Desktop\\Fachakademie 3. und 4. Semester\\PROJEKT CHRONO\\ChronoWeb\\Services\\ApiService.cs",
+              "RelativeDocumentMoniker": "Services\\ApiService.cs",
+              "ToolTip": "C:\\Users\\alkan\\Desktop\\Fachakademie 3. und 4. Semester\\PROJEKT CHRONO\\ChronoWeb\\Services\\ApiService.cs",
+              "RelativeToolTip": "Services\\ApiService.cs",
+              "ViewState": "AgIAANUBAAAAAAAAAAAAwOcBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-03T17:28:28.229Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "Error.razor",
+              "DocumentMoniker": "C:\\Users\\alkan\\Desktop\\Fachakademie 3. und 4. Semester\\PROJEKT CHRONO\\ChronoWeb\\Components\\Pages\\Error.razor",
+              "RelativeDocumentMoniker": "Components\\Pages\\Error.razor",
+              "ToolTip": "C:\\Users\\alkan\\Desktop\\Fachakademie 3. und 4. Semester\\PROJEKT CHRONO\\ChronoWeb\\Components\\Pages\\Error.razor",
+              "RelativeToolTip": "Components\\Pages\\Error.razor",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-05-09T12:47:56.984Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Dashboard.razor",
+              "DocumentMoniker": "C:\\Users\\alkan\\Desktop\\Fachakademie 3. und 4. Semester\\PROJEKT CHRONO\\ChronoWeb\\Components\\Pages\\Dashboard.razor",
+              "RelativeDocumentMoniker": "Components\\Pages\\Dashboard.razor",
+              "ToolTip": "C:\\Users\\alkan\\Desktop\\Fachakademie 3. und 4. Semester\\PROJEKT CHRONO\\ChronoWeb\\Components\\Pages\\Dashboard.razor",
+              "RelativeToolTip": "Components\\Pages\\Dashboard.razor",
+              "ViewState": "AgIAADEAAAAAAAAAAAAowJoAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-05-03T17:44:31.454Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "app.js",
+              "DocumentMoniker": "C:\\Users\\alkan\\Desktop\\Fachakademie 3. und 4. Semester\\PROJEKT CHRONO\\ChronoWeb\\wwwroot\\app.js",
+              "RelativeDocumentMoniker": "wwwroot\\app.js",
+              "ToolTip": "C:\\Users\\alkan\\Desktop\\Fachakademie 3. und 4. Semester\\PROJEKT CHRONO\\ChronoWeb\\wwwroot\\app.js",
+              "RelativeToolTip": "wwwroot\\app.js",
+              "ViewState": "AgIAADYAAAAAAAAAAAAQwCQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2026-05-03T17:56:49.858Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Login.razor",
+              "DocumentMoniker": "C:\\Users\\alkan\\Desktop\\Fachakademie 3. und 4. Semester\\PROJEKT CHRONO\\ChronoWeb\\Components\\Pages\\Login.razor",
+              "RelativeDocumentMoniker": "Components\\Pages\\Login.razor",
+              "ToolTip": "C:\\Users\\alkan\\Desktop\\Fachakademie 3. und 4. Semester\\PROJEKT CHRONO\\ChronoWeb\\Components\\Pages\\Login.razor",
+              "RelativeToolTip": "Components\\Pages\\Login.razor",
+              "ViewState": "AgIAAHgAAAAAAAAAAAAAAD4AAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-05-03T17:33:10.865Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "LohnabrechnungPage.razor",
+              "DocumentMoniker": "C:\\Users\\alkan\\Desktop\\Fachakademie 3. und 4. Semester\\PROJEKT CHRONO\\ChronoWeb\\Components\\Pages\\LohnabrechnungPage.razor",
+              "RelativeDocumentMoniker": "Components\\Pages\\LohnabrechnungPage.razor",
+              "ToolTip": "C:\\Users\\alkan\\Desktop\\Fachakademie 3. und 4. Semester\\PROJEKT CHRONO\\ChronoWeb\\Components\\Pages\\LohnabrechnungPage.razor",
+              "RelativeToolTip": "Components\\Pages\\LohnabrechnungPage.razor",
+              "ViewState": "AgIAACACAAAAAAAAAAAswC0CAAA+AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-05-03T21:53:21.6Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\alkan\\Desktop\\Fachakademie 3. und 4. Semester\\PROJEKT CHRONO\\ChronoWeb\\appsettings.json",
+              "RelativeDocumentMoniker": "appsettings.json",
+              "ToolTip": "C:\\Users\\alkan\\Desktop\\Fachakademie 3. und 4. Semester\\PROJEKT CHRONO\\ChronoWeb\\appsettings.json",
+              "RelativeToolTip": "appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-08-18T10:57:43.823Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "TeamZeiten.razor",
+              "DocumentMoniker": "C:\\Users\\alkan\\Desktop\\Fachakademie 3. und 4. Semester\\PROJEKT CHRONO\\ChronoWeb\\Components\\Pages\\TeamZeiten.razor",
+              "RelativeDocumentMoniker": "Components\\Pages\\TeamZeiten.razor",
+              "ToolTip": "C:\\Users\\alkan\\Desktop\\Fachakademie 3. und 4. Semester\\PROJEKT CHRONO\\ChronoWeb\\Components\\Pages\\TeamZeiten.razor",
+              "RelativeToolTip": "Components\\Pages\\TeamZeiten.razor",
+              "ViewState": "AgIAAAwBAAAAAAAAAAAAABQBAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-08-15T12:52:00.413Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "appsettings.Production.json",
+              "DocumentMoniker": "C:\\Users\\alkan\\Desktop\\Fachakademie 3. und 4. Semester\\PROJEKT CHRONO\\ChronoWeb\\appsettings.Production.json",
+              "RelativeDocumentMoniker": "appsettings.Production.json",
+              "ToolTip": "C:\\Users\\alkan\\Desktop\\Fachakademie 3. und 4. Semester\\PROJEKT CHRONO\\ChronoWeb\\appsettings.Production.json",
+              "RelativeToolTip": "appsettings.Production.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-08-18T11:02:35.217Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\alkan\\Desktop\\Fachakademie 3. und 4. Semester\\PROJEKT CHRONO\\ChronoWeb\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\alkan\\Desktop\\Fachakademie 3. und 4. Semester\\PROJEKT CHRONO\\ChronoWeb\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAADEAAAAAAAAAAAAQwDwAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-03T17:28:46.224Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "MitarbeiterPage.razor",
+              "DocumentMoniker": "C:\\Users\\alkan\\Desktop\\Fachakademie 3. und 4. Semester\\PROJEKT CHRONO\\ChronoWeb\\Components\\Pages\\MitarbeiterPage.razor",
+              "RelativeDocumentMoniker": "Components\\Pages\\MitarbeiterPage.razor",
+              "ToolTip": "C:\\Users\\alkan\\Desktop\\Fachakademie 3. und 4. Semester\\PROJEKT CHRONO\\ChronoWeb\\Components\\Pages\\MitarbeiterPage.razor",
+              "RelativeToolTip": "Components\\Pages\\MitarbeiterPage.razor",
+              "ViewState": "AgIAACkBAAAAAAAAAAAAAF0DAABDAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-08-15T12:49:35.131Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "AppState.cs",
+              "DocumentMoniker": "C:\\Users\\alkan\\Desktop\\Fachakademie 3. und 4. Semester\\PROJEKT CHRONO\\ChronoWeb\\Services\\AppState.cs",
+              "RelativeDocumentMoniker": "Services\\AppState.cs",
+              "ToolTip": "C:\\Users\\alkan\\Desktop\\Fachakademie 3. und 4. Semester\\PROJEKT CHRONO\\ChronoWeb\\Services\\AppState.cs",
+              "RelativeToolTip": "Services\\AppState.cs",
+              "ViewState": "AgIAAL0AAAAAAAAAAAAAwMoAAABLAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-03T17:29:05.208Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Microsoft.Common.CurrentVersion.targets",
+              "DocumentMoniker": "C:\\Program Files\\Microsoft Visual Studio\\18\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\..\\Program Files\\Microsoft Visual Studio\\18\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
+              "ToolTip": "C:\\Program Files\\Microsoft Visual Studio\\18\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
+              "RelativeToolTip": "..\\..\\..\\..\\..\\..\\Program Files\\Microsoft Visual Studio\\18\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
+              "ViewState": "AgIAAAgVAAAAAAAAAAAvwBUVAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003801|",
+              "WhenOpened": "2026-07-07T18:33:55.815Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "Urlaub.razor",
+              "DocumentMoniker": "C:\\Users\\alkan\\Desktop\\Fachakademie 3. und 4. Semester\\PROJEKT CHRONO\\ChronoWeb\\Components\\Pages\\Urlaub.razor",
+              "RelativeDocumentMoniker": "Components\\Pages\\Urlaub.razor",
+              "ToolTip": "C:\\Users\\alkan\\Desktop\\Fachakademie 3. und 4. Semester\\PROJEKT CHRONO\\ChronoWeb\\Components\\Pages\\Urlaub.razor",
+              "RelativeToolTip": "Components\\Pages\\Urlaub.razor",
+              "ViewState": "AgIAAHoBAAAAAAAAAAAawIoBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-07-07T18:13:59.015Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "MeineZeiten.razor",
+              "DocumentMoniker": "C:\\Users\\alkan\\Desktop\\Fachakademie 3. und 4. Semester\\PROJEKT CHRONO\\ChronoWeb\\Components\\Pages\\MeineZeiten.razor",
+              "RelativeDocumentMoniker": "Components\\Pages\\MeineZeiten.razor",
+              "ToolTip": "C:\\Users\\alkan\\Desktop\\Fachakademie 3. und 4. Semester\\PROJEKT CHRONO\\ChronoWeb\\Components\\Pages\\MeineZeiten.razor",
+              "RelativeToolTip": "Components\\Pages\\MeineZeiten.razor",
+              "ViewState": "AgIAAF0BAAAAAAAAAAAAAGsBAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-05-03T18:20:41.994Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "app.css",
+              "DocumentMoniker": "C:\\Users\\alkan\\Desktop\\Fachakademie 3. und 4. Semester\\PROJEKT CHRONO\\ChronoWeb\\wwwroot\\app.css",
+              "RelativeDocumentMoniker": "wwwroot\\app.css",
+              "ToolTip": "C:\\Users\\alkan\\Desktop\\Fachakademie 3. und 4. Semester\\PROJEKT CHRONO\\ChronoWeb\\wwwroot\\app.css",
+              "RelativeToolTip": "wwwroot\\app.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-05-06T11:56:47.658Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "ChronoWeb.csproj",
+              "DocumentMoniker": "C:\\Users\\alkan\\Desktop\\Fachakademie 3. und 4. Semester\\PROJEKT CHRONO\\ChronoWeb\\ChronoWeb.csproj",
+              "RelativeDocumentMoniker": "ChronoWeb.csproj",
+              "ToolTip": "C:\\Users\\alkan\\Desktop\\Fachakademie 3. und 4. Semester\\PROJEKT CHRONO\\ChronoWeb\\ChronoWeb.csproj",
+              "RelativeToolTip": "ChronoWeb.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-05-03T17:34:03.072Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "ChronoModels.cs",
+              "DocumentMoniker": "C:\\Users\\alkan\\Desktop\\Fachakademie 3. und 4. Semester\\PROJEKT CHRONO\\ChronoWeb\\Models\\ChronoModels.cs",
+              "RelativeDocumentMoniker": "Models\\ChronoModels.cs",
+              "ToolTip": "C:\\Users\\alkan\\Desktop\\Fachakademie 3. und 4. Semester\\PROJEKT CHRONO\\ChronoWeb\\Models\\ChronoModels.cs",
+              "RelativeToolTip": "Models\\ChronoModels.cs",
+              "ViewState": "AgIAAI8AAAAAAAAAAAAIwEkAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-03T17:27:42.061Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,345 @@
+@page "/zeitkorrektur"
+@using ChronoWeb.Models
+@using ChronoWeb.Services
+@inject ApiService ApiService
+@inject AppState AppState
+@inject NavigationManager Nav
+@rendermode InteractiveServer
+
+<PageTitle>CHRONO – Zeitkorrektur</PageTitle>
+
+@if (!_initialized)
+{
+    <div style="display:flex;align-items:center;justify-content:center;height:100vh;background:var(--l0);">
+        <div class="spinner"></div>
+    </div>
+}
+else if (!AppState.IsLoggedIn)
+{
+    <p>Weiterleitung...</p>
+}
+else
+{
+    <div class="chrono-shell">
+        <ChronoSidebar />
+        <main class="chrono-main">
+
+            <div class="page-head">
+                <div>
+                    <p class="page-eyebrow">Zeiterfassung</p>
+                    <h1 class="page-title">Zeitkorrektur</h1>
+                    <p class="page-sub">@AppState.VollName · @AppState.Role</p>
+                </div>
+                <div class="row-end">
+                    <button class="btn @(showForm ? "btn-ghost" : "btn-primary")" @onclick="() => showForm = !showForm">
+                        @(showForm ? "Abbrechen" : "+ Neuer Antrag")
+                    </button>
+                </div>
+            </div>
+
+            <div class="metrics">
+                <div class="metric is-primary">
+                    <div class="metric-label">Meine Anträge</div>
+                    <div class="metric-value">@meineAntraege.Count</div>
+                </div>
+            </div>
+
+            @* NEUER ANTRAG FORMULAR *@
+            @if (showForm)
+            {
+                <div class="card" style="margin-bottom:20px;">
+                    <div class="card-head">
+                        <h2 class="card-title">Zeitkorrektur beantragen</h2>
+                    </div>
+                    <div class="card-body">
+                        @if (!string.IsNullOrEmpty(formError))
+                        {
+                            <div class="alert alert-err">@formError</div>
+                        }
+
+                        <div class="form-grid">
+                            <div class="field">
+                                <span class="field-label">Datum *</span>
+                                <input type="date" @bind="neuDatum" class="input" />
+                            </div>
+                            <div class="field">
+                                <span class="field-label">Check-In *</span>
+                                <input type="time" @bind="neuCheckIn" class="input" />
+                            </div>
+                            <div class="field">
+                                <span class="field-label">Check-Out *</span>
+                                <input type="time" @bind="neuCheckOut" class="input" />
+                            </div>
+                            <div class="field full">
+                                <span class="field-label">Grund * (z.B. "NFC-Karte vergessen")</span>
+                                <textarea @bind="neuGrund" rows="3"
+                                          placeholder="Bitte erkläre warum du manuell eintragen musst..."
+                                          class="textarea"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button class="btn btn-primary" @onclick="SubmitAntrag" disabled="@isSaving">
+                                @(isSaving ? "Senden..." : "Antrag stellen")
+                            </button>
+                            <button class="btn btn-ghost" @onclick="() => showForm = false">Abbrechen</button>
+                        </div>
+                    </div>
+                </div>
+            }
+
+            @* Genehmiger-Ansicht *@
+            @if (AppState.CanApprove && pendingAntraege.Any())
+            {
+                <div class="card" style="margin-bottom:20px;">
+                    <div class="card-head">
+                        <h2 class="card-title">Offene Anträge zur Genehmigung (@pendingAntraege.Count)</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="antraege-grid">
+                            @foreach (var a in pendingAntraege)
+                            {
+                                <div class="antrag-card pending">
+                                    <div class="antrag-header">
+                                        <div class="antrag-avatar">@GetInitials(a.Mitarbeiter?.MitVorname, a.Mitarbeiter?.MitNachname)</div>
+                                        <div>
+                                            <div class="antrag-name">@a.Mitarbeiter?.MitVorname @a.Mitarbeiter?.MitNachname</div>
+                                            <div class="antrag-datum">@a.KorrDatum.ToString("dd.MM.yyyy")</div>
+                                        </div>
+                                        <span class="badge badge-warn">Ausstehend</span>
+                                    </div>
+                                    <div class="antrag-zeiten">
+                                        <span class="time-chip time-in">@a.CheckIn.ToString("HH:mm")</span>
+                                        <span>→</span>
+                                        <span class="time-chip time-out">@a.CheckOut.ToString("HH:mm")</span>
+                                    </div>
+                                    <div class="antrag-grund">@a.Grund</div>
+                                    <div class="antrag-actions">
+                                        <button class="btn btn-sm btn-success" @onclick="() => DoApprove(a.KorrID)">Genehmigen</button>
+                                        <button class="btn btn-sm btn-danger" @onclick="() => DoReject(a.KorrID)">Ablehnen</button>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+
+            <div class="card">
+                <div class="card-head">
+                    <h2 class="card-title">Meine Anträge</h2>
+                </div>
+                <div class="card-body">
+                    @if (isLoading)
+                    {
+                        <div class="state-box"><div class="spinner"></div><p>Lädt...</p></div>
+                    }
+                    else if (!meineAntraege.Any())
+                    {
+                        <div class="state-box">
+                            <h3>Noch keine Zeitkorrektur-Anträge</h3>
+                            <p>Hast du die Karte vergessen? Stelle einen Antrag!</p>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="antraege-grid">
+                            @foreach (var a in meineAntraege)
+                            {
+                                <div class="antrag-card @GetStatusClass(a.Status)">
+                                    <div class="antrag-header">
+                                        <div>
+                                            <div class="antrag-datum">@a.KorrDatum.ToString("dd.MM.yyyy")</div>
+                                        </div>
+                                        <span class="badge @GetBadgeClass(a.Status)">@GetStatusText(a.Status)</span>
+                                    </div>
+                                    <div class="antrag-zeiten">
+                                        <span class="time-chip time-in">@a.CheckIn.ToString("HH:mm")</span>
+                                        <span>→</span>
+                                        <span class="time-chip time-out">@a.CheckOut.ToString("HH:mm")</span>
+                                    </div>
+                                    <div class="antrag-grund">@a.Grund</div>
+                                    @if (a.Status == "Approved" && a.Genehmiger != null)
+                                    {
+                                        <div class="antrag-genehmigt">
+                                            Genehmigt von @a.Genehmiger.MitVorname @a.Genehmiger.MitNachname
+                                            am @a.ApprovedAt?.ToString("dd.MM.yyyy")
+                                        </div>
+                                    }
+                                </div>
+                            }
+                        </div>
+                    }
+                </div>
+            </div>
+
+            @if (!string.IsNullOrEmpty(toastMsg))
+            {
+                <div class="toast @(toastOk ? "toast-ok" : "toast-err")">@toastMsg</div>
+            }
+
+        </main>
+    </div>
+}
+
+@code {
+    private List<Zeitkorrektur> meineAntraege = new();
+    private List<Zeitkorrektur> pendingAntraege = new();
+    private bool _initialized = false;
+    private bool isLoading = true;
+    private bool showForm = false;
+    private bool isSaving = false;
+    private string? formError;
+    private string toastMsg = "";
+    private bool toastOk = true;
+
+    private DateTime neuDatum = DateTime.Today;
+    private TimeOnly neuCheckIn = new TimeOnly(8, 0, 0);
+    private TimeOnly neuCheckOut = new TimeOnly(17, 0, 0);
+    private string neuGrund = "";
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (!firstRender) return;
+        await AppState.InitializeAsync();
+        _initialized = true;
+        if (!AppState.IsLoggedIn) { Nav.NavigateTo("/"); return; }
+        await LoadData();
+        StateHasChanged();
+    }
+
+    private async Task LoadData()
+    {
+        isLoading = true;
+        try
+        {
+            meineAntraege = await ApiService.GetZeitkorrekturen();
+            if (AppState.CanApprove)
+                pendingAntraege = await ApiService.GetPendingZeitkorrekturen();
+        }
+        catch { meineAntraege = new(); pendingAntraege = new(); }
+        finally { isLoading = false; StateHasChanged(); }
+    }
+
+    private async Task SubmitAntrag()
+    {
+        formError = null;
+        if (string.IsNullOrWhiteSpace(neuGrund))
+        {
+            formError = "Bitte einen Grund angeben!";
+            return;
+        }
+
+        if (neuCheckOut <= neuCheckIn)
+        {
+            formError = "Check-Out muss nach Check-In liegen!";
+            return;
+        }
+
+        isSaving = true;
+        var korrektur = new Zeitkorrektur
+        {
+            FK_MitID  = AppState.MitarbeiterID,
+            KorrDatum = DateOnly.FromDateTime(neuDatum),
+            CheckIn   = neuCheckIn,
+            CheckOut  = neuCheckOut,
+            Grund     = neuGrund
+        };
+
+        bool ok = await ApiService.CreateZeitkorrektur(korrektur);
+        isSaving = false;
+
+        if (ok)
+        {
+            showForm = false;
+            neuGrund = "";
+            await ShowToast("✅ Antrag gestellt! Dein Vorgesetzter wird benachrichtigt.", true);
+            await LoadData();
+        }
+        else
+        {
+            formError = "Fehler beim Senden. Prüfe ob Check-Out nach Check-In liegt.";
+        }
+    }
+
+    private async Task DoApprove(int id)
+    {
+        var (ok, msg) = await ApiService.ApproveZeitkorrektur(id);
+        await ShowToast(ok ? "✅ " + msg : "❌ " + msg, ok);
+        await LoadData();
+    }
+
+    private async Task DoReject(int id)
+    {
+        var (ok, msg) = await ApiService.RejectZeitkorrektur(id);
+        await ShowToast(ok ? "✅ " + msg : "❌ " + msg, ok);
+        await LoadData();
+    }
+
+    private async Task ShowToast(string msg, bool ok)
+    {
+        toastMsg = msg; toastOk = ok; StateHasChanged();
+        await Task.Delay(3500);
+        toastMsg = ""; StateHasChanged();
+    }
+
+    private string GetInitials(string? v, string? n)
+        => $"{v?.FirstOrDefault()}{n?.FirstOrDefault()}".ToUpper();
+
+    private string GetStatusClass(string status) => status switch
+    {
+        "Approved" => "approved",
+        "Rejected" => "rejected",
+        _ => "pending"
+    };
+
+    private string GetBadgeClass(string status) => status switch
+    {
+        "Approved" => "badge-ok",
+        "Rejected" => "badge-err",
+        _ => "badge-warn"
+    };
+
+    private string GetStatusText(string status) => status switch
+    {
+        "Approved" => "✅ Genehmigt",
+        "Rejected" => "❌ Abgelehnt",
+        _ => "⏳ Ausstehend"
+    };
+}
+
+<style>
+    .antraege-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:14px; }
+    .antrag-card {
+        position: relative;
+        background: linear-gradient(180deg, var(--l3), var(--l2) 46%);
+        border: 1px solid var(--edge);
+        border-left: 2px solid var(--t4);
+        border-radius: var(--r-lg);
+        padding: 18px 20px;
+        box-shadow: var(--sh-1);
+        transition: transform 0.28s var(--ease), box-shadow 0.28s var(--ease);
+    }
+    .antrag-card:hover { transform: translateY(-2px); box-shadow: var(--sh-3); }
+    .antrag-card.pending  { border-left-color: var(--warn); }
+    .antrag-card.approved { border-left-color: var(--ok); }
+    .antrag-card.rejected { border-left-color: var(--err); opacity: 0.7; }
+    .antrag-header { display:flex; align-items:center; gap:10px; margin-bottom:12px; }
+    .antrag-avatar { width:32px; height:32px; border-radius:50%; background: linear-gradient(140deg, #2B92FF, #5B5BD6); color:white; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:600; flex-shrink:0; }
+    .antrag-name { font-size:13px; font-weight:600; color:var(--t1); }
+    .antrag-datum { font-size:12px; color:var(--t3); }
+    .antrag-zeiten { display:flex; align-items:center; gap:8px; margin-bottom:10px; }
+    .antrag-grund { font-size:12px; color:var(--t3); margin-bottom:12px; font-style:italic; }
+    .antrag-genehmigt { font-size:12px; color:var(--ok); }
+    .antrag-actions { display:flex; gap:8px; }
+    .antrag-header .badge { margin-left:auto; }
+
+    .toast {
+        position:fixed; bottom:24px; right:24px; padding:14px 20px; border-radius:var(--r-md);
+        font-size:13px; font-weight:500; z-index:99999; box-shadow: var(--sh-3);
+        background: linear-gradient(180deg, var(--l3), var(--l2));
+        border: 1px solid var(--edge); border-left-width: 2px;
+    }
+    .toast-ok  { color: var(--ok);  border-left-color: var(--ok); }
+    .toast-err { color: var(--err); border-left-color: var(--err); }
+</style>

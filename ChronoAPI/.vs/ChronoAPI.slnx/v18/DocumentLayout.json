@@ -1,0 +1,364 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\alkan\\Desktop\\Fachakademie 3. und 4. Semester\\PROJEKT CHRONO\\ChronoAPI\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{BC9A0B51-7DA1-BF92-4F7B-0D80868AB557}|ChronoAPI.csproj|c:\\users\\alkan\\desktop\\fachakademie 3. und 4. semester\\projekt chrono\\chronoapi\\controllers\\lohnabrechnungcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BC9A0B51-7DA1-BF92-4F7B-0D80868AB557}|ChronoAPI.csproj|solutionrelative:controllers\\lohnabrechnungcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BC9A0B51-7DA1-BF92-4F7B-0D80868AB557}|ChronoAPI.csproj|c:\\users\\alkan\\desktop\\fachakademie 3. und 4. semester\\projekt chrono\\chronoapi\\controllers\\zeitkorrekturcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BC9A0B51-7DA1-BF92-4F7B-0D80868AB557}|ChronoAPI.csproj|solutionrelative:controllers\\zeitkorrekturcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BC9A0B51-7DA1-BF92-4F7B-0D80868AB557}|ChronoAPI.csproj|c:\\users\\alkan\\desktop\\fachakademie 3. und 4. semester\\projekt chrono\\chronoapi\\controllers\\urlaubskontocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BC9A0B51-7DA1-BF92-4F7B-0D80868AB557}|ChronoAPI.csproj|solutionrelative:controllers\\urlaubskontocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BC9A0B51-7DA1-BF92-4F7B-0D80868AB557}|ChronoAPI.csproj|c:\\users\\alkan\\desktop\\fachakademie 3. und 4. semester\\projekt chrono\\chronoapi\\controllers\\timebookingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BC9A0B51-7DA1-BF92-4F7B-0D80868AB557}|ChronoAPI.csproj|solutionrelative:controllers\\timebookingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BC9A0B51-7DA1-BF92-4F7B-0D80868AB557}|ChronoAPI.csproj|c:\\users\\alkan\\desktop\\fachakademie 3. und 4. semester\\projekt chrono\\chronoapi\\controllers\\mitarbeitercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BC9A0B51-7DA1-BF92-4F7B-0D80868AB557}|ChronoAPI.csproj|solutionrelative:controllers\\mitarbeitercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BC9A0B51-7DA1-BF92-4F7B-0D80868AB557}|ChronoAPI.csproj|c:\\users\\alkan\\desktop\\fachakademie 3. und 4. semester\\projekt chrono\\chronoapi\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BC9A0B51-7DA1-BF92-4F7B-0D80868AB557}|ChronoAPI.csproj|solutionrelative:controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BC9A0B51-7DA1-BF92-4F7B-0D80868AB557}|ChronoAPI.csproj|c:\\users\\alkan\\desktop\\fachakademie 3. und 4. semester\\projekt chrono\\chronoapi\\controllers\\abwesenheitcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BC9A0B51-7DA1-BF92-4F7B-0D80868AB557}|ChronoAPI.csproj|solutionrelative:controllers\\abwesenheitcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BC9A0B51-7DA1-BF92-4F7B-0D80868AB557}|ChronoAPI.csproj|c:\\users\\alkan\\desktop\\fachakademie 3. und 4. semester\\projekt chrono\\chronoapi\\controllers\\abteilungcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BC9A0B51-7DA1-BF92-4F7B-0D80868AB557}|ChronoAPI.csproj|solutionrelative:controllers\\abteilungcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BC9A0B51-7DA1-BF92-4F7B-0D80868AB557}|ChronoAPI.csproj|c:\\users\\alkan\\desktop\\fachakademie 3. und 4. semester\\projekt chrono\\chronoapi\\services\\zeitberechnung.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BC9A0B51-7DA1-BF92-4F7B-0D80868AB557}|ChronoAPI.csproj|solutionrelative:services\\zeitberechnung.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3C866E39-11F8-4374-A17A-0CE73D6CAE4C}|..\\ChronoAPITests\\ChronoAPITests.csproj|c:\\users\\alkan\\desktop\\fachakademie 3. und 4. semester\\projekt chrono\\chronoapitests\\zeitberechnungstest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BC9A0B51-7DA1-BF92-4F7B-0D80868AB557}|ChronoAPI.csproj|c:\\users\\alkan\\desktop\\fachakademie 3. und 4. semester\\projekt chrono\\chronoapi\\models\\timebooking.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BC9A0B51-7DA1-BF92-4F7B-0D80868AB557}|ChronoAPI.csproj|solutionrelative:models\\timebooking.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BC9A0B51-7DA1-BF92-4F7B-0D80868AB557}|ChronoAPI.csproj|c:\\users\\alkan\\desktop\\fachakademie 3. und 4. semester\\projekt chrono\\chronoapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{BC9A0B51-7DA1-BF92-4F7B-0D80868AB557}|ChronoAPI.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BC9A0B51-7DA1-BF92-4F7B-0D80868AB557}|ChronoAPI.csproj|c:\\users\\alkan\\desktop\\fachakademie 3. und 4. semester\\projekt chrono\\chronoapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BC9A0B51-7DA1-BF92-4F7B-0D80868AB557}|ChronoAPI.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BC9A0B51-7DA1-BF92-4F7B-0D80868AB557}|ChronoAPI.csproj|c:\\users\\alkan\\desktop\\fachakademie 3. und 4. semester\\projekt chrono\\chronoapi\\models\\abteilung.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BC9A0B51-7DA1-BF92-4F7B-0D80868AB557}|ChronoAPI.csproj|solutionrelative:models\\abteilung.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BC9A0B51-7DA1-BF92-4F7B-0D80868AB557}|ChronoAPI.csproj|c:\\users\\alkan\\desktop\\fachakademie 3. und 4. semester\\projekt chrono\\chronoapi\\models\\mitarbeiter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BC9A0B51-7DA1-BF92-4F7B-0D80868AB557}|ChronoAPI.csproj|solutionrelative:models\\mitarbeiter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BC9A0B51-7DA1-BF92-4F7B-0D80868AB557}|ChronoAPI.csproj|c:\\users\\alkan\\desktop\\fachakademie 3. und 4. semester\\projekt chrono\\chronoapi\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BC9A0B51-7DA1-BF92-4F7B-0D80868AB557}|ChronoAPI.csproj|solutionrelative:data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BC9A0B51-7DA1-BF92-4F7B-0D80868AB557}|ChronoAPI.csproj|c:\\users\\alkan\\desktop\\fachakademie 3. und 4. semester\\projekt chrono\\chronoapi\\models\\nfcrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BC9A0B51-7DA1-BF92-4F7B-0D80868AB557}|ChronoAPI.csproj|solutionrelative:models\\nfcrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BC9A0B51-7DA1-BF92-4F7B-0D80868AB557}|ChronoAPI.csproj|c:\\users\\alkan\\desktop\\fachakademie 3. und 4. semester\\projekt chrono\\chronoapi\\models\\nfcresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BC9A0B51-7DA1-BF92-4F7B-0D80868AB557}|ChronoAPI.csproj|solutionrelative:models\\nfcresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BC9A0B51-7DA1-BF92-4F7B-0D80868AB557}|ChronoAPI.csproj|c:\\users\\alkan\\desktop\\fachakademie 3. und 4. semester\\projekt chrono\\chronoapi\\models\\abwesenheit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BC9A0B51-7DA1-BF92-4F7B-0D80868AB557}|ChronoAPI.csproj|solutionrelative:models\\abwesenheit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BC9A0B51-7DA1-BF92-4F7B-0D80868AB557}|ChronoAPI.csproj|c:\\users\\alkan\\desktop\\fachakademie 3. und 4. semester\\projekt chrono\\chronoapi\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BC9A0B51-7DA1-BF92-4F7B-0D80868AB557}|ChronoAPI.csproj|solutionrelative:models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BC9A0B51-7DA1-BF92-4F7B-0D80868AB557}|ChronoAPI.csproj|c:\\users\\alkan\\desktop\\fachakademie 3. und 4. semester\\projekt chrono\\chronoapi\\models\\loginrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BC9A0B51-7DA1-BF92-4F7B-0D80868AB557}|ChronoAPI.csproj|solutionrelative:models\\loginrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "AppDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\alkan\\Desktop\\Fachakademie 3. und 4. Semester\\PROJEKT CHRONO\\ChronoAPI\\Data\\AppDbContext.cs",
+              "RelativeDocumentMoniker": "Data\\AppDbContext.cs",
+              "ToolTip": "C:\\Users\\alkan\\Desktop\\Fachakademie 3. und 4. Semester\\PROJEKT CHRONO\\ChronoAPI\\Data\\AppDbContext.cs",
+              "RelativeToolTip": "Data\\AppDbContext.cs",
+              "ViewState": "AgIAAB8AAAAAAAAAAAAQwEUAAABNAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-03T11:06:30.07Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ZeitkorrekturController.cs",
+              "DocumentMoniker": "C:\\Users\\alkan\\Desktop\\Fachakademie 3. und 4. Semester\\PROJEKT CHRONO\\ChronoAPI\\Controllers\\ZeitkorrekturController.cs",
+              "RelativeDocumentMoniker": "Controllers\\ZeitkorrekturController.cs",
+              "ToolTip": "C:\\Users\\alkan\\Desktop\\Fachakademie 3. und 4. Semester\\PROJEKT CHRONO\\ChronoAPI\\Controllers\\ZeitkorrekturController.cs",
+              "RelativeToolTip": "Controllers\\ZeitkorrekturController.cs",
+              "ViewState": "AgIAAMMAAAAAAAAAAAAuwNEAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-23T11:21:53.768Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "UrlaubskontoController.cs",
+              "DocumentMoniker": "C:\\Users\\alkan\\Desktop\\Fachakademie 3. und 4. Semester\\PROJEKT CHRONO\\ChronoAPI\\Controllers\\UrlaubskontoController.cs",
+              "RelativeDocumentMoniker": "Controllers\\UrlaubskontoController.cs",
+              "ToolTip": "C:\\Users\\alkan\\Desktop\\Fachakademie 3. und 4. Semester\\PROJEKT CHRONO\\ChronoAPI\\Controllers\\UrlaubskontoController.cs",
+              "RelativeToolTip": "Controllers\\UrlaubskontoController.cs",
+              "ViewState": "AgIAAH0AAAAAAAAAAAAUwJUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-07T16:36:13.413Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "LohnAbrechnungController.cs",
+              "DocumentMoniker": "C:\\Users\\alkan\\Desktop\\Fachakademie 3. und 4. Semester\\PROJEKT CHRONO\\ChronoAPI\\Controllers\\LohnAbrechnungController.cs",
+              "RelativeDocumentMoniker": "Controllers\\LohnAbrechnungController.cs",
+              "ToolTip": "C:\\Users\\alkan\\Desktop\\Fachakademie 3. und 4. Semester\\PROJEKT CHRONO\\ChronoAPI\\Controllers\\LohnAbrechnungController.cs",
+              "RelativeToolTip": "Controllers\\LohnAbrechnungController.cs",
+              "ViewState": "AgIAACcAAAAAAAAAAAAUwDMAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-03T13:23:42.37Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "TimeBookingController.cs",
+              "DocumentMoniker": "C:\\Users\\alkan\\Desktop\\Fachakademie 3. und 4. Semester\\PROJEKT CHRONO\\ChronoAPI\\Controllers\\TimeBookingController.cs",
+              "RelativeDocumentMoniker": "Controllers\\TimeBookingController.cs",
+              "ToolTip": "C:\\Users\\alkan\\Desktop\\Fachakademie 3. und 4. Semester\\PROJEKT CHRONO\\ChronoAPI\\Controllers\\TimeBookingController.cs",
+              "RelativeToolTip": "Controllers\\TimeBookingController.cs",
+              "ViewState": "AgIAAAQBAAAAAAAAAAAcwB0BAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-03T13:23:24.915Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "MitarbeiterController.cs",
+              "DocumentMoniker": "C:\\Users\\alkan\\Desktop\\Fachakademie 3. und 4. Semester\\PROJEKT CHRONO\\ChronoAPI\\Controllers\\MitarbeiterController.cs",
+              "RelativeDocumentMoniker": "Controllers\\MitarbeiterController.cs",
+              "ToolTip": "C:\\Users\\alkan\\Desktop\\Fachakademie 3. und 4. Semester\\PROJEKT CHRONO\\ChronoAPI\\Controllers\\MitarbeiterController.cs",
+              "RelativeToolTip": "Controllers\\MitarbeiterController.cs",
+              "ViewState": "AgIAANYAAAAAAAAAAAAUwO4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-03T13:23:15.141Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "C:\\Users\\alkan\\Desktop\\Fachakademie 3. und 4. Semester\\PROJEKT CHRONO\\ChronoAPI\\Controllers\\AuthController.cs",
+              "RelativeDocumentMoniker": "Controllers\\AuthController.cs",
+              "ToolTip": "C:\\Users\\alkan\\Desktop\\Fachakademie 3. und 4. Semester\\PROJEKT CHRONO\\ChronoAPI\\Controllers\\AuthController.cs",
+              "RelativeToolTip": "Controllers\\AuthController.cs",
+              "ViewState": "AgIAAIgBAAAAAAAAAAAUwKABAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-03T13:19:20.883Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "AbwesenheitController.cs",
+              "DocumentMoniker": "C:\\Users\\alkan\\Desktop\\Fachakademie 3. und 4. Semester\\PROJEKT CHRONO\\ChronoAPI\\Controllers\\AbwesenheitController.cs",
+              "RelativeDocumentMoniker": "Controllers\\AbwesenheitController.cs",
+              "ToolTip": "C:\\Users\\alkan\\Desktop\\Fachakademie 3. und 4. Semester\\PROJEKT CHRONO\\ChronoAPI\\Controllers\\AbwesenheitController.cs",
+              "RelativeToolTip": "Controllers\\AbwesenheitController.cs",
+              "ViewState": "AgIAABwBAAAAAAAAAAAUwDQBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-03T13:23:06.235Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "AbteilungController.cs",
+              "DocumentMoniker": "C:\\Users\\alkan\\Desktop\\Fachakademie 3. und 4. Semester\\PROJEKT CHRONO\\ChronoAPI\\Controllers\\AbteilungController.cs",
+              "RelativeDocumentMoniker": "Controllers\\AbteilungController.cs",
+              "ToolTip": "C:\\Users\\alkan\\Desktop\\Fachakademie 3. und 4. Semester\\PROJEKT CHRONO\\ChronoAPI\\Controllers\\AbteilungController.cs",
+              "RelativeToolTip": "Controllers\\AbteilungController.cs",
+              "ViewState": "AgIAAD8AAAAAAAAAAAAUwFcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-03T13:22:27.593Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "ZeitBerechnungsTest.cs",
+              "DocumentMoniker": "C:\\Users\\alkan\\Desktop\\Fachakademie 3. und 4. Semester\\PROJEKT CHRONO\\ChronoAPITests\\ZeitBerechnungsTest.cs",
+              "RelativeDocumentMoniker": "..\\ChronoAPITests\\ZeitBerechnungsTest.cs",
+              "ToolTip": "C:\\Users\\alkan\\Desktop\\Fachakademie 3. und 4. Semester\\PROJEKT CHRONO\\ChronoAPITests\\ZeitBerechnungsTest.cs",
+              "RelativeToolTip": "..\\ChronoAPITests\\ZeitBerechnungsTest.cs",
+              "ViewState": "AgIAAJgAAAAAAAAAAAAAAKMAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-29T17:06:50.74Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ZeitBerechnung.cs",
+              "DocumentMoniker": "C:\\Users\\alkan\\Desktop\\Fachakademie 3. und 4. Semester\\PROJEKT CHRONO\\ChronoAPI\\Services\\ZeitBerechnung.cs",
+              "RelativeDocumentMoniker": "Services\\ZeitBerechnung.cs",
+              "ToolTip": "C:\\Users\\alkan\\Desktop\\Fachakademie 3. und 4. Semester\\PROJEKT CHRONO\\ChronoAPI\\Services\\ZeitBerechnung.cs",
+              "RelativeToolTip": "Services\\ZeitBerechnung.cs",
+              "ViewState": "AgIAAB0AAAAAAAAAAAAuwCwAAAA+AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-29T17:04:21.482Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Mitarbeiter.cs",
+              "DocumentMoniker": "C:\\Users\\alkan\\Desktop\\Fachakademie 3. und 4. Semester\\PROJEKT CHRONO\\ChronoAPI\\Models\\Mitarbeiter.cs",
+              "RelativeDocumentMoniker": "Models\\Mitarbeiter.cs",
+              "ToolTip": "C:\\Users\\alkan\\Desktop\\Fachakademie 3. und 4. Semester\\PROJEKT CHRONO\\ChronoAPI\\Models\\Mitarbeiter.cs",
+              "RelativeToolTip": "Models\\Mitarbeiter.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAxwFUAAABJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-11T17:16:50.137Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "NFCResponse.cs",
+              "DocumentMoniker": "C:\\Users\\alkan\\Desktop\\Fachakademie 3. und 4. Semester\\PROJEKT CHRONO\\ChronoAPI\\Models\\NFCResponse.cs",
+              "RelativeDocumentMoniker": "Models\\NFCResponse.cs",
+              "ToolTip": "C:\\Users\\alkan\\Desktop\\Fachakademie 3. und 4. Semester\\PROJEKT CHRONO\\ChronoAPI\\Models\\NFCResponse.cs",
+              "RelativeToolTip": "Models\\NFCResponse.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-11T17:12:35.03Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Abteilung.cs",
+              "DocumentMoniker": "C:\\Users\\alkan\\Desktop\\Fachakademie 3. und 4. Semester\\PROJEKT CHRONO\\ChronoAPI\\Models\\Abteilung.cs",
+              "RelativeDocumentMoniker": "Models\\Abteilung.cs",
+              "ToolTip": "C:\\Users\\alkan\\Desktop\\Fachakademie 3. und 4. Semester\\PROJEKT CHRONO\\ChronoAPI\\Models\\Abteilung.cs",
+              "RelativeToolTip": "Models\\Abteilung.cs",
+              "ViewState": "AgIAACgAAAAAAAAAAAAiwCIAAABOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-09T07:05:50.118Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "TimeBooking.cs",
+              "DocumentMoniker": "C:\\Users\\alkan\\Desktop\\Fachakademie 3. und 4. Semester\\PROJEKT CHRONO\\ChronoAPI\\Models\\TimeBooking.cs",
+              "RelativeDocumentMoniker": "Models\\TimeBooking.cs",
+              "ToolTip": "C:\\Users\\alkan\\Desktop\\Fachakademie 3. und 4. Semester\\PROJEKT CHRONO\\ChronoAPI\\Models\\TimeBooking.cs",
+              "RelativeToolTip": "Models\\TimeBooking.cs",
+              "ViewState": "AgIAADcAAAAAAAAAAAAwwAkAAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-09T07:13:06.925Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "Abwesenheit.cs",
+              "DocumentMoniker": "C:\\Users\\alkan\\Desktop\\Fachakademie 3. und 4. Semester\\PROJEKT CHRONO\\ChronoAPI\\Models\\Abwesenheit.cs",
+              "RelativeDocumentMoniker": "Models\\Abwesenheit.cs",
+              "ToolTip": "C:\\Users\\alkan\\Desktop\\Fachakademie 3. und 4. Semester\\PROJEKT CHRONO\\ChronoAPI\\Models\\Abwesenheit.cs",
+              "RelativeToolTip": "Models\\Abwesenheit.cs",
+              "ViewState": "AgIAABoAAAAAAAAAAAAowAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-11T17:15:26.872Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "NfcRequest.cs",
+              "DocumentMoniker": "C:\\Users\\alkan\\Desktop\\Fachakademie 3. und 4. Semester\\PROJEKT CHRONO\\ChronoAPI\\Models\\NfcRequest.cs",
+              "RelativeDocumentMoniker": "Models\\NfcRequest.cs",
+              "ToolTip": "C:\\Users\\alkan\\Desktop\\Fachakademie 3. und 4. Semester\\PROJEKT CHRONO\\ChronoAPI\\Models\\NfcRequest.cs",
+              "RelativeToolTip": "Models\\NfcRequest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAA7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-11T17:24:18.479Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\alkan\\Desktop\\Fachakademie 3. und 4. Semester\\PROJEKT CHRONO\\ChronoAPI\\appsettings.json",
+              "RelativeDocumentMoniker": "appsettings.json",
+              "ToolTip": "C:\\Users\\alkan\\Desktop\\Fachakademie 3. und 4. Semester\\PROJEKT CHRONO\\ChronoAPI\\appsettings.json",
+              "RelativeToolTip": "appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-05-03T10:55:35.952Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\alkan\\Desktop\\Fachakademie 3. und 4. Semester\\PROJEKT CHRONO\\ChronoAPI\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\alkan\\Desktop\\Fachakademie 3. und 4. Semester\\PROJEKT CHRONO\\ChronoAPI\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAJUAAAAAAAAAAAAswKoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-03T13:19:36.899Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "User.cs",
+              "DocumentMoniker": "C:\\Users\\alkan\\Desktop\\Fachakademie 3. und 4. Semester\\PROJEKT CHRONO\\ChronoAPI\\Models\\User.cs",
+              "RelativeDocumentMoniker": "Models\\User.cs",
+              "ToolTip": "C:\\Users\\alkan\\Desktop\\Fachakademie 3. und 4. Semester\\PROJEKT CHRONO\\ChronoAPI\\Models\\User.cs",
+              "RelativeToolTip": "Models\\User.cs",
+              "ViewState": "AgIAAEYAAAAAAAAAAIAzwFIAAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-06T22:32:57.164Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "LoginRequest.cs",
+              "DocumentMoniker": "C:\\Users\\alkan\\Desktop\\Fachakademie 3. und 4. Semester\\PROJEKT CHRONO\\ChronoAPI\\Models\\LoginRequest.cs",
+              "RelativeDocumentMoniker": "Models\\LoginRequest.cs",
+              "ToolTip": "C:\\Users\\alkan\\Desktop\\Fachakademie 3. und 4. Semester\\PROJEKT CHRONO\\ChronoAPI\\Models\\LoginRequest.cs",
+              "RelativeToolTip": "Models\\LoginRequest.cs",
+              "ViewState": "AgIAABcAAAAAAAAAAAAQwCcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-06T22:34:05.623Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

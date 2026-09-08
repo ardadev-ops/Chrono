@@ -1,0 +1,14 @@
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\bin\Release\net10.0\publish\ChronoWeb.exe
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\bin\Release\net10.0\publish\appsettings.json
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\bin\Release\net10.0\publish\appsettings.Production.json
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\bin\Release\net10.0\publish\ChronoWeb.dll
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\bin\Release\net10.0\publish\ChronoWeb.runtimeconfig.json
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\bin\Release\net10.0\publish\ChronoWeb.pdb
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\bin\Release\net10.0\publish\Blazored.LocalStorage.dll
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\bin\Release\net10.0\publish\ch1seL.Blazored.LocalStorage.Concurrent.dll
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\bin\Release\net10.0\publish\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\bin\Release\net10.0\publish\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\bin\Release\net10.0\publish\Microsoft.IdentityModel.Logging.dll
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\bin\Release\net10.0\publish\Microsoft.IdentityModel.Tokens.dll
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\bin\Release\net10.0\publish\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\alkan\Desktop\Fachakademie 3. und 4. Semester\PROJEKT CHRONO\ChronoWeb\bin\Release\net10.0\publish\ChronoWeb.deps.json

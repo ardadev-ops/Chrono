@@ -1,0 +1,405 @@
+﻿@page "/antraege"
+@using ChronoWeb.Models
+@using ChronoWeb.Services
+@inject ApiService ApiService
+@inject AppState AppState
+@inject NavigationManager Navigation
+@rendermode InteractiveServer
+
+<PageTitle>CHRONO – Anträge</PageTitle>
+
+@if (!_initialized)
+{
+    <div style="display:flex;align-items:center;justify-content:center;height:100vh;background:var(--l0);color:var(--t1);">
+        <div>Lade...</div>
+    </div>
+}
+else if (!AppState.IsLoggedIn)
+{
+    <p>Weiterleitung...</p>
+}
+else if (!AppState.CanApprove)
+{
+    <div class="no-access">
+        <h2>Kein Zugriff</h2>
+        <p>Diese Seite ist nur für Abteilungsleiter, HR und Admin.</p>
+        <button class="btn btn-secondary" @onclick='() => Navigation.NavigateTo("/dashboard")'>
+            Zurück
+        </button>
+    </div>
+}
+else
+{
+    <div class="chrono-shell">
+        <ChronoSidebar />
+        <main class="chrono-main">
+
+            <div class="page-head">
+                <div>
+                    <p class="page-eyebrow">Abwesenheit</p>
+                    <h1 class="page-title">Urlaubsanträge</h1>
+                    <p class="page-sub">@AppState.VollName · @AppState.Role</p>
+                </div>
+            </div>
+
+            <div class="metrics">
+                <div class="metric is-warn">
+                    <div class="metric-label">Offen</div>
+                    <div class="metric-value">@pending.Count</div>
+                </div>
+                <div class="metric is-ok">
+                    <div class="metric-label">Genehmigt</div>
+                    <div class="metric-value">@approved.Count</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-label">Abgelehnt</div>
+                    <div class="metric-value" style="color:var(--err);">@rejected.Count</div>
+                </div>
+            </div>
+
+            <!-- TABS -->
+            <div class="tab-bar">
+                <button class="tab @(activeTab == "pending" ? "tab-active" : "")"
+                        @onclick='() => activeTab = "pending"'>
+                    Ausstehend (@pending.Count)
+                </button>
+                <button class="tab @(activeTab == "approved" ? "tab-active" : "")"
+                        @onclick='() => activeTab = "approved"'>
+                    Genehmigt (@approved.Count)
+                </button>
+                <button class="tab @(activeTab == "rejected" ? "tab-active" : "")"
+                        @onclick='() => activeTab = "rejected"'>
+                    Abgelehnt (@rejected.Count)
+                </button>
+                <button class="tab @(activeTab == "all" ? "tab-active" : "")"
+                        @onclick='() => activeTab = "all"'>
+                    Alle (@alleAntraege.Count)
+                </button>
+            </div>
+
+            <!-- LOADING -->
+            @if (isLoading)
+            {
+                <div class="state-box">
+                    <div class="spinner"></div>
+                    <p>Wird geladen...</p>
+                </div>
+            }
+            else
+            {
+                var liste = GetAktiveListe();
+
+                @if (!liste.Any())
+                {
+                    <div class="state-box">
+                        <h3>Keine Anträge in dieser Kategorie</h3>
+                    </div>
+                }
+                else
+                {
+                    <div class="card">
+                        <div class="table-wrap">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Mitarbeiter</th>
+                                        <th>Art</th>
+                                        <th>Von</th>
+                                        <th>Bis</th>
+                                        <th>Tage</th>
+                                        <th>Begründung</th>
+                                        <th>Status</th>
+                                        @if (activeTab == "pending")
+                                        {
+                                            <th>Aktion</th>
+                                        }
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var a in liste.OrderByDescending(x => x.AbwesenID))
+                                    {
+                                        <tr>
+                                            <td>
+                                                <div class="mitarbeiter-cell">
+                                                    <div class="avatar">
+                                                        @GetInitials(a.Mitarbeiter?.MitVorname,
+                                                                    a.Mitarbeiter?.MitNachname)
+                                                    </div>
+                                                    <div>
+                                                        <div class="ma-name">
+                                                            @a.Mitarbeiter?.MitVorname
+                                                            @a.Mitarbeiter?.MitNachname
+                                                        </div>
+                                                        <div class="ma-dept">
+                                                            @a.Mitarbeiter?.Abteilung?.AbtName
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <span class="badge badge-muted">
+                                                    @a.AbwesenType
+                                                </span>
+                                            </td>
+                                            <td class="num">
+                                                @a.StartDate.ToString("dd.MM.yyyy")
+                                            </td>
+                                            <td class="num">
+                                                @a.EndDate.ToString("dd.MM.yyyy")
+                                            </td>
+                                            <td class="num">
+                                                @GetDaysDiff(a.StartDate, a.EndDate)
+                                            </td>
+                                            <td class="td-grund">
+                                                @(string.IsNullOrEmpty(a.AbwesenGrund)
+                                                  ? "–" : a.AbwesenGrund)
+                                            </td>
+                                            <td>
+                                                <span class="badge @GetStatusBadgeClass(a.Status)">
+                                                    @GetStatusText(a.Status)
+                                                </span>
+                                            </td>
+                                            @if (activeTab == "pending")
+                                            {
+                                                <td>
+                                                    <div class="action-btns">
+                                                        <button class="btn btn-sm btn-success"
+                                                                @onclick="() => Approve(a.AbwesenID)"
+                                                                disabled="@isProcessing">
+                                                            Genehmigen
+                                                        </button>
+                                                        <button class="btn btn-sm btn-danger"
+                                                                @onclick="() => Reject(a.AbwesenID)"
+                                                                disabled="@isProcessing">
+                                                            Ablehnen
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            }
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                }
+            }
+
+            <!-- TOAST NACHRICHT -->
+            @if (!string.IsNullOrEmpty(toastMessage))
+            {
+                <div class="toast @(toastSuccess ? "toast-ok" : "toast-err")">
+                    @toastMessage
+                </div>
+            }
+
+        </main>
+    </div>
+}
+
+@code {
+    private static readonly HashSet<DateTime> Feiertage2026 = new()
+    {
+        new DateTime(2026, 1,  1),   // Neujahr
+        new DateTime(2026, 1,  6),   // Heilige Drei Könige
+        new DateTime(2026, 5,  1),   // Staatsfeiertag
+        new DateTime(2026, 5,  14),  // Christi Himmelfahrt
+        new DateTime(2026, 5,  25),  // Pfingstmontag
+        new DateTime(2026, 6,  4),   // Fronleichnam
+        new DateTime(2026, 8,  15),  // Mariä Himmelfahrt
+        new DateTime(2026, 10, 26),  // Nationalfeiertag
+        new DateTime(2026, 11, 1),   // Allerheiligen
+        new DateTime(2026, 12, 8),   // Mariä Empfängnis
+        new DateTime(2026, 12, 25),  // Christtag
+        new DateTime(2026, 12, 26),  // Stefanitag
+    };
+
+    private List<Abwesenheit> alleAntraege = new();
+    private List<Abwesenheit> pending => 
+        alleAntraege.Where(a => a.Status == "Pending").ToList();
+    private List<Abwesenheit> approved => 
+        alleAntraege.Where(a => a.Status == "Approved").ToList();
+    private List<Abwesenheit> rejected => 
+        alleAntraege.Where(a => a.Status == "Rejected").ToList();
+
+    private string activeTab = "pending";
+    private bool isLoading = true;
+    private bool _initialized = false;
+    private bool isProcessing = false;
+    private string toastMessage = "";
+    private bool toastSuccess = true;
+    private DateTime? startDate = DateTime.Now.AddDays(1);
+    private DateTime? endDate = DateTime.Now.AddDays(7);
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (!firstRender) return;
+
+        await AppState.InitializeAsync();
+        _initialized = true;
+
+        if (!AppState.IsLoggedIn)
+        {
+            Navigation.NavigateTo("/login");
+            return;
+        }
+
+        await LoadData();
+        StateHasChanged();
+    }
+
+    private async Task LoadData()
+    {
+        isLoading = true;
+        try
+        {
+            alleAntraege = await ApiService.GetAbwesenheiten();
+        }
+        catch { alleAntraege = new(); }
+        finally { isLoading = false; }
+    }
+
+    private List<Abwesenheit> GetAktiveListe() => activeTab switch
+    {
+        "pending"  => pending,
+        "approved" => approved,
+        "rejected" => rejected,
+        _          => alleAntraege
+    };
+
+    private async Task Approve(int id)
+    {
+        isProcessing = true;
+        try
+        {
+            var ok = await ApiService.ApproveAbwesenheit(id, AppState.UserID);
+            if (ok)
+            {
+                ShowToast("✅ Antrag genehmigt!", true);
+                await LoadData();
+            }
+            else ShowToast("Fehler beim Genehmigen!", false);
+        }
+        catch { ShowToast("Verbindungsfehler!", false); }
+        finally { isProcessing = false; }
+    }
+
+    private async Task Reject(int id)
+    {
+        isProcessing = true;
+        try
+        {
+            var ok = await ApiService.RejectAbwesenheit(id);
+            if (ok)
+            {
+                ShowToast("❌ Antrag abgelehnt!", true);
+                await LoadData();
+            }
+            else ShowToast("Fehler beim Ablehnen!", false);
+        }
+        catch { ShowToast("Verbindungsfehler!", false); }
+        finally { isProcessing = false; }
+    }
+
+    private async void ShowToast(string msg, bool success)
+    {
+        toastMessage = msg;
+        toastSuccess = success;
+        StateHasChanged();
+        await Task.Delay(3000);
+        toastMessage = "";
+        StateHasChanged();
+    }
+
+    private int GetDaysDiff(DateOnly start, DateOnly end)
+    {
+        int days = 0;
+        for (var d = start.ToDateTime(TimeOnly.MinValue);
+             d <= end.ToDateTime(TimeOnly.MinValue);
+             d = d.AddDays(1))
+        {
+            if (d.DayOfWeek == DayOfWeek.Saturday ||
+                d.DayOfWeek == DayOfWeek.Sunday)
+                continue;
+
+            if (Feiertage2026.Contains(d))
+                continue;
+
+            days++;
+        }
+        return days;
+        
+    }
+
+
+    private string GetInitials(string? vor, string? nach)
+        => $"{vor?.FirstOrDefault()}{nach?.FirstOrDefault()}".ToUpper();
+
+    private string GetTypeIcon(string type) => type switch
+    {
+        "Urlaub" => "🌴",
+        "Krankenstand" => "🤒",
+        "PrivateGruende" => "👤",
+        _ => "📋"
+    };
+
+    private string GetStatusText(string status) => status switch
+    {
+        "Approved" => "✅ Genehmigt",
+        "Rejected" => "❌ Abgelehnt",
+        _ => "⏳ Ausstehend"
+    };
+
+    private string GetStatusBadgeClass(string status) => status switch
+    {
+        "Approved" => "badge-ok",
+        "Rejected" => "badge-err",
+        _ => "badge-warn"
+    };
+}
+
+<style>
+    /* TABS */
+    .tab-bar {
+        display: flex; gap: 6px; margin-bottom: 20px; overflow-x: auto;
+    }
+
+    .tab {
+        padding: 8px 16px; border: 1px solid var(--edge); background: var(--l2);
+        border-radius: var(--r-md); cursor: pointer; font-size: 13px; font-weight: 500;
+        color: var(--t3); transition: all 0.2s var(--ease); white-space: nowrap;
+    }
+    .tab:hover { color: var(--t1); background: var(--l3); }
+
+    .tab-active {
+        background: var(--blue-wash) !important;
+        border-color: var(--blue-line) !important;
+        color: var(--blue) !important;
+    }
+
+    .mitarbeiter-cell { display: flex; align-items: center; gap: 10px; }
+    .avatar { width: 34px; height: 34px; border-radius: 50%; background: linear-gradient(140deg, #2B92FF, #5B5BD6); color: white; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; flex-shrink: 0; }
+    .ma-name { font-weight: 500; font-size: 13px; color: var(--t1); }
+    .ma-dept { font-size: 12px; color: var(--t3); }
+
+    .td-grund { color: var(--t3); font-style: italic; max-width: 220px; }
+
+    /* ACTION BUTTONS */
+    .action-btns { display: flex; gap: 6px; }
+
+    /* TOAST */
+    .toast {
+        position: fixed; bottom: 24px; right: 24px; padding: 14px 20px; border-radius: var(--r-md);
+        font-size: 13px; font-weight: 500; z-index: 999; box-shadow: var(--sh-3);
+        background: linear-gradient(180deg, var(--l3), var(--l2));
+        border: 1px solid var(--edge); border-left-width: 2px;
+        animation: chrono-rise 0.3s var(--ease);
+    }
+    .toast-ok  { color: var(--ok);  border-left-color: var(--ok); }
+    .toast-err { color: var(--err); border-left-color: var(--err); }
+
+    /* NO ACCESS */
+    .no-access { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; gap: 12px; background: var(--l0); }
+    .no-access h2 { font-size: 20px; color: var(--t1); margin: 0; }
+    .no-access p { color: var(--t3); margin: 0; }
+</style>

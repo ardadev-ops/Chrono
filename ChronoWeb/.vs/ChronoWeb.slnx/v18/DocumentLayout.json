@@ -1,0 +1,54 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\alkan\\Desktop\\Fachakademie 3. und 4. Semester\\PROJEKT CHRONO\\ChronoWeb\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{09492D14-493D-4412-33AE-769A0B1FDF03}|ChronoWeb.csproj|c:\\users\\alkan\\desktop\\fachakademie 3. und 4. semester\\projekt chrono\\chronoweb\\components\\pages\\antraege.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{09492D14-493D-4412-33AE-769A0B1FDF03}|ChronoWeb.csproj|solutionrelative:components\\pages\\antraege.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{09492D14-493D-4412-33AE-769A0B1FDF03}|ChronoWeb.csproj|c:\\users\\alkan\\desktop\\fachakademie 3. und 4. semester\\projekt chrono\\chronoweb\\components\\pages\\urlaub.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{09492D14-493D-4412-33AE-769A0B1FDF03}|ChronoWeb.csproj|solutionrelative:components\\pages\\urlaub.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Urlaub.razor",
+              "DocumentMoniker": "C:\\Users\\alkan\\Desktop\\Fachakademie 3. und 4. Semester\\PROJEKT CHRONO\\ChronoWeb\\Components\\Pages\\Urlaub.razor",
+              "RelativeDocumentMoniker": "Components\\Pages\\Urlaub.razor",
+              "ToolTip": "C:\\Users\\alkan\\Desktop\\Fachakademie 3. und 4. Semester\\PROJEKT CHRONO\\ChronoWeb\\Components\\Pages\\Urlaub.razor",
+              "RelativeToolTip": "Components\\Pages\\Urlaub.razor",
+              "ViewState": "AgIAAPkAAAAAAAAAAAAAAAcBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-09-03T08:35:54.422Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Antraege.razor",
+              "DocumentMoniker": "C:\\Users\\alkan\\Desktop\\Fachakademie 3. und 4. Semester\\PROJEKT CHRONO\\ChronoWeb\\Components\\Pages\\Antraege.razor",
+              "RelativeDocumentMoniker": "Components\\Pages\\Antraege.razor",
+              "ToolTip": "C:\\Users\\alkan\\Desktop\\Fachakademie 3. und 4. Semester\\PROJEKT CHRONO\\ChronoWeb\\Components\\Pages\\Antraege.razor",
+              "RelativeToolTip": "Components\\Pages\\Antraege.razor",
+              "ViewState": "AgIAAC0BAAAAAAAAAAAcwOcAAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-09-03T08:35:40.195Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

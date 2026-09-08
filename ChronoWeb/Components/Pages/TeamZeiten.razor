@@ -1,0 +1,298 @@
+@page "/team-zeiten"
+@using ChronoWeb.Models
+@using ChronoWeb.Services
+@inject ApiService ApiService
+@inject AppState AppState
+@inject NavigationManager Navigation
+@rendermode InteractiveServer
+
+<PageTitle>CHRONO – Team-Zeiten</PageTitle>
+
+@if (!_initialized)
+{
+    <div style="display:flex;align-items:center;justify-content:center;height:100vh;background:var(--l0);color:var(--t1);">
+        <div>Lade...</div>
+    </div>
+}
+else if (!AppState.IsLoggedIn)
+{
+    <p>Weiterleitung...</p>
+}
+else if (!AppState.CanApprove)
+{
+    <div class="no-access">
+        <h2>Kein Zugriff</h2>
+        <p>Diese Seite ist nur für Abteilungsleiter, HR und Admin.</p>
+        <button class="btn btn-secondary" @onclick='() => Navigation.NavigateTo("/dashboard")'>Zurück</button>
+    </div>
+}
+else
+{
+    <div class="chrono-shell">
+        <ChronoSidebar />
+        <main class="chrono-main">
+
+            <div class="page-head">
+                <div>
+                    <p class="page-eyebrow">Zeiterfassung</p>
+                    <h1 class="page-title">Team-Zeiten</h1>
+                    <p class="page-sub">@AppState.VollName · @AppState.Role</p>
+                </div>
+            </div>
+
+            @if (AppState.IsAbteilungsleiter)
+            {
+                <div class="alert alert-info" style="margin-bottom:20px;">
+                    Sie sehen die Daten Ihrer Abteilung.
+                </div>
+            }
+
+            <div class="metrics">
+                <div class="metric is-primary">
+                    <div class="metric-label">Einträge</div>
+                    <div class="metric-value">@GetFiltered().Count()</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-label">Gesamt</div>
+                    <div class="metric-value">@GetGesamtStunden()<span>h</span></div>
+                </div>
+            </div>
+
+            <!-- FILTER -->
+            <div class="filterbar">
+                <span class="filterbar-label">Von:</span>
+                <input type="date" @bind="filterVon" class="input" style="width:auto;" />
+                <span class="filterbar-label">Bis:</span>
+                <input type="date" @bind="filterBis" class="input" style="width:auto;" />
+                <input type="text" @bind="filterName" @bind:event="oninput"
+                       placeholder="Mitarbeiter suchen..." class="input" style="width:200px;" />
+                <button class="btn btn-secondary" @onclick="LoadData">Filtern</button>
+                <button class="btn btn-ghost" @onclick="ResetFilter">Reset</button>
+            </div>
+
+            <!-- LOADING -->
+            @if (isLoading)
+            {
+                <div class="state-box">
+                    <div class="spinner"></div>
+                    <p>Buchungen werden geladen...</p>
+                </div>
+            }
+            else if (loadError != null)
+            {
+                <div class="state-box">
+                    <h3>Fehler beim Laden</h3>
+                    <p>@loadError</p>
+                    <button class="btn btn-secondary" @onclick="LoadData">Erneut versuchen</button>
+                </div>
+            }
+            else if (!GetFiltered().Any())
+            {
+                <div class="state-box">
+                    <h3>Keine Buchungen gefunden</h3>
+                    <p>Für den gewählten Zeitraum sind keine Buchungen vorhanden.</p>
+                </div>
+            }
+            else
+            {
+                <div class="card">
+                    <div class="table-wrap">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Mitarbeiter</th>
+                                    <th>Datum</th>
+                                    <th>Check-In</th>
+                                    <th>Check-Out</th>
+                                    <th>Pause</th>
+                                    <th>Arbeitsstunden</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var b in GetFiltered())
+                                {
+                                    <tr>
+                                        <td>
+                                            <div class="name-cell">
+                                                <div class="avatar" style="background: @GetColor(b.FK_MitID)">
+                                                    @GetInitials(b.Mitarbeiter)
+                                                </div>
+                                                <div>
+                                                    <div class="name-text">@(b.Mitarbeiter?.FullName ?? $"ID {b.FK_MitID}")</div>
+                                                    <div class="dept-text">@(b.Mitarbeiter?.Abteilung?.AbtName ?? "")</div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="num">@b.CheckInTime.ToString("dd.MM.yyyy")</td>
+                                        <td>
+                                            <span class="time-chip time-in">@b.CheckInTime.ToString("HH:mm")</span>
+                                        </td>
+                                        <td>
+                                            @if (b.CheckOutTime.HasValue)
+                                            {
+                                                <span class="time-chip time-out">@b.CheckOutTime.Value.ToString("HH:mm")</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="time-chip time-run">Aktiv</span>
+                                            }
+                                        </td>
+                                        <td class="num">@b.BreakMinutes min</td>
+                                        <td class="num">
+                                            @if (b.ArbeitsStunden.HasValue)
+                                            {
+                                                <span style="color:@(b.ArbeitsStunden >= 8 ? "var(--ok)" : "var(--warn)"); font-weight:600;">
+                                                    @b.ArbeitsStunden.Value.ToString("F2")h
+                                                </span>
+                                            }
+                                            else
+                                            {
+                                                <span style="color:var(--blue); font-style:italic;">läuft...</span>
+                                            }
+                                        </td>
+                                        <td>
+                                            @if (b.CheckOutTime == null)
+                                            {
+                                                <span class="badge badge-blue">Aktiv</span>
+                                            }
+                                            else if (b.ArbeitsStunden >= 8)
+                                            {
+                                                <span class="badge badge-ok">Vollzeit</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="badge badge-warn">Teilzeit</span>
+                                            }
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="5">Gesamt:</td>
+                                    <td colspan="2" class="num">
+                                        @GetGesamtStunden()h
+                                        (@GetFiltered().Count() Einträge)
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            }
+
+        </main>
+    </div>
+}
+
+@code {
+    private List<TimeBooking> bookings = new();
+    private bool isLoading = true;
+    private bool _initialized = false;
+    private string? loadError;
+    private DateTime filterVon = DateTime.Now.AddDays(-7);
+    private DateTime filterBis = DateTime.Now;
+    private string filterName = "";
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (!firstRender) return;
+
+        await AppState.InitializeAsync();
+        _initialized = true;
+
+        if (!AppState.IsLoggedIn)
+        {
+            Navigation.NavigateTo("/login");
+            return;
+        }
+
+        await LoadData();
+        StateHasChanged();
+    }
+
+    private async Task LoadData()
+    {
+        isLoading = true;
+        loadError = null;
+        try
+        {
+            bookings = await ApiService.GetTimeBookings();
+        }
+        catch (Exception ex)
+        {
+            bookings = new();
+            loadError = ex.Message;
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+
+    private async Task ResetFilter()
+    {
+        filterVon = DateTime.Now.AddDays(-7);
+        filterBis = DateTime.Now;
+        filterName = "";
+        await LoadData();
+    }
+
+    private IEnumerable<TimeBooking> GetFiltered()
+    {
+        return bookings
+            .Where(b => b.CheckInTime.Date >= filterVon.Date
+                     && b.CheckInTime.Date <= filterBis.Date
+                     && (string.IsNullOrEmpty(filterName) ||
+                         (b.Mitarbeiter?.FullName ?? "")
+                             .Contains(filterName, StringComparison.OrdinalIgnoreCase)))
+            .OrderByDescending(b => b.CheckInTime);
+    }
+
+    private string GetGesamtStunden()
+    {
+        var total = GetFiltered()
+            .Where(b => b.ArbeitsStunden.HasValue)
+            .Sum(b => b.ArbeitsStunden ?? 0);
+        return total.ToString("F1");
+    }
+
+    private string GetInitials(Mitarbeiter? m)
+    {
+        if (m == null) return "?";
+        return $"{m.MitVorname.FirstOrDefault()}{m.MitNachname.FirstOrDefault()}".ToUpper();
+    }
+
+    private string GetColor(int id)
+    {
+        string[] colors = {
+            "linear-gradient(135deg,#3b82f6,#1d4ed8)",
+            "linear-gradient(135deg,#10b981,#047857)",
+            "linear-gradient(135deg,#8b5cf6,#6d28d9)",
+            "linear-gradient(135deg,#f59e0b,#b45309)",
+            "linear-gradient(135deg,#ef4444,#b91c1c)",
+            "linear-gradient(135deg,#06b6d4,#0e7490)"
+        };
+        return colors[id % colors.Length];
+    }
+}
+
+<style>
+    /* NAME CELL */
+    .name-cell { display: flex; align-items: center; gap: 10px; }
+    .avatar {
+        width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 11px; font-weight: 600; color: white;
+    }
+    .name-text { font-weight: 500; color: var(--t1); font-size: 13px; }
+    .dept-text { font-size: 11px; color: var(--t3); margin-top: 2px; }
+
+    .no-access {
+        display: flex; flex-direction: column; align-items: center; justify-content: center;
+        min-height: 100vh; gap: 12px; background: var(--l0);
+    }
+    .no-access h2 { font-size: 20px; color: var(--t1); margin: 0; }
+    .no-access p { color: var(--t3); margin: 0; }
+</style>
