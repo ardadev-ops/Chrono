@@ -80,7 +80,7 @@ HOST-LAPTOP (192.168.137.1) → Entwicklung (VS 2022, .NET 10 SDK)
 **Connection String:**
 ```
 Server=192.168.137.10,1433;Database=ChronoTimeTracking;
-User Id=sa;Password=ServerAdmin2026!;TrustServerCertificate=True;Encrypt=False;
+User Id=sa;Password=;TrustServerCertificate=True;Encrypt=False;
 ```
 > ⚠️ WICHTIG: Port `,1433` direkt nach IP angeben – KEIN `\\SQLEXPRESS`!
 
