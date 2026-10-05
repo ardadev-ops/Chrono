@@ -61,7 +61,7 @@ HOST-LAPTOP (192.168.137.1) → Entwicklung
 **Connection String (appsettings.json):**
 ```
 Server=192.168.137.10,1433;Database=ChronoTimeTracking;User Id=sa;
-Password=ServerAdmin2026!;TrustServerCertificate=True;Encrypt=False;
+Password=;TrustServerCertificate=True;Encrypt=False;
 ```
 
 **8 Tabellen:** tblAbteilung, tblMitarbeiter, tblUsers, tblTimeBookings,
